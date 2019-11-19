@@ -1,0 +1,29 @@
+.DS_Store
+._*
+
+# IDE workspace files
+.vscode
+.idea
+.project
+.settings
+
+# dotenv environment variables file
+.env
+.env.test
+
+# Dependency directories
+node_modules/
+jspm_packages/
+bower_components/
+
+# Logs
+logs
+*.log
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+dist
