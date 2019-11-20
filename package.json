@@ -2,8 +2,10 @@
   "name": "@lcooper/eslint-config",
   "version": "1.0.0",
   "description": "Shareable config for ESLint",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ignore-path .gitignore ."
   },
   "publishConfig": {
     "access": "public"
@@ -24,6 +26,7 @@
   "homepage": "https://github.com/luciancooper/eslint-config#readme",
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -32,9 +35,24 @@
       "@lcooper"
     ]
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ]
+  },
+  "dependencies": {
+    "eslint-config-airbnb-base": "^14.0.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@lcooper/commitlint-config": "^1.0.0",
-    "husky": "^3.1.0"
+    "eslint": "^6.6.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.4.3"
+  },
+  "peerDependencies": {
+    "eslint": ">= 4",
+    "eslint-plugin-import": "^2.18.2"
   }
 }
