@@ -26,4 +26,8 @@ logs
 # Output of 'npm pack'
 *.tgz
 
+# dist directory
 dist
+
+# package locks
+package-lock.json

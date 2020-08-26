@@ -1,14 +1,9 @@
 {
-  "name": "@lcooper/eslint-config",
-  "version": "1.0.0",
-  "description": "Shareable config for ESLint",
-  "main": "index.js",
+  "name": "root",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ignore-path .gitignore ."
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "repository": {
     "type": "git",
@@ -40,19 +35,16 @@
       "eslint"
     ]
   },
-  "dependencies": {
-    "eslint-config-airbnb-base": "^14.0.0"
-  },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@lcooper/commitlint-config": "^1.0.0",
-    "eslint": "^6.6.0",
-    "eslint-plugin-import": "^2.18.2",
-    "husky": "^3.1.0",
-    "lint-staged": "^9.4.3"
+    "@commitlint/cli": "^9.1.2",
+    "@lcooper/commitlint-config": "^1.1.0",
+    "eslint": "^7.7.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.2.13"
   },
-  "peerDependencies": {
-    "eslint": ">= 4",
-    "eslint-plugin-import": "^2.18.2"
+  "dependencies": {
+    "@lcooper/eslint-config": "file:packages/eslint-config"
   }
 }

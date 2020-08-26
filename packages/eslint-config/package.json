@@ -1,0 +1,35 @@
+{
+  "name": "@lcooper/eslint-config",
+  "version": "1.0.0",
+  "description": "Shareable config for ESLint",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "eslint",
+    "eslintconfig"
+  ],
+  "author": "Lucian Cooper <cooperlucian@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luciancooper/eslint-config.git",
+    "directory": "packages/eslint-config"
+  },
+  "bugs": {
+    "url": "https://github.com/luciancooper/eslint-config/issues"
+  },
+  "homepage": "https://github.com/luciancooper/eslint-config/packages/eslint-config#readme",
+  "dependencies": {
+    "eslint-config-airbnb-base": "^14.2.0"
+  },
+  "peerDependencies": {
+    "eslint": ">= 4",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
