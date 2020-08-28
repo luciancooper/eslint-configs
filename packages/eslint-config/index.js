@@ -70,8 +70,10 @@ module.exports = {
                 Undefined: 'undefined',
                 Void: 'void',
                 any: '*',
-                array: '[]',
-                Array: '[]',
+                array: 'Array',
+                Array: 'SpecialTypeArray',
+                'Array.<>': 'SpecialTypeArray',
+                'Array<>': 'SpecialTypeArray',
                 '.<>': '<>',
                 object: 'Object',
                 regexp: 'RegExp',
@@ -162,7 +164,7 @@ module.exports = {
         'jsdoc/no-undefined-types': 0,
         // Reports invalid types
         'jsdoc/check-types': [2, {
-            unifyParentAndChildTypeChecks: true,
+            unifyParentAndChildTypeChecks: false,
         }],
         // This rule forbids types on @param & @returns tags
         'jsdoc/no-types': 0,
