@@ -1,3 +1,6 @@
 {
-  "extends": "@lcooper/eslint-config"
+  "extends": "@lcooper/eslint-config",
+  "ignorePatterns": [
+    "**/__tests__/**/fixtures/**/*"
+  ]
 }
