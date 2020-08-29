@@ -121,6 +121,7 @@ module.exports = {
             treatUndefinedAsUnspecified: true,
         }],
         'no-void': 'off',
+        'no-loop-func': 'off',
 
         // eslint-plugin-jsdoc rules
 
