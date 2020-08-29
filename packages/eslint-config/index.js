@@ -122,6 +122,9 @@ module.exports = {
         }],
         'no-void': 'off',
         'no-loop-func': 'off',
+        'no-param-reassign': ['error', {
+            props: false,
+        }],
 
         // eslint-plugin-jsdoc rules
 
