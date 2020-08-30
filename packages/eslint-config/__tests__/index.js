@@ -35,13 +35,45 @@ const linter = new ESLint({
     baseConfig: config,
 });
 
+// add custom expect matcher
+expect.extend({
+    toHaveErrorCount(received, count) {
+        // check to see if the expected number of errors were found
+        if (received.errorCount === count) {
+            return {
+                message: () => `expected ${count} errors and found ${received.errorCount}`,
+                pass: true,
+            };
+        }
+        return {
+            // create more detailed message
+            message: () => [
+                `expected ${count} errors but found ${received.errorCount}`,
+                ...received.messages.map(({ ruleId, message }) => ` - [${ruleId}]: ${message}`),
+            ].join('\n'),
+            pass: false,
+        };
+    },
+});
+
 // jsdoc syntax tests
-describe('jsdoc', () => {
+describe('JSDoc', () => {
     parseFixtures('jsdoc.js').forEach(({ message, errors, code }) => {
         test(message, async () => {
             expect.assertions(1);
             const [report] = await linter.lintText(code);
-            expect(report.errorCount).toBe(errors);
+            expect(report).toHaveErrorCount(errors);
+        });
+    });
+});
+
+// no-mixed-operator tests
+describe('Mixed Operators', () => {
+    parseFixtures('operators.js').forEach(({ message, errors, code }) => {
+        test(message, async () => {
+            expect.assertions(1);
+            const [report] = await linter.lintText(code);
+            expect(report).toHaveErrorCount(errors);
         });
     });
 });
