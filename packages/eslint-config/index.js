@@ -125,6 +125,22 @@ module.exports = {
         'no-param-reassign': ['error', {
             props: false,
         }],
+        'no-mixed-operators': ['error', {
+            groups: [
+                ['**', '+'],
+                ['**', '-'],
+                ['**', '*'],
+                ['**', '/'],
+                ['**', '%'],
+                ['%', '+'],
+                ['%', '-'],
+                ['%', '*'],
+                ['%', '/'],
+                ['&', '|', '^', '<<', '>>', '>>>', '==', '!=', '===', '!==', '>', '>=', '<', '<=', 'in', 'instanceof'],
+                ['&&', '||'],
+            ],
+            allowSamePrecedence: false,
+        }],
 
         // eslint-plugin-jsdoc rules
 
