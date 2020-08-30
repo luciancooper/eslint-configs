@@ -141,6 +141,11 @@ module.exports = {
             ],
             allowSamePrecedence: false,
         }],
+        'max-classes-per-file': 'off',
+
+        // eslint-plugin-import rules
+
+        'import/prefer-default-export': 'off',
 
         // eslint-plugin-jsdoc rules
 
