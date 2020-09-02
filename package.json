@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luciancooper/eslint-config.git"
+    "url": "git+https://github.com/luciancooper/eslint-configs.git"
   },
   "keywords": [
     "eslint",
@@ -19,9 +19,9 @@
   "author": "Lucian Cooper <cooperlucian@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/luciancooper/eslint-config/issues"
+    "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
-  "homepage": "https://github.com/luciancooper/eslint-config#readme",
+  "homepage": "https://github.com/luciancooper/eslint-configs#readme",
   "jest": {
     "verbose": true,
     "projects": [

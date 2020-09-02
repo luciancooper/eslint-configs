@@ -18,13 +18,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luciancooper/eslint-config.git",
+    "url": "git+https://github.com/luciancooper/eslint-configs.git",
     "directory": "packages/eslint-config"
   },
   "bugs": {
-    "url": "https://github.com/luciancooper/eslint-config/issues"
+    "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
-  "homepage": "https://github.com/luciancooper/eslint-config/packages/eslint-config#readme",
+  "homepage": "https://github.com/luciancooper/eslint-configs/packages/eslint-config#readme",
   "jest": {
     "displayName": "eslint-config",
     "verbose": true,

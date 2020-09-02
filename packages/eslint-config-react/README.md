@@ -53,9 +53,9 @@ Check out [this page](https://eslint.org/docs/user-guide/configuring) for more d
 
 ## Related
 
-[@lcooper/eslint-config](https://www.npmjs.com/package/@lcooper/eslint-config) - Core eslint config for non React projects
+[`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - Core eslint config for non React projects
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-react
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-react?logo=npm&style=for-the-badge
 [license-link]: ../../LICENSE
-[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-config?color=brightgreen&style=for-the-badge
+[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-configs?color=brightgreen&style=for-the-badge

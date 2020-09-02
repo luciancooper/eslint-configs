@@ -67,4 +67,4 @@ Check out [this page](https://eslint.org/docs/user-guide/configuring) for more d
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config?logo=npm&style=for-the-badge
 [license-link]: ../../LICENSE
-[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-config?color=brightgreen&style=for-the-badge
+[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-configs?color=brightgreen&style=for-the-badge
