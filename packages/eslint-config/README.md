@@ -3,11 +3,11 @@
 [![npm][npm-badge]][npm-link]
 [![license][license-badge]][license-link]
 
-A [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [ESLint](https://eslint.org) that extends [`eslint-config-airbnb-base`](https://www.npmjs.com/package/eslint-config-airbnb-base).
+An [ESlint shareable config](https://eslint.org/docs/developer-guide/shareable-configs) that extends [`eslint-config-airbnb-base`](https://www.npmjs.com/package/eslint-config-airbnb-base).
 
 ## Installation
 
-Installation requires the peer dependencies [`eslint`](https://www.npmjs.com/package/eslint) and [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import).
+This config requires you install the peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), and [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc).
 
 Install with `npx`:
 
@@ -18,26 +18,25 @@ npx install-peerdeps --dev @lcooper/eslint-config
 Install with `npm`:
 
 ```bash
-npm install --save-dev eslint eslint-plugin-import @lcooper/eslint-config
+npm install --save-dev @lcooper/eslint-config eslint eslint-plugin-import eslint-plugin-jsdoc
 ```
+
+## Rule Sets
+
+| Name                             | Description                         | Source                   |
+|:---------------------------------|:------------------------------------|:-------------------------|
+| `@lcooper/eslint-config`         | Base config for node environments   | [index.js](index.js)     |
+| `@lcooper/eslint-config/browser` | Config for browser environments     | [browser.js](browser.js) | 
 
 ## Usage
 
-Add the `eslintConfig` field to your `package.json` file:
-
-```json
-"eslintConfig": {
-  "extends": "@lcooper"
-}
-```
-
-Or create an eslint config file type of your choice in the root folder of your project:
+Add an `.eslintrc` or `.eslintrcjs` file to the root folder of your project:
 
 `.eslintrc`
 
 ```json
 {
-  "extends": "@lcooper"
+  "extends": "@lcooper/eslint-config"
 }
 ```
 
@@ -45,21 +44,25 @@ Or create an eslint config file type of your choice in the root folder of your p
 
 ```javascript
 module.exports = {
-    extends: '@lcooper',
+    extends: '@lcooper/eslint-config',
 };
 ```
 
-Check out [this page](https://eslint.org/docs/user-guide/configuring) for more details about configuring eslint.
-
-## Scripts
-
-Add a script to your `package.json` file.
+Or use the  `eslintConfig` field in your `package.json` file:
 
 ```json
-"scripts": {
-  "lint:js": "eslint ."
+"eslintConfig": {
+  "extends": "@lcooper/eslint-config"
 }
 ```
+
+For browser environments, replace `@lcooper/eslint-config` with `@lcooper/eslint-config/browser`.
+
+Check out [this page](https://eslint.org/docs/user-guide/configuring) for more details about configuring eslint.
+
+## Related
+
+[`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - ESLint config for React projects
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config?logo=npm&style=for-the-badge
