@@ -10,6 +10,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "index.js",
+    "browser.js"
+  ],
   "keywords": [
     "eslint",
     "eslintconfig"
