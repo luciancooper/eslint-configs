@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/packages/eslint-config-react#readme",
   "dependencies": {
-    "@lcooper/eslint-config": "^1.0.0"
+    "@lcooper/eslint-config": "1.1.0"
   },
   "peerDependencies": {
     "eslint": ">= 4",
