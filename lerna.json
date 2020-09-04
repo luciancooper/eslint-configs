@@ -4,5 +4,17 @@
   "version": "independent",
   "packages": [
     "packages/*"
-  ]
+  ],
+  "ignoreChanges": [
+    "**/*.md",
+    "**/__tests__/**"
+  ],
+  "command": {
+    "version": {
+      "allowBranch": "master",
+      "message": "chore(release): publish",
+      "exact": true,
+      "push": false
+    }
+  }
 }

@@ -6,7 +6,9 @@
   ],
   "scripts": {
     "test": "jest",
-    "lint": "eslint --ignore-path .gitignore ."
+    "lint": "eslint --ignore-path .gitignore .",
+    "version": "lerna version",
+    "publish": "lerna publish from-git"
   },
   "repository": {
     "type": "git",
