@@ -1,6 +1,6 @@
 {
   "name": "@lcooper/eslint-config-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shareable ESLint config for React",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/packages/eslint-config-react#readme",
   "dependencies": {
-    "@lcooper/eslint-config": "1.1.0"
+    "@lcooper/eslint-config": "1.1.1"
   },
   "peerDependencies": {
     "eslint": ">= 4",
