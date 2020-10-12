@@ -119,7 +119,7 @@ module.exports = {
             skipUndeclared: true,
         }],
         // Prevent missing React when using JSX
-        'react/react-in-jsx-scope': 2,
+        'react/react-in-jsx-scope': 0,
         // Enforce a defaultProps definition for every prop that is not a required prop.
         'react/require-default-props': [2, {
             forbidDefaultForRequired: true,
@@ -193,9 +193,7 @@ module.exports = {
         // Disallow or enforce spaces around equal signs in JSX attributes (fixable)
         'react/jsx-equals-spacing': [2, 'never'],
         // Restrict file extensions that may contain JSX
-        'react/jsx-filename-extension': [2, {
-            extensions: ['.jsx'],
-        }],
+        'react/jsx-filename-extension': 0,
         // Ensure proper position of the first property in JSX (fixable)
         'react/jsx-first-prop-new-line': [2, 'multiline-multiprop'],
         // Enforce shorthand or standard form for React fragments (fixable)
