@@ -141,6 +141,9 @@ module.exports = {
             ],
             allowSamePrecedence: false,
         }],
+        'no-empty': ['error', {
+            allowEmptyCatch: true,
+        }],
         'max-classes-per-file': 'off',
 
         // eslint-plugin-import rules
