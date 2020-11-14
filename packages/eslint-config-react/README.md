@@ -7,7 +7,7 @@ An [ESlint shareable config](https://eslint.org/docs/developer-guide/shareable-c
 
 ## Installation
 
-This config requires you install the peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc), and [`eslint-plugin-react`](https://www.npmjs.com/package/eslint-plugin-react).
+This config requires you install the peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc), [`eslint-plugin-react`](https://www.npmjs.com/package/eslint-plugin-react), and [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks).
 
 Install with `npx`:
 
@@ -18,7 +18,7 @@ npx install-peerdeps --dev @lcooper/eslint-config-react
 Install with `npm`:
 
 ```bash
-npm install --save-dev @lcooper/eslint-config-react eslint eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-react
+npm install --save-dev @lcooper/eslint-config-react eslint eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-react eslint-plugin-react-hooks
 ```
 
 ## Usage

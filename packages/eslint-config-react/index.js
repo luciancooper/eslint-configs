@@ -4,6 +4,7 @@ module.exports = {
     ],
     plugins: [
         'react',
+        'react-hooks',
     ],
     env: {
         browser: true,
@@ -285,5 +286,12 @@ module.exports = {
             logical: 'parens-new-line',
             prop: 'parens-new-line',
         }],
+
+        // react-hooks rules
+
+        // Checks rules of Hooks
+        'react-hooks/rules-of-hooks': 2,
+        // Checks effect dependencies
+        'react-hooks/exhaustive-deps': 2,
     },
 };
