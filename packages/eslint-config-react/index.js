@@ -39,7 +39,7 @@ module.exports = {
             ignoreClassFields: true,
         }],
         // Prevent missing displayName in a React component definition
-        'react/display-name': 2,
+        'react/display-name': 0,
         // Forbid certain props on components
         'react/forbid-component-props': 0,
         // Forbid certain props on DOM Nodes
