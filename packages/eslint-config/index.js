@@ -145,6 +145,7 @@ module.exports = {
             allowEmptyCatch: true,
         }],
         'max-classes-per-file': 'off',
+        'no-sparse-arrays': 'off',
 
         // eslint-plugin-import rules
 
