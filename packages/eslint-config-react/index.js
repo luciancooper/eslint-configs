@@ -184,7 +184,7 @@ module.exports = {
         }],
         // Enforce consistent line breaks inside jsx curly (fixable)
         'react/jsx-curly-newline': [2, {
-            multiline: 'require',
+            multiline: 'consistent',
             singleline: 'consistent',
         }],
         // Enforce or disallow spaces inside of curly braces in JSX attributes (fixable)
