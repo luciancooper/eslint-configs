@@ -1,3 +1,12 @@
+const hasAutomaticRuntime = (() => {
+    try {
+        require.resolve('react/jsx-runtime.js');
+        return true;
+    } catch (e) {
+        return false;
+    }
+})();
+
 module.exports = {
     extends: [
         '@lcooper/eslint-config',
@@ -120,7 +129,7 @@ module.exports = {
             skipUndeclared: true,
         }],
         // Prevent missing React when using JSX
-        'react/react-in-jsx-scope': 0,
+        'react/react-in-jsx-scope': hasAutomaticRuntime ? 0 : 2,
         // Enforce a defaultProps definition for every prop that is not a required prop.
         'react/require-default-props': [2, {
             forbidDefaultForRequired: true,
@@ -273,7 +282,7 @@ module.exports = {
             beforeClosing: 'never',
         }],
         // Prevent React to be marked as unused
-        'react/jsx-uses-react': 2,
+        'react/jsx-uses-react': hasAutomaticRuntime ? 0 : 2,
         // Prevent variables used in JSX to be marked as unused
         'react/jsx-uses-vars': 2,
         // Prevent missing parentheses around multilines JSX (fixable)
