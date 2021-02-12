@@ -109,6 +109,10 @@ module.exports = {
             },
             { enforceForRenamedProperties: false },
         ],
+        'prefer-const': ['error', {
+            destructuring: 'all',
+            ignoreReadBeforeAssign: true,
+        }],
         'max-len': ['error', 120, 4, {
             ignoreUrls: true,
             ignoreComments: false,
