@@ -9,17 +9,6 @@ module.exports = {
     plugins: [
         'jsdoc',
     ],
-    overrides: [
-        {
-            files: [
-                '**/__tests__/*.[jt]s?(x)',
-                '**/+(*.)@(spec|test).[jt]s?(x)',
-            ],
-            env: {
-                jest: true,
-            },
-        },
-    ],
     settings: {
         jsdoc: {
             tagNamePreference: {

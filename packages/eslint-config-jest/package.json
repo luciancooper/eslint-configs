@@ -1,0 +1,34 @@
+{
+  "name": "@lcooper/eslint-config-jest",
+  "version": "1.0.0",
+  "description": "Shareable ESLint config for Jest tests",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "eslint",
+    "eslintconfig",
+    "jest"
+  ],
+  "author": "Lucian Cooper <cooperlucian@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luciancooper/eslint-configs.git",
+    "directory": "packages/eslint-config-jest"
+  },
+  "bugs": {
+    "url": "https://github.com/luciancooper/eslint-configs/issues"
+  },
+  "homepage": "https://github.com/luciancooper/eslint-configs/tree/master/packages/eslint-config-jest#readme",
+  "peerDependencies": {
+    "eslint": ">= 4"
+  }
+}
