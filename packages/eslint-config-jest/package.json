@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/master/packages/eslint-config-jest#readme",
   "peerDependencies": {
-    "eslint": ">= 4"
+    "eslint": ">= 4",
+    "eslint-plugin-jest": "^24.1.5"
   }
 }

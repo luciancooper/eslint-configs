@@ -22,11 +22,11 @@ function parseFixtures(file) {
         // parse the header line
         const { 1: err, 2: message } = lines[i].match(/^\/\/! test\[(\d+)\] (.+)$/);
         // return the test item
-        return {
+        return [
             message,
-            errors: parseInt(err, 10),
-            code: (head + lines.slice(i + 1, j).join('\n')).trim(),
-        };
+            parseInt(err, 10),
+            (head + lines.slice(i + 1, j).join('\n')).trim(),
+        ];
     });
 }
 
@@ -38,18 +38,19 @@ const linter = new ESLint({
 // add custom expect matcher
 expect.extend({
     toHaveErrorCount(received, count) {
+        const [report] = received;
         // check to see if the expected number of errors were found
-        if (received.errorCount === count) {
+        if (report.errorCount === count) {
             return {
-                message: () => `expected ${count} errors and found ${received.errorCount}`,
+                message: () => `expected ${count} errors and found ${report.errorCount}`,
                 pass: true,
             };
         }
         return {
             // create more detailed message
             message: () => [
-                `expected ${count} errors but found ${received.errorCount}`,
-                ...received.messages.map(({ ruleId, message }) => ` - [${ruleId}]: ${message}`),
+                `expected ${count} errors but found ${report.errorCount}`,
+                ...report.messages.map(({ ruleId, message }) => ` - [${ruleId}]: ${message}`),
             ].join('\n'),
             pass: false,
         };
@@ -58,22 +59,14 @@ expect.extend({
 
 // jsdoc syntax tests
 describe('JSDoc', () => {
-    parseFixtures('jsdoc.js').forEach(({ message, errors, code }) => {
-        test(message, async () => {
-            expect.assertions(1);
-            const [report] = await linter.lintText(code);
-            expect(report).toHaveErrorCount(errors);
-        });
-    });
+    test.each(parseFixtures('jsdoc.js'))('%s', (message, errors, code) => (
+        expect(linter.lintText(code)).resolves.toHaveErrorCount(errors)
+    ));
 });
 
 // no-mixed-operator tests
 describe('Mixed Operators', () => {
-    parseFixtures('operators.js').forEach(({ message, errors, code }) => {
-        test(message, async () => {
-            expect.assertions(1);
-            const [report] = await linter.lintText(code);
-            expect(report).toHaveErrorCount(errors);
-        });
-    });
+    test.each(parseFixtures('operators.js'))('%s', (message, errors, code) => (
+        expect(linter.lintText(code)).resolves.toHaveErrorCount(errors)
+    ));
 });
