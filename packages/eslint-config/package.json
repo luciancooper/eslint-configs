@@ -12,7 +12,8 @@
   },
   "files": [
     "index.js",
-    "browser.js"
+    "browser.js",
+    "rules"
   ],
   "keywords": [
     "eslint",
