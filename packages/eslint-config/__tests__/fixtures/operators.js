@@ -1,4 +1,4 @@
-//! test[0] Valid Mixed Operators (Arithmetic)
+//! test[0] lints valid mixtures of arithmatic operators
 
 exports.opps = [
     1 + 2 - 3 * 4 / 5,
@@ -9,7 +9,7 @@ exports.opps = [
     (3 % 2) / 5,
 ];
 
-//! test[10] Invalid Mixed Operators (Arithmetic)
+//! test[10] lints invalid mixtures of arithmatic operators
 
 exports.opps = [
     2 ** 2 - 5,
@@ -19,7 +19,7 @@ exports.opps = [
     3 % 2 / 5,
 ];
 
-//! test[0] Valid Mixed Operators (Bitwise, Comparison, & Relational)
+//! test[0] lints valid mixtures of bitwise, comparison, & relational operators
 
 exports.opps = [
     (5 & 6) | 6,
@@ -29,7 +29,7 @@ exports.opps = [
     5 < 6 && 7 <= 8,
 ];
 
-//! test[12] Invalid Mixed Operators (Bitwise, Comparison, & Relational)
+//! test[12] lints invalid mixtures of bitwise, comparison, & relational operators
 
 exports.opps = [
     5 & 6 | 6,
@@ -38,13 +38,13 @@ exports.opps = [
     5 !== 6 === 7 !== 8,
 ];
 
-//! test[0] Valid Mixed Operators (Logical & Coalesce)
+//! test[0] lints valid mixtures of logical & coalesce operators
 
 exports.opps = [
     (5 && 6) || 7,
 ];
 
-//! test[2] Invalid Mixed Operators (Logical & Coalesce)
+//! test[2] lints invalid mixtures of logical & coalesce operators 
 
 exports.opps = [
     5 && 6 || 7,

@@ -1,4 +1,4 @@
-//! test[0] valid @param native types
+//! test[0] lints valid @param native types
 
 /**
  * @param {string} arg0
@@ -7,7 +7,7 @@
  */
 exports.foo = (arg0, arg1, arg2) => null;
 
-//! test[3] invalid @param native types
+//! test[3] lints invalid @param native types
 
 /**
  * @param {String} arg0
@@ -16,7 +16,7 @@ exports.foo = (arg0, arg1, arg2) => null;
  */
 exports.foo = (arg0, arg1, arg2) => null;
 
-//! test[0] valid @param array types
+//! test[0] lints valid @param array types
 
 /**
  * @param {number[]} arg0
@@ -25,7 +25,7 @@ exports.foo = (arg0, arg1, arg2) => null;
  */
 exports.foo = (arg0, arg1, arg2) => null;
 
-//! test[3] invalid @param array types
+//! test[3] lints invalid @param array types
 
 /**
  * @param {Number[]} arg0
@@ -34,7 +34,7 @@ exports.foo = (arg0, arg1, arg2) => null;
  */
 exports.foo = (arg0, arg1, arg2) => null;
 
-//! test[0] valid @param object types
+//! test[0] lints valid @param object types
 
 /**
  * @param {Object<string, number>} arg0
@@ -43,7 +43,7 @@ exports.foo = (arg0, arg1, arg2) => null;
  */
 exports.foo = (arg0, arg1, arg2) => null;
 
-//! test[3] invalid @param object types
+//! test[3] lints invalid @param object types
 
 /**
  * @param {Object.<string, number>} arg0
