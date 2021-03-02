@@ -25,4 +25,13 @@ describe('jest config', () => {
             plugins: ['jest'],
         });
     });
+
+    test('is applied to top-level files in the __mocks__ directory', async () => {
+        await expect(linter.calculateConfigForFile('__mocks__/index.js')).resolves.toMatchObject({
+            plugins: ['jest'],
+        });
+        await expect(linter.calculateConfigForFile('__mocks__/utils/index.js')).resolves.not.toMatchObject({
+            plugins: ['jest'],
+        });
+    });
 });
