@@ -30,15 +30,7 @@ npm install --save-dev @lcooper/eslint-config eslint eslint-plugin-import eslint
 
 ## Usage
 
-Add an `.eslintrc` or `.eslintrcjs` file to the root folder of your project:
-
-`.eslintrc`
-
-```json
-{
-  "extends": "@lcooper/eslint-config"
-}
-```
+Add an [eslint config file](https://eslint.org/docs/user-guide/configuring/configuration-files) to your project's root directory:
 
 `.eslintrc.js`
 
