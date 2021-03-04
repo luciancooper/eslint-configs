@@ -3,11 +3,11 @@
 [![npm][npm-badge]][npm-link]
 [![license][license-badge]][license-link]
 
-An [ESlint shareable config](https://eslint.org/docs/developer-guide/shareable-configs) that extends [`eslint-config-airbnb-base`](https://www.npmjs.com/package/eslint-config-airbnb-base).
+An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) that extends [`eslint-config-airbnb-base`](https://www.npmjs.com/package/eslint-config-airbnb-base).
 
 ## Installation
 
-This config requires you install the peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), and [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc).
+The peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), and [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc) must be installed alongside this package.
 
 Install with `npx`:
 
@@ -15,10 +15,16 @@ Install with `npx`:
 npx install-peerdeps --dev @lcooper/eslint-config
 ```
 
-Install with `npm`:
+Or with `npm`:
 
 ```bash
 npm install --save-dev @lcooper/eslint-config eslint eslint-plugin-import eslint-plugin-jsdoc
+```
+
+Or with `yarn`:
+
+```bash
+yarn add --dev @lcooper/eslint-config eslint eslint-plugin-import eslint-plugin-jsdoc
 ```
 
 ## Rule Sets

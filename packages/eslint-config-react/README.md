@@ -3,11 +3,11 @@
 [![npm][npm-badge]][npm-link]
 [![license][license-badge]][license-link]
 
-An [ESlint shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for React projects. Extends [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config).
+An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for React projects. Extends [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config).
 
 ## Installation
 
-This config requires you install the peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc), [`eslint-plugin-react`](https://www.npmjs.com/package/eslint-plugin-react), and [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks).
+The peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc), [`eslint-plugin-react`](https://www.npmjs.com/package/eslint-plugin-react), and [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) must be installed alongside this package.
 
 Install with `npx`:
 
@@ -15,10 +15,16 @@ Install with `npx`:
 npx install-peerdeps --dev @lcooper/eslint-config-react
 ```
 
-Install with `npm`:
+Or with `npm`:
 
 ```bash
 npm install --save-dev @lcooper/eslint-config-react eslint eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-react eslint-plugin-react-hooks
+```
+
+Or with `yarn`:
+
+```bash
+yarn add --dev @lcooper/eslint-config-react eslint eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-react eslint-plugin-react-hooks
 ```
 
 ## Usage
