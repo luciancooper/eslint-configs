@@ -62,7 +62,8 @@ Check out [this page](https://eslint.org/docs/user-guide/configuring) for more d
 
 ## Related
 
-[`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - ESLint config for React projects
+ * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - config for React projects
+ * [`@lcooper/eslint-config-jest`](https://www.npmjs.com/package/@lcooper/eslint-config-jest) - enhancement config for projects using Jest
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config?logo=npm&style=for-the-badge
