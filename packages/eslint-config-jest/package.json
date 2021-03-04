@@ -33,6 +33,9 @@
     "displayName": "eslint-config-jest",
     "verbose": true,
     "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "../../setupTests.js"
+    ],
     "testMatch": [
       "<rootDir>/__tests__/*.js"
     ]

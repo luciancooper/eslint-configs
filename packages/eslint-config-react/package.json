@@ -4,6 +4,7 @@
   "description": "Shareable ESLint config for React",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "lint": "eslint ."
   },
   "publishConfig": {
@@ -28,6 +29,17 @@
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/master/packages/eslint-config-react#readme",
+  "jest": {
+    "displayName": "eslint-config-react",
+    "verbose": true,
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "../../setupTests.js"
+    ],
+    "testMatch": [
+      "<rootDir>/__tests__/*.js?(x)"
+    ]
+  },
   "dependencies": {
     "@lcooper/eslint-config": "1.1.4"
   },

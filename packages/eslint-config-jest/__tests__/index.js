@@ -1,10 +1,10 @@
 const { ESLint } = require('eslint'),
-    config = require('..');
+    baseConfig = require('..');
 
 const linter = new ESLint({
     useEslintrc: false,
     allowInlineConfig: false,
-    baseConfig: config,
+    baseConfig,
 });
 
 describe('jest config', () => {
@@ -33,5 +33,27 @@ describe('jest config', () => {
         await expect(linter.calculateConfigForFile('__mocks__/utils/index.js')).resolves.not.toMatchObject({
             plugins: ['jest'],
         });
+    });
+});
+
+describe('plugin rule coverage', () => {
+    let jestRules;
+
+    beforeAll(async () => {
+        ({ jest: jestRules } = global.analyzePluginRules(
+            await linter.calculateConfigForFile('index.test.js'),
+        ));
+    });
+
+    test('configures no unknown `jest` plugin rules', () => {
+        expect(jestRules.unknown).toHaveLength(0);
+    });
+
+    test('configures no deprecated `jest` plugin rules', () => {
+        expect(jestRules.deprecated).toHaveLength(0);
+    });
+
+    test('configures all available `jest` plugin rules', () => {
+        expect(jestRules.unused).toHaveLength(0);
     });
 });
