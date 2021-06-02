@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
-  "homepage": "https://github.com/luciancooper/eslint-configs/tree/master/packages/eslint-config#readme",
+  "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config#readme",
   "jest": {
     "displayName": "eslint-config",
     "verbose": true,

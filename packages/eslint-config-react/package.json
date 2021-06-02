@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
-  "homepage": "https://github.com/luciancooper/eslint-configs/tree/master/packages/eslint-config-react#readme",
+  "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-react#readme",
   "jest": {
     "displayName": "eslint-config-react",
     "verbose": true,
