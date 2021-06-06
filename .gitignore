@@ -7,9 +7,14 @@
 .project
 .settings
 
-# dotenv environment variables file
+# env files
 .env
 .env.test
+.env.development
+.env.production
+.env.test.local
+.env.development.local
+.env.production.local
 
 # Dependency directories
 node_modules/
@@ -19,6 +24,22 @@ bower_components/
 # Logs
 logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional npm cache directory
+.npm
+
+# Yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# Yarn Integrity file
+.yarn-integrity
 
 # Optional eslint cache
 .eslintcache
@@ -26,8 +47,9 @@ logs
 # Output of 'npm pack'
 *.tgz
 
-# dist directory
-dist
+# Coverage report build files
+coverage
 
-# package locks
-package-lock.json
+# Build files
+build
+dist
