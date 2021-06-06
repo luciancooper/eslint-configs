@@ -44,7 +44,7 @@ exports.opps = [
     (5 && 6) || 7,
 ];
 
-//! test[2] lints invalid mixtures of logical & coalesce operators 
+//! test[2] lints invalid mixtures of logical & coalesce operators
 
 exports.opps = [
     5 && 6 || 7,
