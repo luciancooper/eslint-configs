@@ -2,44 +2,6 @@ const path = require('path'),
     fs = require('fs'),
     normalizePluginName = require('eslint-find-rules/dist/lib/normalize-plugin-name');
 
-global.analyzePluginRules = (config) => {
-    // get all configured rules
-    const configRules = config.rules || {},
-        configRuleNames = Object.keys(configRules);
-    // for each plugin configured, do rule analysis
-    return (config.plugins || []).reduce((acc, pid) => {
-        const { module: moduleName, prefix } = normalizePluginName(pid),
-            // eslint-disable-next-line global-require, import/no-dynamic-require
-            plugin = require(moduleName),
-            // get list of configured rules for this plugin
-            rules = configRuleNames.filter((name) => name.startsWith(`${prefix}/`));
-        // create list of all plugin rules and their deprecated status
-        let pluginRules = Object.entries(plugin.rules || {}).map(([id, rule]) => [
-            `${prefix}/${id}`,
-            rule && rule.meta && rule.meta.deprecated,
-        ]);
-        // split list into two id string arrays for depricated and available rules
-        const deprecated = pluginRules.filter(([, d]) => d).map(([id]) => id),
-            available = pluginRules.filter(([, d]) => !d).map(([id]) => id);
-        // transform array into list of rule id strings for all rules
-        pluginRules = pluginRules.map(([id]) => id);
-        // assign info object as plugin entry
-        acc[prefix] = {
-            unknown: rules.filter((id) => !pluginRules.includes(id)),
-            deprecated: rules.filter((id) => {
-                if (!deprecated.includes(id)) return false;
-                // determine rule config level
-                let level = configRules[id];
-                if (Array.isArray(level)) [level] = level;
-                // deprecated rules are fine if they are turned off
-                return !(level === 'off' || level === 0);
-            }),
-            unused: available.filter((id) => !rules.includes(id)),
-        };
-        return acc;
-    }, {});
-};
-
 global.parseFixtures = (dirname, file) => {
     const filepath = path.join(dirname, '__fixtures__', file),
         lines = fs.readFileSync(filepath, 'utf8').split('\n'),
@@ -83,6 +45,85 @@ expect.extend({
                 ...report.messages.map(({ ruleId, message }) => ` - [${ruleId}]: ${message}`),
             ].join('\n'),
             pass: false,
+        };
+    },
+
+    toIncludePlugin(config, plugin) {
+        const { module: moduleName, prefix } = normalizePluginName(plugin),
+            isDefined = config.plugins.some((id) => (id === moduleName || id === prefix));
+        return {
+            message: isDefined
+                ? () => `config includes ${moduleName}`
+                : () => `config does not include ${moduleName}`,
+            pass: isDefined,
+        };
+    },
+
+    toConfigureNoUnknownPluginRules(config, plugin) {
+        const { module: moduleName, prefix } = normalizePluginName(plugin),
+            // eslint-disable-next-line global-require, import/no-dynamic-require
+            pluginModule = require(moduleName),
+            // transform rules object into a list of deprecated rules
+            pluginRules = Object.keys(pluginModule.rules).map((id) => `${prefix}/${id}`),
+            // get list of unknown configured rules for this plugin
+            unknownRules = Object.keys(config.rules)
+                .filter((name) => (name.startsWith(`${prefix}/`) && !pluginRules.includes(name)));
+        return {
+            message: unknownRules.length > 0 ? () => (
+                `The following rules configured for ${moduleName} are not defined by the plugin:\n${
+                    unknownRules.map((id) => `\n * '${id}'`).join('')
+                }`
+            ) : () => `All rules configured for ${moduleName} are defined by the plugin`,
+            pass: unknownRules.length === 0,
+        };
+    },
+
+    toEnableNoDeprecatedPluginRules(config, plugin) {
+        const { module: moduleName, prefix } = normalizePluginName(plugin),
+            // eslint-disable-next-line global-require, import/no-dynamic-require
+            pluginModule = require(moduleName),
+            // transform rules object into a list of deprecated rules
+            deprecatedPluginRules = Object.entries(pluginModule.rules)
+                .filter(([, { meta }]) => meta.deprecated)
+                .map(([id]) => `${prefix}/${id}`),
+            // get list of enabled plugin rules that are deprecated
+            deprecated = Object.entries(config.rules).filter(([id, conf]) => {
+                if (!id.startsWith(`${prefix}/`)) return false;
+                if (!deprecatedPluginRules.includes(id)) return false;
+                // determine rule config level
+                let level = conf;
+                if (Array.isArray(level)) [level] = level;
+                // deprecated rules are fine if they are turned off
+                return !(level === 'off' || level === 0);
+            });
+
+        return {
+            message: deprecated.length > 0 ? () => (
+                `The following rules configured for ${moduleName} are deprecated:\n${
+                    deprecated.map((id) => `\n * '${id}'`).join('')
+                }`
+            ) : () => `This config defines no deprecated rules for ${moduleName}`,
+            pass: deprecated.length === 0,
+        };
+    },
+
+    toConfigureAllPluginRules(config, plugin) {
+        const { module: moduleName, prefix } = normalizePluginName(plugin);
+        // eslint-disable-next-line global-require, import/no-dynamic-require
+        let { rules: pluginRules } = require(moduleName);
+        // transform rules object into a list of all non-deprecated rules
+        pluginRules = Object.entries(pluginRules)
+            .filter(([, { meta }]) => !meta.deprecated)
+            .map(([id]) => `${prefix}/${id}`);
+        // create a list of unconfigured plugin rules
+        const unconfigured = pluginRules.filter((id) => !Object.hasOwnProperty.call(config.rules, id));
+        return {
+            message: unconfigured.length > 0 ? () => (
+                `The following rules for ${moduleName} have not been configured:\n${
+                    unconfigured.map((id) => `\n * '${id}'`).join('')
+                }`
+            ) : () => `All rules for ${moduleName} have been configured`,
+            pass: unconfigured.length === 0,
         };
     },
 });

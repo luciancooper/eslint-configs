@@ -1,41 +1,50 @@
 const { ESLint } = require('eslint'),
     baseConfig = require('.');
 
-describe('plugin rule coverage', () => {
-    let reactRules,
-        hooksRules;
+describe('plugins', () => {
+    let config;
 
     beforeAll(async () => {
-        ({ react: reactRules, 'react-hooks': hooksRules } = global.analyzePluginRules(
-            await new ESLint({
-                baseConfig,
-                useEslintrc: false,
-                allowInlineConfig: false,
-            }).calculateConfigForFile('index.js'),
-        ));
+        config = await new ESLint({
+            baseConfig,
+            useEslintrc: false,
+            allowInlineConfig: false,
+        }).calculateConfigForFile('index.js');
     });
 
-    test('configures no unknown `react` plugin rules', () => {
-        expect(reactRules.unknown).toHaveLength(0);
+    describe('`react` plugin', () => {
+        test('config includes the `react` plugin', () => {
+            expect(config).toIncludePlugin('react');
+        });
+
+        test('configures no unknown `react/` plugin rules', () => {
+            expect(config).toConfigureNoUnknownPluginRules('react');
+        });
+
+        test('enables no deprecated `react/` plugin rules', () => {
+            expect(config).toEnableNoDeprecatedPluginRules('react');
+        });
+
+        test('includes all `react/` plugin rules', () => {
+            expect(config).toConfigureAllPluginRules('react');
+        });
     });
 
-    test('configures no deprecated `react` plugin rules', () => {
-        expect(reactRules.deprecated).toHaveLength(0);
-    });
+    describe('`react-hooks` plugin', () => {
+        test('config includes the `react-hooks` plugin', () => {
+            expect(config).toIncludePlugin('react-hooks');
+        });
 
-    test('configures all available `react` plugin rules', () => {
-        expect(reactRules.unused).toHaveLength(0);
-    });
+        test('configures no unknown `react-hooks/` plugin rules', () => {
+            expect(config).toConfigureNoUnknownPluginRules('react-hooks');
+        });
 
-    test('configures no unknown `react-hooks` plugin rules', () => {
-        expect(hooksRules.unknown).toHaveLength(0);
-    });
+        test('enables no deprecated `react-hooks/` plugin rules', () => {
+            expect(config).toEnableNoDeprecatedPluginRules('react-hooks');
+        });
 
-    test('configures no deprecated `react-hooks` plugin rules', () => {
-        expect(hooksRules.deprecated).toHaveLength(0);
-    });
-
-    test('configures all available `react-hooks` plugin rules', () => {
-        expect(hooksRules.unused).toHaveLength(0);
+        test('includes all `react-hooks/` plugin rules', () => {
+            expect(config).toConfigureAllPluginRules('react-hooks');
+        });
     });
 });

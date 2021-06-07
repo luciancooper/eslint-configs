@@ -7,53 +7,47 @@ const linter = new ESLint({
     baseConfig,
 });
 
-describe('jest config', () => {
-    test('is applied to files with test suffixes', async () => {
-        await expect(linter.calculateConfigForFile('index.test.js')).resolves.toMatchObject({
-            plugins: ['jest'],
-        });
-        await expect(linter.calculateConfigForFile('index.js')).resolves.not.toMatchObject({
-            plugins: ['jest'],
-        });
+describe('config override globs', () => {
+    test('match files with `.test` and `.spec` suffixes', async () => {
+        await expect(linter.calculateConfigForFile('index.test.js'))
+            .resolves.toIncludePlugin('jest');
+        await expect(linter.calculateConfigForFile('index.spec.js'))
+            .resolves.toIncludePlugin('jest');
+        await expect(linter.calculateConfigForFile('index.js'))
+            .resolves.not.toIncludePlugin('jest');
     });
 
-    test('is applied to top-level files in test directories', async () => {
-        await expect(linter.calculateConfigForFile('test/index.js')).resolves.toMatchObject({
-            plugins: ['jest'],
-        });
-        await expect(linter.calculateConfigForFile('test/utils/index.js')).resolves.not.toMatchObject({
-            plugins: ['jest'],
-        });
+    test('match top-level files in test directories', async () => {
+        await expect(linter.calculateConfigForFile('test/index.js'))
+            .resolves.toIncludePlugin('jest');
+        await expect(linter.calculateConfigForFile('test/utils/index.js'))
+            .resolves.not.toIncludePlugin('jest');
     });
 
-    test('is applied to top-level files in the __mocks__ directory', async () => {
-        await expect(linter.calculateConfigForFile('__mocks__/index.js')).resolves.toMatchObject({
-            plugins: ['jest'],
-        });
-        await expect(linter.calculateConfigForFile('__mocks__/utils/index.js')).resolves.not.toMatchObject({
-            plugins: ['jest'],
-        });
+    test('match top-level files in the __mocks__ directory', async () => {
+        await expect(linter.calculateConfigForFile('__mocks__/index.js'))
+            .resolves.toIncludePlugin('jest');
+        await expect(linter.calculateConfigForFile('__mocks__/utils/index.js'))
+            .resolves.not.toIncludePlugin('jest');
     });
 });
 
-describe('plugin rule coverage', () => {
-    let jestRules;
+describe('`jest` plugin', () => {
+    let config;
 
     beforeAll(async () => {
-        ({ jest: jestRules } = global.analyzePluginRules(
-            await linter.calculateConfigForFile('index.test.js'),
-        ));
+        config = await linter.calculateConfigForFile('index.test.js');
     });
 
-    test('configures no unknown `jest` plugin rules', () => {
-        expect(jestRules.unknown).toHaveLength(0);
+    test('configures no unknown `jest/` plugin rules', () => {
+        expect(config).toConfigureNoUnknownPluginRules('jest');
     });
 
-    test('configures no deprecated `jest` plugin rules', () => {
-        expect(jestRules.deprecated).toHaveLength(0);
+    test('enables no deprecated `jest/` plugin rules', () => {
+        expect(config).toEnableNoDeprecatedPluginRules('jest');
     });
 
-    test('configures all available `jest` plugin rules', () => {
-        expect(jestRules.unused).toHaveLength(0);
+    test('includes all `jest/` plugin rules', () => {
+        expect(config).toConfigureAllPluginRules('jest');
     });
 });
