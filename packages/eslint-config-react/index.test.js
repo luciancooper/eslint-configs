@@ -1,5 +1,5 @@
 const { ESLint } = require('eslint'),
-    baseConfig = require('../index');
+    baseConfig = require('.');
 
 describe('plugin rule coverage', () => {
     let reactRules,

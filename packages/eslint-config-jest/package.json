@@ -31,13 +31,9 @@
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-jest#readme",
   "jest": {
     "displayName": "eslint-config-jest",
-    "verbose": true,
     "testEnvironment": "node",
     "setupFilesAfterEnv": [
       "../../setupTests.js"
-    ],
-    "testMatch": [
-      "<rootDir>/__tests__/*.js"
     ]
   },
   "peerDependencies": {

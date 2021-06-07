@@ -1,5 +1,5 @@
 const { ESLint } = require('eslint'),
-    baseConfig = require('../index');
+    baseConfig = require('.');
 
 // create linter with config
 const linter = new ESLint({

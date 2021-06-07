@@ -41,7 +41,7 @@ global.analyzePluginRules = (config) => {
 };
 
 global.parseFixtures = (dirname, file) => {
-    const filepath = path.join(dirname, 'fixtures', file),
+    const filepath = path.join(dirname, '__fixtures__', file),
         lines = fs.readFileSync(filepath, 'utf8').split('\n'),
         chunks = lines
             .map((l, i) => (/^\/\/! test\[\d+\] /.test(l) ? i : null))

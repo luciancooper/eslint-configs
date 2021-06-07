@@ -4,6 +4,6 @@
     "@lcooper/eslint-config-jest"
   ],
   "ignorePatterns": [
-    "**/__tests__/**/fixtures/**/*"
+    "**/__fixtures__/**/*"
   ]
 }
