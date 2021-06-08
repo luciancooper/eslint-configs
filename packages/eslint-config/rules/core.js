@@ -1,3 +1,5 @@
+const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
+
 module.exports = {
     rules: {
         // Best Practices
@@ -88,6 +90,13 @@ module.exports = {
         }],
         // disallow nested ternary expressions
         'no-nested-ternary': 0,
+        // disallow specified syntax
+        'no-restricted-syntax': (() => {
+            // modifiy airbnb's base config to allow for-of loops
+            const [level, ...options] = baseStyleRules['no-restricted-syntax'],
+                modifiedOptions = options.filter(({ selector }) => selector !== 'ForOfStatement');
+            return [level, ...modifiedOptions];
+        })(),
         // disallow dangling underscores in identifiers
         'no-underscore-dangle': 0,
         // enforce variables to be declared either together or separately in functions
