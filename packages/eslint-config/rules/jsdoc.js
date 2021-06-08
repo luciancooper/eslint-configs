@@ -69,6 +69,10 @@ module.exports = {
     rules: {
         // Checks for presence of jsdoc comments, on class declarations as well as functions
         'jsdoc/require-jsdoc': 0,
+        // report when certain comment structures are always expected.
+        'jsdoc/no-missing-syntax': 0,
+        // reports when certain comment structures are present.
+        'jsdoc/no-restricted-syntax': 0,
         // Ensure all files begin with a @fileoverview tag
         'jsdoc/require-file-overview': [1, {
             tags: {
@@ -83,12 +87,22 @@ module.exports = {
         'jsdoc/check-syntax': 2,
         // Checks for multi-line-style comments that look like jsdoc comments but don't begin with asterisks
         'jsdoc/no-bad-blocks': 1,
+        // prevents use of multiple asterisks at the beginning of lines.
+        'jsdoc/no-multi-asterisks': 2,
+        // requires that each jsdoc line starts with an *.
+        'jsdoc/require-asterisk-prefix': [2, 'always'],
         // Reports invalid alignment of block asterisks
         'jsdoc/check-alignment': 2,
+        // ensures there is only one space between each part of a jsdoc line
+        'jsdoc/check-line-alignment': [2, 'never'],
         // Reports invalid padding inside a block
         'jsdoc/check-indentation': 2,
         // Enforces a consistent padding of the block description
         'jsdoc/newline-after-description': [2, 'never'],
+        // enforces no lines between tags.
+        'jsdoc/tag-lines': [2, 'never'],
+        // controls how and whether jsdoc blocks can be expressed as single or multiple line blocks.
+        'jsdoc/multiline-blocks': 2,
         // Reports invalid tag names
         'jsdoc/check-tag-names': 1,
         // Checks that @access tag values are one of 'package', 'private', 'protected', or 'public'
@@ -161,6 +175,12 @@ module.exports = {
         'jsdoc/require-returns-description': 0,
         // @returns - requires that returns are documented
         'jsdoc/require-returns': 0,
+        // @yields - Requires a yield statement in function body if a @yields tag is specified.
+        'jsdoc/require-yields-check': [1, {
+            checkGeneratorsOnly: true,
+        }],
+        // @yields - requires that yields are documented
+        'jsdoc/require-yields': 0,
         // @throws - requires that throw statements are documented.
         'jsdoc/require-throws': 0,
         // @property - all @typedef & @namespace tags of type {object} must have a @property
