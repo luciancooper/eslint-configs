@@ -44,5 +44,10 @@
     "eslint": ">= 4",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsdoc": ">=35.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-jsdoc": {
+      "optional": true
+    }
   }
 }

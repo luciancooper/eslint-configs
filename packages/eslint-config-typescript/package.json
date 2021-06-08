@@ -45,6 +45,12 @@
     "@typescript-eslint/parser": "^4.26.0",
     "eslint": ">= 4",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsdoc": ">=35.0.0",
     "typescript": "^4.3.2"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-jsdoc": {
+      "optional": true
+    }
   }
 }

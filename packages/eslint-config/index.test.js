@@ -9,14 +9,16 @@ const linter = new ESLint({
 // jsdoc syntax tests
 describe('jsdoc fixtures', () => {
     test.each(global.parseFixtures(__dirname, 'jsdoc.js'))('%s', (message, errors, code) => (
-        expect(linter.lintText(code)).resolves.toHaveErrorCount(errors)
+        expect(linter.lintText(code, { filePath: 'jsdoc.js' }))
+            .resolves.toHaveErrorCount(errors)
     ));
 });
 
 // no-mixed-operator tests
 describe('no-mixed-operator fixtures', () => {
     test.each(global.parseFixtures(__dirname, 'operators.js'))('%s', (message, errors, code) => (
-        expect(linter.lintText(code)).resolves.toHaveErrorCount(errors)
+        expect(linter.lintText(code, { filePath: 'operators.js' }))
+            .resolves.toHaveErrorCount(errors)
     ));
 });
 

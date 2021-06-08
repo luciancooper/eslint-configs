@@ -2,7 +2,7 @@ const { ESLint } = require('eslint'),
     tsPlugin = require('@typescript-eslint/eslint-plugin'),
     baseConfig = require('.');
 
-describe('`@typescript-eslint` plugin configuration', () => {
+describe('plugins', () => {
     let tsConfig,
         jsConfig;
 
@@ -13,39 +13,51 @@ describe('`@typescript-eslint` plugin configuration', () => {
         jsConfig = await eslint.calculateConfigForFile('index.js');
     });
 
-    test('config includes the `@typescript-eslint` plugin', () => {
-        expect(tsConfig).toIncludePlugin('@typescript-eslint');
-    });
-
-    test('configures no unknown `@typescript-eslint/` plugin rules', () => {
-        expect(tsConfig).toConfigureNoUnknownPluginRules('@typescript-eslint');
-    });
-
-    test('enables no deprecated `@typescript-eslint/` plugin rules', () => {
-        expect(tsConfig).toEnableNoDeprecatedPluginRules('@typescript-eslint');
-    });
-
-    test('includes all `@typescript-eslint/` plugin rules', () => {
-        expect(tsConfig).toConfigureAllPluginRules('@typescript-eslint');
-    });
-
-    describe('extension rules', () => {
-        let extensionRules;
-
-        beforeAll(() => {
-            // extract extension rule info from ts plugin module
-            extensionRules = Object.entries(tsPlugin.rules).map(([name, { meta }]) => (!meta.deprecated ? {
-                id: `@typescript-eslint/${name}`,
-                baseRule: meta.docs.extendsBaseRule === true ? name : meta.docs.extendsBaseRule,
-            } : null)).filter((rule) => (rule && rule.baseRule));
+    describe('`@typescript-eslint` plugin', () => {
+        test('config includes the `@typescript-eslint` plugin', () => {
+            expect(tsConfig).toIncludePlugin('@typescript-eslint');
         });
 
-        test('associated base rules are disabled on typescript files', () => {
-            expect(tsConfig).toHaveDisabledAssociatedBaseRules(extensionRules);
+        test('configures no unknown `@typescript-eslint/` plugin rules', () => {
+            expect(tsConfig).toConfigureNoUnknownPluginRules('@typescript-eslint');
         });
 
-        test('are disabled on javascript files', () => {
-            expect(jsConfig).toHaveDisabledRules(extensionRules.map(({ id }) => id));
+        test('enables no deprecated `@typescript-eslint/` plugin rules', () => {
+            expect(tsConfig).toEnableNoDeprecatedPluginRules('@typescript-eslint');
+        });
+
+        test('includes all `@typescript-eslint/` plugin rules', () => {
+            expect(tsConfig).toConfigureAllPluginRules('@typescript-eslint');
+        });
+
+        describe('extension rules', () => {
+            let extensionRules;
+
+            beforeAll(() => {
+                // extract extension rule info from ts plugin module
+                extensionRules = Object.entries(tsPlugin.rules).map(([name, { meta }]) => (!meta.deprecated ? {
+                    id: `@typescript-eslint/${name}`,
+                    baseRule: meta.docs.extendsBaseRule === true ? name : meta.docs.extendsBaseRule,
+                } : null)).filter((rule) => (rule && rule.baseRule));
+            });
+
+            test('associated base rules are disabled on typescript files', () => {
+                expect(tsConfig).toHaveDisabledAssociatedBaseRules(extensionRules);
+            });
+
+            test('are disabled on javascript files', () => {
+                expect(jsConfig).toHaveDisabledRules(extensionRules.map(({ id }) => id));
+            });
+        });
+    });
+
+    describe('`jsdoc` plugin', () => {
+        test('plugin applies to javascript files', () => {
+            expect(jsConfig).toIncludePlugin('jsdoc');
+        });
+
+        test('plugin does not apply to typescript files', () => {
+            expect(tsConfig).not.toIncludePlugin('jsdoc');
         });
     });
 });

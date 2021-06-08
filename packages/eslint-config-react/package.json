@@ -45,5 +45,10 @@
     "eslint-plugin-jsdoc": ">=35.0.0",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.2.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-jsdoc": {
+      "optional": true
+    }
   }
 }
