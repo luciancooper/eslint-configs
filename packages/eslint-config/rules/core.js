@@ -10,6 +10,11 @@ module.exports = {
         'consistent-return': [2, {
             treatUndefinedAsUnspecified: true,
         }],
+        // require `default` cases in `switch` statements
+        'default-case': [2, {
+            // alter the comment pattern from airbnb's config to allow more verbose comments
+            commentPattern: '^no default',
+        }],
         // enforce default clauses in switch statements to be last (v7.0.0)
         'default-case-last': 2,
         // enforce default parameters to be last (v6.4.0)
