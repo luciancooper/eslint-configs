@@ -9,7 +9,8 @@
   ],
   "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "rules"
   ],
   "scripts": {
     "test": "jest",
@@ -46,10 +47,14 @@
     "eslint": ">=7.3",
     "eslint-plugin-import": ">=2.23.0",
     "eslint-plugin-jsdoc": ">=35.0.0",
+    "eslint-plugin-tsdoc": "^0.2.14",
     "typescript": "^4.3.2"
   },
   "peerDependenciesMeta": {
     "eslint-plugin-jsdoc": {
+      "optional": true
+    },
+    "eslint-plugin-tsdoc": {
       "optional": true
     }
   }

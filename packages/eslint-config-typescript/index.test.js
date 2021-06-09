@@ -60,4 +60,26 @@ describe('plugins', () => {
             expect(tsConfig).not.toIncludePlugin('jsdoc');
         });
     });
+
+    describe('`tsdoc` plugin', () => {
+        test('plugin does not apply to javascript files', () => {
+            expect(jsConfig).not.toIncludePlugin('tsdoc');
+        });
+
+        test('plugin applies to typescript files', () => {
+            expect(tsConfig).toIncludePlugin('tsdoc');
+        });
+
+        test('configures no unknown `tsdoc/` plugin rules', () => {
+            expect(tsConfig).toConfigureNoUnknownPluginRules('tsdoc');
+        });
+
+        test('enables no deprecated `tsdoc/` plugin rules', () => {
+            expect(tsConfig).toEnableNoDeprecatedPluginRules('tsdoc');
+        });
+
+        test('includes all `tsdoc/` plugin rules', () => {
+            expect(tsConfig).toConfigureAllPluginRules('tsdoc');
+        });
+    });
 });

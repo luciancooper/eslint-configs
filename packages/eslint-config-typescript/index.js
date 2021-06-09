@@ -1,3 +1,5 @@
+const { resolveCheck } = require('@lcooper/eslint-config/utils');
+
 module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: [
@@ -12,7 +14,8 @@ module.exports = {
     overrides: [{
         files: ['*.ts', '*.tsx'],
         extends: [
-            require.resolve('./rules/overrides'),
-        ],
+            './rules/overrides',
+            resolveCheck('eslint-plugin-tsdoc') && './rules/tsdoc',
+        ].filter(Boolean).map(require.resolve),
     }],
 };
