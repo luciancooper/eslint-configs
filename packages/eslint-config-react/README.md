@@ -52,6 +52,7 @@ Check out [this page](https://eslint.org/docs/user-guide/configuring) for more d
 ## Related
 
  * [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - base config for standard JavaScript projects
+ * [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript) - config for TypeScript projects
  * [`@lcooper/eslint-config-jest`](https://www.npmjs.com/package/@lcooper/eslint-config-jest) - enhancement config for projects using Jest
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-react

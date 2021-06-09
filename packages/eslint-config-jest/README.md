@@ -5,34 +5,27 @@
 
 An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [Jest](https://jestjs.io/) testing environments.
 
-For use in conjunction with [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) or [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react).
+For use in conjunction with [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config), [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react), or [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript).
 
 ## Installation
 
 The peer dependencies [`eslint`](https://www.npmjs.com/package/eslint) and [`eslint-plugin-jest`](https://www.npmjs.com/package/eslint-plugin-jest) must be installed alongside this package.
 
-Install with `npx`:
-
+> install with npm:
 ```bash
-npx install-peerdeps --dev @lcooper/eslint-config-jest
+npm install -D @lcooper/eslint-config-jest eslint eslint-plugin-jest
 ```
 
-Or with `npm`:
-
+> install with yarn:
 ```bash
-npm install --save-dev @lcooper/eslint-config-jest eslint eslint-plugin-jest
-```
-
-Or with `yarn`:
-
-```bash
-yarn add --dev @lcooper/eslint-config-jest eslint eslint-plugin-jest
+yarn add -D @lcooper/eslint-config-jest eslint eslint-plugin-jest
 ```
 
 This package is intended to enhance one of these base configs:
 
  * [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - for standard JavaScript projects
  * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - for React projects
+ * [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript) - for TypeScript projects
 
 ## Usage
 
@@ -60,7 +53,7 @@ Or use the  `eslintConfig` field in your `package.json` file:
 }
 ```
 
-For react projects, replace `@lcooper/eslint-config` with `@lcooper/eslint-config-react` in the examples above.
+For React or TypeScript projects, replace `@lcooper/eslint-config` with `@lcooper/eslint-config-react` or `@lcooper/eslint-config-typescript` in the examples above.
 
 Check out [this page](https://eslint.org/docs/user-guide/configuring) for more details about configuring eslint.
 
