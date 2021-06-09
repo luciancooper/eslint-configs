@@ -32,5 +32,9 @@ module.exports = {
                 ],
             }];
         })(),
+        // reports the use of import declarations with CommonJS exports
+        'import/no-import-module-exports': 0, // seems unnecessary, disabling
+        // prevent importing packages through relative paths
+        'import/no-relative-packages': 0,
     },
 };

@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "eslint": ">=7.3",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": ">=2.23.0",
     "eslint-plugin-jsdoc": ">=35.0.0",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.2.0"

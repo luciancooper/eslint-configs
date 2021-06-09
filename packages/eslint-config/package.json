@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "eslint": ">=7.3",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": ">=2.23.0",
     "eslint-plugin-jsdoc": ">=35.0.0"
   },
   "peerDependenciesMeta": {
