@@ -1,11 +1,6 @@
-const hasAutomaticRuntime = (() => {
-    try {
-        require.resolve('react/jsx-runtime.js');
-        return true;
-    } catch (e) {
-        return false;
-    }
-})();
+const { resolveCheck } = require('@lcooper/eslint-config/utils');
+
+const hasAutomaticRuntime = resolveCheck('react/jsx-runtime.js');
 
 module.exports = {
     extends: [

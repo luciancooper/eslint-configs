@@ -1,11 +1,4 @@
-const jsdocPluginPresent = (() => {
-    try {
-        require.resolve('eslint-plugin-jsdoc');
-        return true;
-    } catch (e) {
-        return false;
-    }
-})();
+const { resolveCheck } = require('./utils');
 
 module.exports = {
     extends: [
@@ -18,7 +11,7 @@ module.exports = {
         es6: true,
         node: true,
     },
-    overrides: [jsdocPluginPresent && {
+    overrides: [resolveCheck('eslint-plugin-jsdoc') && {
         // only apply jsdoc rules to js files
         files: ['*.js', '*.mjs', '*.cjs', '*.jsx'],
         extends: [
