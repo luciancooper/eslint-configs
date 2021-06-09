@@ -7,24 +7,26 @@ An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-c
 
 ## Installation
 
-The peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc), [`eslint-plugin-react`](https://www.npmjs.com/package/eslint-plugin-react), and [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) must be installed alongside this package.
+The peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), [`eslint-plugin-react`](https://www.npmjs.com/package/eslint-plugin-react), and [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) must be installed alongside this package.
 
-Install with `npx`:
-
+> install with npm:
 ```bash
-npx install-peerdeps --dev @lcooper/eslint-config-react
+npm install -D @lcooper/eslint-config-react eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks
 ```
 
-Or with `npm`:
-
+> install with yarn:
 ```bash
-npm install --save-dev @lcooper/eslint-config-react eslint eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-react eslint-plugin-react-hooks
+yarn add -D @lcooper/eslint-config-react eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks
 ```
 
-Or with `yarn`:
+#### Linting JSDoc Comments
+
+If you want to lint [JSDoc](https://jsdoc.app) comments, then also install the peer dependency [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc).
 
 ```bash
-yarn add --dev @lcooper/eslint-config-react eslint eslint-plugin-import eslint-plugin-jsdoc eslint-plugin-react eslint-plugin-react-hooks
+npm install -D eslint-plugin-jsdoc
+# or
+yarn add -D eslint-plugin-jsdoc
 ```
 
 ## Usage
@@ -46,6 +48,8 @@ Or use the  `eslintConfig` field in your `package.json` file:
   "extends": "@lcooper/eslint-config-react"
 }
 ```
+
+No additional configuration is required to lint JSDoc comments, the only requirement being that [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc) is installed as a dev dependency.
 
 Check out [this page](https://eslint.org/docs/user-guide/configuring) for more details about configuring eslint.
 
