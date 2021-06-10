@@ -1,0 +1,1 @@
+# @lcooper/eslint-plugin

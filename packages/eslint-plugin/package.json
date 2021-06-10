@@ -1,0 +1,39 @@
+{
+  "name": "@lcooper/eslint-plugin",
+  "version": "1.0.0",
+  "description": "Awesome extra ESLint rules",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Lucian Cooper <cooperlucian@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luciancooper/eslint-configs.git",
+    "directory": "packages/eslint-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/luciancooper/eslint-configs/issues"
+  },
+  "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-plugin#readme",
+  "jest": {
+    "displayName": "eslint-plugin",
+    "testEnvironment": "node"
+  },
+  "peerDependencies": {
+    "eslint": ">=7.3"
+  }
+}

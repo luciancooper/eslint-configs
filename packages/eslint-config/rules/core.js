@@ -1,6 +1,9 @@
 const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
 
 module.exports = {
+    plugins: [
+        '@lcooper',
+    ],
     rules: {
         // Best Practices
 
@@ -133,7 +136,7 @@ module.exports = {
         // disallow dangling underscores in identifiers
         'no-underscore-dangle': 0,
         // enforce variables to be declared either together or separately in functions
-        'one-var': [2, 'consecutive'],
+        'one-var': 0,
         // disallow the use of `Math.pow` in favor of the `**` operator
         'prefer-exponentiation-operator': 2, // v6.7.0
 
@@ -144,5 +147,10 @@ module.exports = {
             vars: 'local',
             args: 'none',
         }],
+
+        // Plugin Rules
+
+        // require consecutive variable declarations to be combined into a single declaration
+        '@lcooper/consecutive-declarations': 2,
     },
 };

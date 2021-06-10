@@ -39,6 +39,7 @@
     ]
   },
   "dependencies": {
+    "@lcooper/eslint-plugin": "^1.0.0",
     "eslint-config-airbnb-base": "^14.2.1"
   },
   "peerDependencies": {
