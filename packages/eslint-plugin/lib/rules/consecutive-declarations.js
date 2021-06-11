@@ -33,6 +33,16 @@ function countRequires(declarations) {
 }
 
 /**
+ * Returns the line span of a variable declarator node
+ * @param {VariableDeclarator} node - variable declarator
+ * @returns {number}
+ */
+function declaratorLineSpan(node) {
+    const { init } = node;
+    return init ? init.loc.end.line - init.loc.start.line : 0;
+}
+
+/**
  * Fixer to split a Block of VariableDeclarations into requires and non requires groups
  * @param {SourceCode} sourceCode
  * @param {VariableDeclaration} node - The `VariableDeclaration` to split
@@ -127,7 +137,11 @@ function mixedRequiresFixer(sourceCode, node) {
         order[reqIdx] = swap;
     }
     // determine variable declaration prefix
-    const prefix = (node.parent.type === 'ExportNamedDeclaration' ? 'export ' : '') + node.kind;
+    const prefix = (node.parent.type === 'ExportNamedDeclaration' ? 'export ' : '') + node.kind,
+        spans = order.map(({ idx }) => declaratorLineSpan(declarations[idx].declarator)),
+        shouldSplit = spans.slice(0, -1).map((l, i) => (
+            i < reqIdx - 1 ? false : i === reqIdx - 1 ? true : (l > 0 || spans[i + 1] > 0)
+        ));
     // return fixer function
     return (fixer) => order.reduce((fixes, { idx }, j) => {
         const item = declarations[idx];
@@ -139,8 +153,12 @@ function mixedRequiresFixer(sourceCode, node) {
                 if (j === reqIdx - 1 && item.comma) fixes.push(fixer.replaceText(item.comma, ';'));
             } else {
                 // this is not a require statement
-                fixes.push(fixer.insertTextBefore(item.declarator, `${prefix} `));
-                if (item.comma) fixes.push(fixer.replaceText(item.comma, ';'));
+                if (shouldSplit[j - 1]) {
+                    fixes.push(fixer.insertTextBefore(item.declarator, `${prefix} `));
+                }
+                if (j < shouldSplit.length && shouldSplit[j] && item.comma) {
+                    fixes.push(fixer.replaceText(item.comma, ';'));
+                }
             }
             return fixes;
         }
@@ -167,10 +185,12 @@ function mixedRequiresFixer(sourceCode, node) {
             // only replace comma if this is the last requires statement
             if (j === reqIdx - 1) comma = replacing.comma;
         } else {
-            // replace main content
-            replacement = `${aboveComment}${prefix} ${declaratorText}`;
-            // replace comma to close inserted variable declaration
-            comma = replacing.comma;
+            // this is not a require statement
+            replacement = shouldSplit[j - 1]
+                ? `${aboveComment}${prefix} ${declaratorText}`
+                : aboveComment + declaratorText;
+            // replace comma if there is a split between this declarator and the next one
+            if (j < shouldSplit.length && shouldSplit[j]) comma = replacing.comma;
         }
         // replace declarator node
         fixes.push(fixer.replaceTextRange(
@@ -203,15 +223,19 @@ function splitDeclarationsFixer(sourceCode, node) {
     if (!isInStatementList(parent.type === 'ExportNamedDeclaration' ? parent : node)) {
         return null;
     }
-    const prefix = (node.parent.type === 'ExportNamedDeclaration' ? 'export ' : '') + node.kind;
+    const prefix = (node.parent.type === 'ExportNamedDeclaration' ? 'export ' : '') + node.kind,
+        spans = node.declarations.map(declaratorLineSpan),
+        shouldSplit = spans.slice(0, -1).map((l, i) => l > 0 || spans[i + 1] > 0);
     // return fixer function
-    return (fixer) => node.declarations.reduce((fixes, declarator, i) => {
-        if (i > 0) {
+    return (fixer) => node.declarations.reduce((fixes, declarator, i, declarations) => {
+        if (i > 0 && shouldSplit[i - 1]) {
             fixes.push(fixer.insertTextBefore(declarator, `${prefix} `));
         }
-        const comma = sourceCode.getTokenAfter(declarator);
-        if (comma && comma.type === 'Punctuator' && comma.value === ',') {
-            fixes.push(fixer.replaceText(comma, ';'));
+        if (i < declarations.length - 1 && shouldSplit[i]) {
+            const comma = sourceCode.getTokenAfter(declarator);
+            if (comma && comma.type === 'Punctuator' && comma.value === ',') {
+                fixes.push(fixer.replaceText(comma, ';'));
+            }
         }
         return fixes;
     }, []);
@@ -250,7 +274,7 @@ module.exports = {
         messages: {
             mixedRequires: 'Separate requires statements from other declarations.',
             combine: "Combine this with the previous '{{kind}}' statement.",
-            split: "Split '{{kind}}' declarations into multiple statements.",
+            split: "Split multiline '{{kind}}' declarations into multiple statements.",
         },
     },
 
@@ -298,8 +322,13 @@ module.exports = {
                         let shouldCombine = true;
                         if (level === 0 && kind === 'const') {
                             // combine only if both variable declarations are all `requires` call expressions
-                            const combDec = declarations.concat(previousNode.declarations || []);
-                            shouldCombine = (countRequires(combDec) === combDec.length);
+                            const combDec = declarations.concat(previousNode.declarations || []),
+                                combReq = countRequires(combDec);
+                            if (combReq === 0) {
+                                shouldCombine = combDec.map(declaratorLineSpan).every((l) => l === 0);
+                            } else {
+                                shouldCombine = (combReq === combDec.length);
+                            }
                         }
                         if (shouldCombine) {
                             context.report({
@@ -311,26 +340,36 @@ module.exports = {
                         }
                     }
                 }
-
+                // stop if outside the global scope or declaration kind is not `const`
                 if (level > 0 || kind !== 'const') return;
+                // cannot split a single declarator
+                if (declarations.length === 1) return;
+                // do not split variable declarations within the intialization of a for loop
+                if (parent.type === 'ForStatement' && parent.init === node) return;
 
-                if (req > 0 && req < declarations.length) {
-                    // split mixed requires
-                    context.report({
-                        node,
-                        messageId: 'mixedRequires',
-                        fix: mixedRequiresFixer(sourceCode, node),
-                    });
-                } else if (parent.type !== 'ForStatement' || parent.init !== node) {
-                    // split top level const declarations
-                    if (declarations.length > 1 && req === 0) {
+                // check if any declarators are `require` calls
+                if (req > 0) {
+                    if (req < declarations.length) {
+                        // split mixed requires
                         context.report({
                             node,
-                            messageId: 'split',
-                            data: { kind },
-                            fix: splitDeclarationsFixer(sourceCode, node),
+                            messageId: 'mixedRequires',
+                            fix: mixedRequiresFixer(sourceCode, node),
                         });
                     }
+                    return;
+                }
+                // split top level multi-line const declarators
+                const hasMultiline = declarations.map(declaratorLineSpan).some((v, i, spans) => (
+                    i < spans.length - 1 && (v > 0 || spans[i + 1] > 0)
+                ));
+                if (hasMultiline) {
+                    context.report({
+                        node,
+                        messageId: 'split',
+                        data: { kind },
+                        fix: splitDeclarationsFixer(sourceCode, node),
+                    });
                 }
             },
         };
