@@ -61,7 +61,7 @@ expect.extend({
 
     toConfigureNoUnknownPluginRules(config, plugin) {
         const { module: moduleName, prefix } = normalizePluginName(plugin),
-            // eslint-disable-next-line global-require, import/no-dynamic-require
+            // eslint-disable-next-line @lcooper/global-require, import/no-dynamic-require
             pluginModule = require(moduleName),
             // transform rules object into a list of deprecated rules
             pluginRules = Object.keys(pluginModule.rules).map((id) => `${prefix}/${id}`),
@@ -80,7 +80,7 @@ expect.extend({
 
     toEnableNoDeprecatedPluginRules(config, plugin) {
         const { module: moduleName, prefix } = normalizePluginName(plugin),
-            // eslint-disable-next-line global-require, import/no-dynamic-require
+            // eslint-disable-next-line @lcooper/global-require, import/no-dynamic-require
             pluginModule = require(moduleName),
             // transform rules object into a list of deprecated rules
             deprecatedPluginRules = Object.entries(pluginModule.rules)
@@ -109,7 +109,7 @@ expect.extend({
 
     toConfigureAllPluginRules(config, plugin) {
         const { module: moduleName, prefix } = normalizePluginName(plugin);
-        // eslint-disable-next-line global-require, import/no-dynamic-require
+        // eslint-disable-next-line @lcooper/global-require, import/no-dynamic-require
         let { rules: pluginRules } = require(moduleName);
         // transform rules object into a list of all non-deprecated rules
         pluginRules = Object.entries(pluginRules)

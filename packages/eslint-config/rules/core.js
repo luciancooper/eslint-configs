@@ -66,6 +66,11 @@ module.exports = {
         // disallow useless backreferences in regular expressions (v7.0.0)
         'no-useless-backreference': 2,
 
+        // Node.js and CommonJS
+
+        // require `require()` calls to be placed at top-level module scope
+        'global-require': 0,
+
         // ECMAScript 6
 
         // require `const` declarations for variables that are never reassigned after declared
@@ -152,5 +157,7 @@ module.exports = {
 
         // require consecutive variable declarations to be combined into a single declaration
         '@lcooper/consecutive-declarations': 2,
+        // ensure `require()` calls are in the top-level module scope
+        '@lcooper/global-require': 2,
     },
 };
