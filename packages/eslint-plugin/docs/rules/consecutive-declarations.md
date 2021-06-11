@@ -4,15 +4,15 @@ This rule requires consecutive `const`, `let`, and `var` declarations be combine
 
 ## Rule Details
 
-This rule is an alternative to ESLint's base [`one-var`](https://eslint.org/docs/rules/one-var) rule. It enforces the same style convention `one-var` does when configured with the [`'consecutive'`](https://github.com/eslint/eslint/blob/master/docs/rules/one-var.md#consecutive) option, with the exception of global `const` declarations, which are treated as if configured with [`'never'`](https://github.com/eslint/eslint/blob/master/docs/rules/one-var.md#never).
+This rule is an alternative to ESLint's base [`one-var`](https://eslint.org/docs/rules/one-var) rule. It enforces the same style convention `one-var` does when configured with the [`'consecutive'`](https://github.com/eslint/eslint/blob/master/docs/rules/one-var.md#consecutive) option, with the exception of multi-line global `const` declarations, which are treated as if configured with [`'never'`](https://github.com/eslint/eslint/blob/master/docs/rules/one-var.md#never).
 
 :no_entry_sign:&nbsp; Examples of **incorrect** code for this rule:
 
 ```js
 /* eslint @lcooper/consecutive-declarations: 'error' */
 
-const a = require('a');
-const b = require('b');
+const a = 1;
+const b = 2;
 
 const foo = () => {
         const c = 1;
@@ -32,8 +32,8 @@ let f = false;
 ```js
 /* eslint @lcooper/consecutive-declarations: 'error' */
 
-const a = require('a'),
-    b = require('b');
+const a = 1,
+    b = 2;
 
 const foo = () => {
     const c = 1,
@@ -53,7 +53,7 @@ let e = true,
 
 ### `require` statements
 
-Unlike other global `const` declarations, consecutive `require` statements are combined into a single declaration.
+All consecutive `require` statements are to be combined into a single declaration, separate from other global `const` declarations.
 
 :no_entry_sign:&nbsp; Examples of **incorrect** code for this rule:
 
