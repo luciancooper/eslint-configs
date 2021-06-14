@@ -81,6 +81,7 @@ No additional configuration is required to lint TSDoc and/or JSDoc comments, the
 ## Related
 
  * [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - base config for standard JavaScript projects
+ * [`@lcooper/eslint-plugin`](https://www.npmjs.com/package/@lcooper/eslint-plugin) - plugin with awesome extra ESLint rules used by this config
  * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - config for React projects
  * [`@lcooper/eslint-config-jest`](https://www.npmjs.com/package/@lcooper/eslint-config-jest) - enhancement config for projects using Jest
 
