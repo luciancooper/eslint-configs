@@ -106,6 +106,8 @@ module.exports = {
             ignoreStrings: true,
             ignoreTemplateLiterals: true,
         }],
+        // enforce a maximum number of statements allowed per line
+        'max-statements-per-line': [2, { max: 1 }],
         // disallow bitwise operators
         'no-bitwise': 0,
         // disallow `continue` statements
