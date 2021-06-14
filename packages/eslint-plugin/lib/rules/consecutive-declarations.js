@@ -1,3 +1,5 @@
+const { isRequireDeclarator } = require('./utils/is-require');
+
 const STATEMENT_LIST_PARENTS = new Set(['Program', 'BlockStatement', 'SwitchCase']);
 
 /**
@@ -10,16 +12,6 @@ function isInStatementList(node) {
 }
 
 /**
- * Check if a variable declaration is a require.
- * @param {ASTNode} decl - variable declaration Node
- * @returns {bool} - if decl is a require, return true; else return false.
- * @private
- */
-function isRequire(decl) {
-    return decl.init && decl.init.type === 'CallExpression' && decl.init.callee.name === 'require';
-}
-
-/**
  * Count the number of require statements in a group of variable declarators
  * @param {VariableDeclarator[]} declarations - array of variable declarators
  * @returns {number}
@@ -27,7 +19,7 @@ function isRequire(decl) {
 function countRequires(declarations) {
     let count = 0;
     for (let i = 0; i < declarations.length; i += 1) {
-        if (isRequire(declarations[i])) count += 1;
+        if (isRequireDeclarator(declarations[i])) count += 1;
     }
     return count;
 }
@@ -121,7 +113,7 @@ function mixedRequiresFixer(sourceCode, node) {
         last.adjEnd = adjIndex;
     }
     // sort declarations, putting `requires` calls first
-    const order = node.declarations.map((decl, idx) => ({ idx, req: isRequire(decl) }));
+    const order = node.declarations.map((decl, idx) => ({ idx, req: isRequireDeclarator(decl) }));
     let reqIdx = 0;
     for (let n = order.length, j; reqIdx < n; reqIdx += 1) {
         // if this is a `requires` call, keep going

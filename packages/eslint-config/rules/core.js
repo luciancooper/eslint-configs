@@ -159,5 +159,7 @@ module.exports = {
         '@lcooper/consecutive-declarations': 2,
         // ensure `require()` calls are in the top-level module scope
         '@lcooper/global-require': 2,
+        // require padding lines between top level statements
+        '@lcooper/top-level-padding-lines': 2,
     },
 };
