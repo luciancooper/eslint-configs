@@ -4,6 +4,9 @@ module.exports = {
     plugins: [
         '@lcooper',
     ],
+    extends: [
+        'plugin:@lcooper/all',
+    ],
     rules: {
         // Best Practices
 
@@ -65,11 +68,6 @@ module.exports = {
         'no-unreachable-loop': 2,
         // disallow useless backreferences in regular expressions (v7.0.0)
         'no-useless-backreference': 2,
-
-        // Node.js and CommonJS
-
-        // require `require()` calls to be placed at top-level module scope
-        'global-require': 0,
 
         // ECMAScript 6
 
@@ -140,8 +138,6 @@ module.exports = {
         })(),
         // disallow dangling underscores in identifiers
         'no-underscore-dangle': 0,
-        // enforce variables to be declared either together or separately in functions
-        'one-var': 0,
         // disallow the use of `Math.pow` in favor of the `**` operator
         'prefer-exponentiation-operator': 2, // v6.7.0
 
@@ -152,14 +148,5 @@ module.exports = {
             vars: 'local',
             args: 'none',
         }],
-
-        // Plugin Rules
-
-        // require consecutive variable declarations to be combined into a single declaration
-        '@lcooper/consecutive-declarations': 2,
-        // ensure `require()` calls are in the top-level module scope
-        '@lcooper/global-require': 2,
-        // require padding lines between top level statements
-        '@lcooper/top-level-padding-lines': 2,
     },
 };
