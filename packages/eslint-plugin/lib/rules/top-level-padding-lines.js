@@ -1,4 +1,5 @@
-const { isRequireStatement } = require('./utils/is-require');
+const { isRequireStatement } = require('./utils/is-require'),
+    docsUrl = require('./utils/docs-url');
 
 /**
  * Returns if an AST node is an es6 import statement
@@ -78,7 +79,7 @@ module.exports = {
             description: 'require or disallow padding lines between top level statements',
             category: 'Stylistic Issues',
             recommended: false,
-            url: 'https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-plugin/docs/rules/top-level-padding-lines.md',
+            url: docsUrl('top-level-padding-lines'),
         },
         fixable: 'whitespace',
         schema: [{

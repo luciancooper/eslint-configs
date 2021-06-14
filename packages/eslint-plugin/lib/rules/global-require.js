@@ -1,3 +1,5 @@
+const docsUrl = require('./utils/docs-url');
+
 const UNACCEPTABLE_PARENTS = [
     'ArrowFunctionExpression',
     'BlockStatement',
@@ -37,7 +39,7 @@ module.exports = {
             description: 'ensure `require()` calls are in the top-level module scope',
             category: 'Stylistic Issues',
             recommended: false,
-            url: 'https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-plugin/docs/rules/global-require.md',
+            url: docsUrl('global-require'),
         },
         fixable: null,
         schema: [],

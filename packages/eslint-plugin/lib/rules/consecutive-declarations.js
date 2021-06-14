@@ -1,4 +1,5 @@
-const { isRequireDeclarator } = require('./utils/is-require');
+const { isRequireDeclarator } = require('./utils/is-require'),
+    docsUrl = require('./utils/docs-url');
 
 const STATEMENT_LIST_PARENTS = new Set(['Program', 'BlockStatement', 'SwitchCase']);
 
@@ -259,7 +260,7 @@ module.exports = {
             description: 'enforce a consistent style for consecutive variable declarations',
             category: 'Stylistic Issues',
             recommended: false,
-            url: 'https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-plugin/docs/rules/consecutive-declarations.md',
+            url: docsUrl('consecutive-declarations'),
         },
         fixable: 'code',
         schema: [],
