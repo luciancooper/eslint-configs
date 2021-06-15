@@ -85,6 +85,10 @@ module.exports = {
         'react/no-unknown-property': 2,
         // Prevent usage of unsafe lifecycle methods
         'react/no-unsafe': 0,
+        // Prevent creating unstable components inside components (v7.23.0)
+        'react/no-unstable-nested-components': [2, {
+            allowAsProps: true,
+        }],
         // Prevent definitions of unused prop types
         'react/no-unused-prop-types': 1,
         // Prevent definition of unused state fields
@@ -198,6 +202,10 @@ module.exports = {
             maximum: 1,
             when: 'multiline',
         }],
+        // Prevent a new line after jsx elements and expressions 🔧  (v7.23.0)
+        'react/jsx-newline': [2, {
+            prevent: true,
+        }],
         // Prevents usage of Function.prototype.bind and arrow functions in React component props
         'react/jsx-no-bind': [2, {
             ignoreDOMComponents: true,
@@ -208,6 +216,8 @@ module.exports = {
         }],
         // Comments inside children section of tag should be placed inside braces
         'react/jsx-no-comment-textnodes': 2,
+        // Prevents JSX context provider values from taking values that will cause needless rerenders (v7.22.0)
+        'react/jsx-no-constructed-context-values': 0,
         // Enforce no duplicate props
         'react/jsx-no-duplicate-props': [2, {
             ignoreCase: true,
