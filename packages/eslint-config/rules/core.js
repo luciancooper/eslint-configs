@@ -92,6 +92,8 @@ module.exports = {
         camelcase: 0,
         // require or disallow newline at the end of files
         'eol-last': [2, 'never'],
+        // require or disallow named `function` expressions
+        'func-names': [1, 'as-needed'],
         // enforce line breaks between arguments of a function call (v6.2.0)
         'function-call-argument-newline': [2, 'consistent'],
         // enforce consistent indentation
