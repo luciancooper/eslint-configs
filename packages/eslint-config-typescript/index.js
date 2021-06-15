@@ -12,7 +12,7 @@ module.exports = {
         require.resolve('./rules/import'),
     ],
     overrides: [{
-        files: ['*.ts', '*.tsx'],
+        files: ['*.ts'],
         extends: [
             './rules/overrides',
             resolveCheck('eslint-plugin-tsdoc') && './rules/tsdoc',

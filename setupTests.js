@@ -1,5 +1,6 @@
 const path = require('path'),
     fs = require('fs'),
+    chalk = require('chalk'),
     normalizePluginName = require('eslint-find-rules/dist/lib/normalize-plugin-name');
 
 global.parseFixtures = (dirname, file) => {
@@ -56,6 +57,39 @@ expect.extend({
                 ? () => `config includes ${moduleName}`
                 : () => `config does not include ${moduleName}`,
             pass: isDefined,
+        };
+    },
+
+    toIncludePlugins(config, plugins) {
+        const matched = [],
+            unMatched = [],
+            // copy the list of configured plugins
+            configured = [...config.plugins];
+        // go through each expected plugin
+        plugins.forEach((plugin) => {
+            const { module: moduleName, prefix } = normalizePluginName(plugin),
+                index = configured.findIndex((id) => (id === moduleName || id === prefix));
+            if (index >= 0) {
+                // plugin was found, remove it from the `configured` array
+                const [match] = configured.splice(index, 1);
+                matched.push(match);
+            } else {
+                // expected plugin was not found
+                unMatched.push(plugin);
+            }
+        });
+        const pass = unMatched.length === 0 && configured.length === 0;
+        return {
+            message: pass
+                ? () => 'configured plugins matched expected plugins'
+                : () => (
+                    `configured plugins do not match expected plugins:\n${
+                        plugins.map((p) => (
+                            matched.includes(p) ? chalk.green(`   ${p}`) : chalk.red(` - ${p}`)
+                        )).join('\n')
+                    }${chalk.yellow(configured.map((p) => `\n + ${p}`).join(''))}`
+                ),
+            pass,
         };
     },
 
