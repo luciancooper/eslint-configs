@@ -36,7 +36,7 @@ module.exports = {
         'react/forbid-prop-types': 0,
         // Standardize the way function component get defined 🔧
         'react/function-component-definition': [2, {
-            namedComponents: 'function-declaration',
+            namedComponents: 'arrow-function',
             unnamedComponents: 'arrow-function',
         }],
         // Reports when this.state is accessed within setState
