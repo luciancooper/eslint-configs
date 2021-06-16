@@ -48,6 +48,8 @@ module.exports = {
         'no-await-in-loop': 0,
         // disallow the use of `console`
         'no-console': 0,
+        // disallow control characters in regular expressions
+        'no-control-regex': 0,
         // disallow duplicate conditions in if-else-if chains (v6.7.0)
         'no-dupe-else-if': 2,
         // disallow empty block statements
