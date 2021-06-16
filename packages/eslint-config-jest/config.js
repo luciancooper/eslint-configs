@@ -121,5 +121,10 @@ module.exports = {
         'jest/prefer-called-with': 0,
         // Require a message for `toThrow()`
         'jest/require-to-throw-message': 0,
+
+        // Typescript Rules
+
+        // Enforces unbound methods are called with their expected scope
+        'jest/unbound-method': 0, // revisit if @typescript-eslint/unbound-method is enabled
     },
 };
