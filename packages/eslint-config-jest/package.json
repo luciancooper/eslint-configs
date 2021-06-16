@@ -11,7 +11,8 @@
     "access": "public"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "config.js"
   ],
   "keywords": [
     "eslint",
