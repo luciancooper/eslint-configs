@@ -51,6 +51,7 @@ ESLint configs that utilize this plugin:
  * [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - Base config for standard JavaScript projects
  * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - Config for React projects
  * [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript) - Config for TypeScript projects
+ * [`@lcooper/eslint-config-typescript-react`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript-react) - Config for TypeScript + React projects
  * [`@lcooper/eslint-config-jest`](https://www.npmjs.com/package/@lcooper/eslint-config-jest) - Enhancement config for projects using Jest
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-plugin

@@ -5,8 +5,6 @@
 
 An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [Jest](https://jestjs.io/) testing environments.
 
-For use in conjunction with [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config), [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react), or [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript).
-
 ## Installation
 
 The peer dependencies [`eslint`](https://www.npmjs.com/package/eslint) and [`eslint-plugin-jest`](https://www.npmjs.com/package/eslint-plugin-jest) must be installed alongside this package.
@@ -26,6 +24,7 @@ This package is intended to enhance one of these base configs:
  * [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - for standard JavaScript projects
  * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - for React projects
  * [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript) - for TypeScript projects
+ * [`@lcooper/eslint-config-typescript-react`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript-react) - for TypeScript + React projects
 
 ## Usage
 
@@ -53,7 +52,7 @@ Or use the  `eslintConfig` field in your `package.json` file:
 }
 ```
 
-For React or TypeScript projects, replace `@lcooper/eslint-config` with `@lcooper/eslint-config-react` or `@lcooper/eslint-config-typescript` in the examples above.
+For React and/or TypeScript projects, replace `@lcooper/eslint-config` with `@lcooper/eslint-config-react`, `@lcooper/eslint-config-typescript`, or `@lcooper/eslint-config-typescript-react` in the examples above.
 
 Check out [this page](https://eslint.org/docs/user-guide/configuring) for more details about configuring eslint.
 

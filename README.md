@@ -13,6 +13,7 @@ A monorepo of [ESLint shareable configs](https://eslint.org/docs/developer-guide
 | [`@lcooper/eslint-plugin`](packages/eslint-plugin) | [![npm][plugin-npm-badge]][plugin-npm-link] | Extra ESLint rules |
 | [`@lcooper/eslint-config-react`](packages/eslint-config-react) | [![npm][react-npm-badge]][react-npm-link] | Rules for React projects |
 | [`@lcooper/eslint-config-typescript`](packages/eslint-config-typescript) | [![npm][ts-npm-badge]][ts-npm-link] | Rules for TypeScript projects |
+| [`@lcooper/eslint-config-typescript-react`](packages/eslint-config-typescript-react) | [![npm][ts-react-npm-badge]][ts-react-npm-link] | Rules for TypeScript + React projects |
 | [`@lcooper/eslint-config-jest`](packages/eslint-config-jest) | [![npm][jest-npm-badge]][jest-npm-link] | Enhancement rules for projects using Jest |
 
 [base-npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config
@@ -23,6 +24,8 @@ A monorepo of [ESLint shareable configs](https://eslint.org/docs/developer-guide
 [react-npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-react?logo=npm&style=flat-square
 [ts-npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-typescript
 [ts-npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-typescript?logo=npm&style=flat-square
+[ts-react-npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-typescript-react
+[ts-react-npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-typescript-react?logo=npm&style=flat-square
 [jest-npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-jest
 [jest-npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-jest?logo=npm&style=flat-square
 
