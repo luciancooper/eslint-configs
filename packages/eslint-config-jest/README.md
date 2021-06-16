@@ -72,10 +72,10 @@ For more information about using `overrides` check out the [Configuration Based 
 
 This package is intended to enhance one of these base configs:
 
- * [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - for standard JavaScript projects
- * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - for React projects
- * [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript) - for TypeScript projects
- * [`@lcooper/eslint-config-typescript-react`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript-react) - for TypeScript + React projects
+ * [`@lcooper/eslint-config`](/packages/eslint-config) - Config for standard JavaScript projects
+ * [`@lcooper/eslint-config-react`](/packages/eslint-config-react) - Config for React projects
+ * [`@lcooper/eslint-config-typescript`](/packages/eslint-config-typescript) - Config for TypeScript projects
+ * [`@lcooper/eslint-config-typescript-react`](/packages/eslint-config-typescript-react) - Config for TypeScript + React projects
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-jest
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-jest?logo=npm&style=for-the-badge

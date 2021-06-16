@@ -3,7 +3,7 @@
 [![npm][npm-badge]][npm-link]
 [![license][license-badge]][license-link]
 
-An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [TypeScript](https://www.typescriptlang.org) + React projects. A combination of the rules from [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) and [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript), packaged into a single configuration.
+An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [TypeScript](https://www.typescriptlang.org) + React projects. A combination of the rules from [`@lcooper/eslint-config-react`](/packages/eslint-config-react) and [`@lcooper/eslint-config-typescript`](/packages/eslint-config-typescript), packaged into a single configuration.
 
 ## Installation
 
@@ -80,11 +80,11 @@ No additional configuration is required to lint TSDoc and/or JSDoc comments, the
 
 ## Related
 
- * [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - Base config for standard JavaScript projects
- * [`@lcooper/eslint-plugin`](https://www.npmjs.com/package/@lcooper/eslint-plugin) - Plugin with awesome extra ESLint rules used by this config
- * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - Config for React projects
- * [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript) - Config for standard TypeScript projects
- * [`@lcooper/eslint-config-jest`](https://www.npmjs.com/package/@lcooper/eslint-config-jest) - Enhancement config for projects using Jest
+ * [`@lcooper/eslint-config`](/packages/eslint-config) - Base config for standard JavaScript projects
+ * [`@lcooper/eslint-plugin`](/packages/eslint-plugin) - Plugin with awesome extra ESLint rules used by this config
+ * [`@lcooper/eslint-config-react`](/packages/eslint-config-react) - Config for React projects
+ * [`@lcooper/eslint-config-typescript`](/packages/eslint-config-typescript) - Config for standard TypeScript projects
+ * [`@lcooper/eslint-config-jest`](/packages/eslint-config-jest) - Enhancement config for projects using Jest
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-typescript-react
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-typescript-react?logo=npm&style=for-the-badge

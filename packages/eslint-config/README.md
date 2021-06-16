@@ -60,15 +60,15 @@ For browser environments, replace `@lcooper/eslint-config` with `@lcooper/eslint
 
 No additional configuration is required to lint JSDoc comments, the only requirement being that [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc) is installed as a dev dependency.
 
-Check out [this page](https://eslint.org/docs/user-guide/configuring) for more details about configuring eslint.
+Check out [this page](https://eslint.org/docs/user-guide/configuring) for more details about configuring ESLint.
 
 ## Related
 
- * [`@lcooper/eslint-plugin`](https://www.npmjs.com/package/@lcooper/eslint-plugin) - plugin with awesome extra ESLint rules used by this config
- * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - config for React projects
- * [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript) - config for TypeScript projects
- * [`@lcooper/eslint-config-typescript-react`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript-react) - config for TypeScript + React projects
- * [`@lcooper/eslint-config-jest`](https://www.npmjs.com/package/@lcooper/eslint-config-jest) - enhancement config for projects using Jest
+ * [`@lcooper/eslint-plugin`](/packages/eslint-plugin) - Plugin with awesome extra ESLint rules used by this config
+ * [`@lcooper/eslint-config-react`](/packages/eslint-config-react) - Config for React projects
+ * [`@lcooper/eslint-config-typescript`](/packages/eslint-config-typescript) - Config for TypeScript projects
+ * [`@lcooper/eslint-config-typescript-react`](/packages/eslint-config-typescript-react) - Config for TypeScript + React projects
+ * [`@lcooper/eslint-config-jest`](/packages/eslint-config-jest) - Enhancement config for projects using Jest
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config?logo=npm&style=for-the-badge
