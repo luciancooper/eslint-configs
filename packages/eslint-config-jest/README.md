@@ -19,42 +19,63 @@ npm install -D @lcooper/eslint-config-jest eslint eslint-plugin-jest
 yarn add -D @lcooper/eslint-config-jest eslint eslint-plugin-jest
 ```
 
+## Usage
+
+Add `@lcooper/eslint-config-jest` to the `extends` section of your [eslint config file](https://eslint.org/docs/user-guide/configuring/configuration-files):
+
+`.eslintrc.js`
+
+```js
+module.exports = {
+    extends: [
+        // ... base config ...
+        '@lcooper/eslint-config-jest'
+    ],
+};
+```
+
+This config is meant to be used on top of a base ESLint configuration. Under the hood, it uses an `overrides` block to apply itself only to files matched by the following glob patterns: 
+
+ * `**/setupTests.[jt]s?(x)` → Test setup files.
+ * `**/jest.setup.[jt]s?(x)` → Test setup files.
+ * `**/test?(s)/**/*.[jt]s?(x)` → Directories named `test` / `tests`.
+ * `**/__@(tests\|mocks)__/**/*.[jt]s?(x)` → Directories named `__tests__` / `__mocks__`.
+ * `**/+(*.)@(spec\|test).[jt]s?(x)` → Files with a `.test.*` / `.spec.*` suffix.
+ * `**/test.[jt]s?(x)` → Files named `test`.
+
+> **Note:** the pattern `.[jt]s?(x)` matches the file extensions `.js`, `.jsx`, `.ts`, and `.tsx`.
+
+Additionally, this config is not applied to any files matched by `**/fixtures/**` or `**/__fixtures__/**`.
+
+#### Custom Overrides
+
+If you would like to control what files this config is applied to, you can extend `@lcooper/eslint-config-jest/config` in an `overrides` block and use your own glob patterns:
+
+`.eslintrc.js`
+
+```js
+module.exports = {
+    overrides: [{
+        files: [
+            // ... your globs here ...
+        ],
+        extends: [
+            '@lcooper/eslint-config-jest/config',
+        ],
+    }],
+};
+```
+
+For more information about using `overrides` check out the [Configuration Based on Glob Patterns](https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-based-on-glob-patterns) section of the ESLint docs.
+
+## Related
+
 This package is intended to enhance one of these base configs:
 
  * [`@lcooper/eslint-config`](https://www.npmjs.com/package/@lcooper/eslint-config) - for standard JavaScript projects
  * [`@lcooper/eslint-config-react`](https://www.npmjs.com/package/@lcooper/eslint-config-react) - for React projects
  * [`@lcooper/eslint-config-typescript`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript) - for TypeScript projects
  * [`@lcooper/eslint-config-typescript-react`](https://www.npmjs.com/package/@lcooper/eslint-config-typescript-react) - for TypeScript + React projects
-
-## Usage
-
-Add an [eslint config file](https://eslint.org/docs/user-guide/configuring/configuration-files) to your project's root directory:
-
-`.eslintrc.js`
-
-```javascript
-module.exports = {
-    extends: [
-        '@lcooper/eslint-config',
-        '@lcooper/eslint-config-jest'
-    ],
-};
-```
-
-Or use the  `eslintConfig` field in your `package.json` file:
-
-```json
-"eslintConfig": {
-  "extends": [
-    "@lcooper/eslint-config",
-    "@lcooper/eslint-config-jest"
-  ]
-}
-```
-
-For React and/or TypeScript projects, replace `@lcooper/eslint-config` with `@lcooper/eslint-config-react`, `@lcooper/eslint-config-typescript`, or `@lcooper/eslint-config-typescript-react` in the examples above.
-
-Check out [this page](https://eslint.org/docs/user-guide/configuring) for more details about configuring eslint.
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-jest
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-jest?logo=npm&style=for-the-badge
