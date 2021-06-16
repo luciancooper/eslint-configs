@@ -11,6 +11,10 @@ module.exports = {
         es6: true,
         node: true,
     },
+    parserOptions: {
+        ecmaVersion: 2021,
+        sourceType: 'module',
+    },
     overrides: [resolveCheck('eslint-plugin-jsdoc') && {
         // only apply jsdoc rules to js files
         files: ['*.js', '*.mjs', '*.cjs', '*.jsx'],
