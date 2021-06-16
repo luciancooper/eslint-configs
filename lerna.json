@@ -7,7 +7,8 @@
   ],
   "ignoreChanges": [
     "**/*.md",
-    "**/__tests__/**"
+    "**/*.test.js",
+    "**/__fixtures__/**"
   ],
   "command": {
     "version": {
