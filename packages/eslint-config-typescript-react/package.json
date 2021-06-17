@@ -38,8 +38,8 @@
     ]
   },
   "dependencies": {
-    "@lcooper/eslint-config": "^1.2.0",
-    "@lcooper/eslint-config-react": "^1.2.0",
+    "@lcooper/eslint-config": "^2.0.0",
+    "@lcooper/eslint-config-react": "^2.0.0",
     "@lcooper/eslint-config-typescript": "^1.0.0"
   },
   "peerDependencies": {
