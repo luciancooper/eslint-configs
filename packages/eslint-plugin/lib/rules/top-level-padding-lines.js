@@ -83,15 +83,15 @@ module.exports = {
         },
         fixable: 'whitespace',
         schema: [{
-            enum: ['always', 'never'],
+            enum: ['always', 'never', 'ignore'],
         }, {
             type: 'object',
             properties: {
                 betweenSingleLines: {
-                    enum: ['always', 'never'],
+                    enum: ['always', 'never', 'ignore'],
                 },
                 betweenImports: {
-                    enum: ['always', 'never'],
+                    enum: ['always', 'never', 'ignore'],
                 },
             },
             additionalProperties: false,
@@ -140,6 +140,8 @@ module.exports = {
                             messageId = `${option}SingleLines`;
                         }
                     }
+                    // if option config is 'ignore', then continue
+                    if (option === 'ignore') return next;
                     // get comments between nodes
                     const comments = sourceCode.getCommentsBefore(next),
                         isPadded = isBlankLineBetween(current, next, comments);

@@ -47,11 +47,12 @@ The rule takes two options. The first is a string, which can be:
 
 * `'always'` - (default) requires an empty line between top level statements.
 * `'never'` - disallows an empty line between top level statements.
+* `'ignore'` - do nothing - useful if you only want to apply this rule to the specific contexts in the second option.
 
-The second option is an object that overrides the rule's behavior in two specific contexts:
+The second option is an object that overrides the rule's behavior in specific contexts. The value of each property must be one of `'always'`, `'never'`, or `'ignore'`.
 
  * `betweenSingleLines` - Require or forbid a blank line between single line top level statements (defaults to `'never'`).
- * `betweenImports` - Require or forbid a blank line between esm import or commonjs `require` statements (defaults to `'never'`).
+ * `betweenImports` - Require or forbid a blank line between esm `import` or commonjs `require` statements (defaults to `'never'`).
 
 Here is the default configuration:
 

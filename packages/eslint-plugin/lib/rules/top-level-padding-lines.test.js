@@ -30,7 +30,7 @@ ruleTester.run('top-level-padding-lines', rule, {
                 + 'const x = true;\n'
                 + 'const y = false;\n'
                 + 'const foo = () => {\n    /* ... */\n};\n'
-                + 'const bar = () => {\n    /* ... */\n};\n',
+                + 'const bar = () => {\n    /* ... */\n};',
             options: ['never'],
         },
         {
@@ -43,6 +43,12 @@ ruleTester.run('top-level-padding-lines', rule, {
                 + 'const foo = () => {\n    /* ... */\n};\n'
                 + 'const bar = () => {\n    /* ... */\n};',
             options: ['never', { betweenSingleLines: 'always', betweenImports: 'always' }],
+        },
+        {
+            code: 'const x = 0;\n'
+                + 'const y = 1;\n\n'
+                + 'const z = 2;',
+            options: ['never', { betweenSingleLines: 'ignore' }],
         },
     ],
     invalid: [

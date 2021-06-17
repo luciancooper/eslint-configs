@@ -8,6 +8,13 @@ module.exports = {
         'plugin:@lcooper/all',
     ],
     rules: {
+        // Plugin Rules
+
+        // require padding lines between top level statements
+        '@lcooper/top-level-padding-lines': [2, 'always', {
+            betweenSingleLines: 'ignore',
+        }],
+
         // Best Practices
 
         // enforce that class methods utilize `this`
