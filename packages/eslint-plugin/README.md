@@ -49,11 +49,11 @@ Next, configure the rules you want to use under the `rules` section, or use the 
 
 ESLint configs that utilize this plugin:
 
- * [`@lcooper/eslint-config`](/packages/eslint-config) - Base config for standard JavaScript projects
- * [`@lcooper/eslint-config-react`](/packages/eslint-config-react) - Config for React projects
- * [`@lcooper/eslint-config-typescript`](/packages/eslint-config-typescript) - Config for TypeScript projects
- * [`@lcooper/eslint-config-typescript-react`](/packages/eslint-config-typescript-react) - Config for TypeScript + React projects
- * [`@lcooper/eslint-config-jest`](/packages/eslint-config-jest) - Enhancement config for projects using Jest
+ * [`@lcooper/eslint-config`](../eslint-config) - Base config for standard JavaScript projects
+ * [`@lcooper/eslint-config-react`](../eslint-config-react) - Config for React projects
+ * [`@lcooper/eslint-config-typescript`](../eslint-config-typescript) - Config for TypeScript projects
+ * [`@lcooper/eslint-config-typescript-react`](../eslint-config-typescript-react) - Config for TypeScript + React projects
+ * [`@lcooper/eslint-config-jest`](../eslint-config-jest) - Enhancement config for projects using Jest
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-plugin
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-plugin?logo=npm&style=for-the-badge

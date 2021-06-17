@@ -4,7 +4,7 @@
 [![ci][ci-badge]][ci-link]
 [![license][license-badge]][license-link]
 
-An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [TypeScript](https://www.typescriptlang.org) projects. Extends [`@lcooper/eslint-config`](/packages/eslint-config). For projects using React check out [`@lcooper/eslint-config-typescript-react`](/packages/eslint-config-typescript-react).
+An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [TypeScript](https://www.typescriptlang.org) projects. Extends [`@lcooper/eslint-config`](../eslint-config). For projects using React check out [`@lcooper/eslint-config-typescript-react`](../eslint-config-typescript-react).
 
 ## Installation
 
@@ -81,11 +81,11 @@ No additional configuration is required to lint TSDoc and/or JSDoc comments, the
 
 ## Related
 
- * [`@lcooper/eslint-config`](/packages/eslint-config) - Base config for standard JavaScript projects
- * [`@lcooper/eslint-plugin`](/packages/eslint-plugin) - Plugin with awesome extra ESLint rules used by this config
- * [`@lcooper/eslint-config-react`](/packages/eslint-config-react) - Config for React projects
- * [`@lcooper/eslint-config-typescript-react`](/packages/eslint-config-typescript-react) - Config for TypeScript + React projects
- * [`@lcooper/eslint-config-jest`](/packages/eslint-config-jest) - Enhancement config for projects using Jest
+ * [`@lcooper/eslint-config`](../eslint-config) - Base config for standard JavaScript projects
+ * [`@lcooper/eslint-plugin`](../eslint-plugin) - Plugin with awesome extra ESLint rules used by this config
+ * [`@lcooper/eslint-config-react`](../eslint-config-react) - Config for React projects
+ * [`@lcooper/eslint-config-typescript-react`](../eslint-config-typescript-react) - Config for TypeScript + React projects
+ * [`@lcooper/eslint-config-jest`](../eslint-config-jest) - Enhancement config for projects using Jest
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-typescript
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-typescript?logo=npm&style=for-the-badge
