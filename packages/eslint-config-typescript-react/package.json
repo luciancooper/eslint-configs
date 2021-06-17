@@ -1,6 +1,6 @@
 {
   "name": "@lcooper/eslint-config-typescript-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shareable ESLint config for Typescript + React",
   "keywords": [
     "eslint",
@@ -38,9 +38,9 @@
     ]
   },
   "dependencies": {
-    "@lcooper/eslint-config": "^2.0.0",
-    "@lcooper/eslint-config-react": "^2.0.0",
-    "@lcooper/eslint-config-typescript": "^1.0.0"
+    "@lcooper/eslint-config": "^2.0.1",
+    "@lcooper/eslint-config-react": "^2.0.1",
+    "@lcooper/eslint-config-typescript": "^1.0.1"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.26.0",

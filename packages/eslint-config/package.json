@@ -1,6 +1,6 @@
 {
   "name": "@lcooper/eslint-config",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Shareable config for ESLint",
   "main": "index.js",
   "scripts": {
@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "@lcooper/eslint-plugin": "^1.0.0",
+    "@lcooper/eslint-plugin": "^1.0.1",
     "eslint-config-airbnb-base": "^14.2.1"
   },
   "peerDependencies": {
