@@ -1,5 +1,6 @@
 # eslint-configs
 
+[![ci][ci-badge]][ci-link]
 [![lerna][lerna-badge]][lerna-link]
 [![license][license-badge]][license-link]
 
@@ -29,7 +30,9 @@ A monorepo of [ESLint shareable configs](https://eslint.org/docs/developer-guide
 [jest-npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-jest
 [jest-npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-jest?logo=npm&style=flat-square
 
+[ci-link]: https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml
+[ci-badge]: https://img.shields.io/github/workflow/status/luciancooper/eslint-configs/CI?logo=github&style=for-the-badge
 [license-link]: LICENSE
-[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-configs?color=brightgreen&style=for-the-badge
+[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-configs?color=yellow&style=for-the-badge
 [lerna-link]: https://lerna.js.org
 [lerna-badge]: https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg?style=for-the-badge

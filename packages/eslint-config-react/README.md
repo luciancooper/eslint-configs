@@ -1,6 +1,7 @@
 # @lcooper/eslint-config-react
 
 [![npm][npm-badge]][npm-link]
+[![ci][ci-badge]][ci-link]
 [![license][license-badge]][license-link]
 
 An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for React projects. Extends [`@lcooper/eslint-config`](/packages/eslint-config).
@@ -63,5 +64,7 @@ Check out [this page](https://eslint.org/docs/user-guide/configuring) for more d
 
 [npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-react
 [npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-react?logo=npm&style=for-the-badge
+[ci-link]: https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml
+[ci-badge]: https://img.shields.io/github/workflow/status/luciancooper/eslint-configs/CI?logo=github&style=for-the-badge
 [license-link]: LICENSE
-[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-configs?color=brightgreen&style=for-the-badge
+[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-configs?color=yellow&style=for-the-badge
