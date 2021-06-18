@@ -148,12 +148,6 @@ module.exports = {
         '@typescript-eslint/consistent-type-definitions': [2, 'interface'],
         // enforces consistent usage of type imports
         '@typescript-eslint/consistent-type-imports': 0,
-        // Require explicit return types on functions and class methods
-        '@typescript-eslint/explicit-function-return-type': 0, // enabling this in `ts` overrides
-        // Require explicit accessibility modifiers on class properties and methods
-        '@typescript-eslint/explicit-member-accessibility': 0,
-        // require explicit return and argument types on exported functions' and classes' public class methods
-        '@typescript-eslint/explicit-module-boundary-types': 0,
         // require a specific member delimiter style for interfaces and type literals
         '@typescript-eslint/member-delimiter-style': [2, {
             multiline: {

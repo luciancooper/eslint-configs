@@ -27,13 +27,11 @@ module.exports = {
         // typescript plugin rules - stylistic issues
 
         // require explicit return types on functions and class methods
-        '@typescript-eslint/explicit-function-return-type': [2, {
-            allowExpressions: true,
-            allowTypedFunctionExpressions: true,
-            allowHigherOrderFunctions: true,
-            allowDirectConstAssertionInArrowFunctions: true,
-            allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-        }],
+        '@typescript-eslint/explicit-function-return-type': 0,
+        // require explicit accessibility modifiers on class properties and methods
+        '@typescript-eslint/explicit-member-accessibility': 0,
+        // require explicit return and argument types on exported functions' and classes' public class methods
+        '@typescript-eslint/explicit-module-boundary-types': 0,
 
         // typescript plugin rules - possible errors
 
