@@ -167,7 +167,26 @@ module.exports = {
             multilineDetection: 'brackets', // brackets | last-member
         }],
         // require a consistent member declaration order
-        '@typescript-eslint/member-ordering': 2,
+        '@typescript-eslint/member-ordering': [2, {
+            default: [
+                // index signature
+                'signature',
+                // fields
+                'static-field',
+                'decorated-field',
+                'instance-field',
+                'abstract-field',
+                'field',
+                // constructors
+                'constructor',
+                // methods
+                'static-method',
+                'decorated-method',
+                'instance-method',
+                'abstract-method',
+                'method',
+            ],
+        }],
         // disallow non-null assertion in locations that may be confusing
         '@typescript-eslint/no-confusing-non-null-assertion': 2,
         // disallow extra non-null assertion
