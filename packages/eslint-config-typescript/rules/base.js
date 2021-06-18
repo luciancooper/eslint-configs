@@ -190,7 +190,7 @@ module.exports = {
         // disallow the use of parameter properties in class constructors
         '@typescript-eslint/no-parameter-properties': 0,
         // disallow the use of type aliases
-        '@typescript-eslint/no-type-alias': [2, {
+        '@typescript-eslint/no-type-alias': [0, {
             allowAliases: 'in-unions-and-intersections',
             allowCallbacks: 'always',
             allowConditionalTypes: 'always',
