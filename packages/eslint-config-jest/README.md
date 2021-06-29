@@ -1,8 +1,8 @@
 # @lcooper/eslint-config-jest
 
-[![npm][npm-badge]][npm-link]
-[![ci][ci-badge]][ci-link]
-[![license][license-badge]][license-link]
+[![npm](https://img.shields.io/npm/v/@lcooper/eslint-config-jest?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@lcooper/eslint-config-jest)
+[![ci](https://img.shields.io/github/workflow/status/luciancooper/eslint-configs/CI?logo=github&style=for-the-badge)](https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/luciancooper/eslint-configs?color=yellow&style=for-the-badge)](#license)
 
 An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [Jest](https://jestjs.io/) testing environments.
 
@@ -78,9 +78,6 @@ This package is intended to enhance one of these base configs:
  * [`@lcooper/eslint-config-typescript`](../eslint-config-typescript) - Config for TypeScript projects
  * [`@lcooper/eslint-config-typescript-react`](../eslint-config-typescript-react) - Config for TypeScript + React projects
 
-[npm-link]: https://www.npmjs.com/package/@lcooper/eslint-config-jest
-[npm-badge]: https://img.shields.io/npm/v/@lcooper/eslint-config-jest?logo=npm&style=for-the-badge
-[ci-link]: https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml
-[ci-badge]: https://img.shields.io/github/workflow/status/luciancooper/eslint-configs/CI?logo=github&style=for-the-badge
-[license-link]: LICENSE
-[license-badge]: https://img.shields.io/github/license/luciancooper/eslint-configs?color=yellow&style=for-the-badge
+## License
+
+[MIT](LICENSE)
