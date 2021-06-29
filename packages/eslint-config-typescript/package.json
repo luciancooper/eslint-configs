@@ -1,6 +1,6 @@
 {
   "name": "@lcooper/eslint-config-typescript",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Shareable ESLint config for Typescript projects",
   "keywords": [
     "eslint",
@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "@lcooper/eslint-config": "^2.1.0"
+    "@lcooper/eslint-config": "^2.1.1"
   },
   "peerDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.26.0",
