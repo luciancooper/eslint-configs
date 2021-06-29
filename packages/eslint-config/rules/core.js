@@ -151,6 +151,16 @@ module.exports = {
         })(),
         // disallow dangling underscores in identifiers
         'no-underscore-dangle': 0,
+        // enforce consistent line breaks inside braces
+        'object-curly-newline': (() => {
+            // modifiy airbnb's base config to allow for 6 properties in a line for import / export statements
+            const [level, { ImportDeclaration, ExportDeclaration, ...options }] = baseStyleRules['object-curly-newline'];
+            return [level, {
+                ...options,
+                ImportDeclaration: { ...ImportDeclaration, minProperties: 7 },
+                ExportDeclaration: { ...ExportDeclaration, minProperties: 7 },
+            }];
+        })(),
         // disallow the use of `Math.pow` in favor of the `**` operator
         'prefer-exponentiation-operator': 2, // v6.7.0
 
