@@ -167,17 +167,11 @@ module.exports = {
                 'signature',
                 // fields
                 'static-field',
-                'decorated-field',
-                'instance-field',
-                'abstract-field',
                 'field',
                 // constructors
                 'constructor',
                 // methods
                 'static-method',
-                'decorated-method',
-                'instance-method',
-                'abstract-method',
                 'method',
             ],
         }],
