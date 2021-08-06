@@ -34,6 +34,6 @@
     "testEnvironment": "node"
   },
   "peerDependencies": {
-    "eslint": ">=7.3"
+    "eslint": ">=7.12"
   }
 }

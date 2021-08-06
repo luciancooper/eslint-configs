@@ -41,7 +41,7 @@
     "@lcooper/eslint-config": "^2.1.1"
   },
   "peerDependencies": {
-    "eslint": ">=7.3",
+    "eslint": ">=7.12",
     "eslint-plugin-import": ">=2.23.0",
     "eslint-plugin-jsdoc": ">=35.0.0",
     "eslint-plugin-react": ">=7.23.0",
