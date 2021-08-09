@@ -67,7 +67,7 @@ Here is the default configuration:
 
 ## When Not To Use It
 
-If you don't care about enforcing a consistant number of blank lines between top level statements, don't use this rule.
+If you don't care about enforcing a consistent number of blank lines between top level statements, don't use this rule.
 
 ## Implementation
 

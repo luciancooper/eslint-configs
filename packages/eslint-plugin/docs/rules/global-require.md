@@ -2,7 +2,7 @@
 
 This rule is a more permissive version of ESLint's base [`global-require`](https://eslint.org/docs/rules/global-require) rule. **Note:** [ESLint moved this rule](https://eslint.org/blog/2020/02/whats-coming-in-eslint-7.0.0#deprecating-nodejscommonjs-specific-rules) to [`node/global-require`](https://github.com/mysticatea/eslint-plugin-node/blob/v11.1.0/docs/rules/global-require.md) in `v7.0.0`. 
 
-It works the same as the base rule, but allows for `require` calls within any expression in the global scope. This accomidates a pattern commonly found within `index.js` files, in which `require` calls are used in expressions assigned to `module.exports`:
+It works the same as the base rule, but allows for `require` calls within any expression in the global scope. This accommodates a pattern commonly found within `index.js` files, in which `require` calls are used in expressions assigned to `module.exports`:
 
 ```js
 // require within an object expression
