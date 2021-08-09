@@ -43,6 +43,7 @@ Next, configure the rules you want to use under the `rules` section, or use the 
 | :-- | :-- | :--: |
 | [`consecutive-declarations`](docs/rules/consecutive-declarations.md) | Enforce a consistent style for consecutive `const`, `let`, and `var` declarations | :wrench: |
 | [`global-require`](docs/rules/global-require.md) | Ensure `require()` calls are in the top-level module scope | |
+| [`prefer-template`](docs/rules/prefer-template.md) | Suggest using template literals instead of string concatenation | :wrench: |
 | [`top-level-padding-lines`](docs/rules/top-level-padding-lines.md) | Require or disallow empty lines between top level statements | :wrench: |
 
 ## Related
