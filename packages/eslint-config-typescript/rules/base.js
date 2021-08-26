@@ -12,7 +12,13 @@ module.exports = {
             'ts-check': false,
         }],
         // bans specific types from being used
-        '@typescript-eslint/ban-types': 2,
+        '@typescript-eslint/ban-types': [2, {
+            types: {
+                '{}': false,
+                object: false,
+            },
+            extendDefaults: true,
+        }],
         // ensures that literals on classes are exposed in a consistent style
         '@typescript-eslint/class-literal-property-style': [2, 'getters'],
         // enforces consistent usage of type assertions
