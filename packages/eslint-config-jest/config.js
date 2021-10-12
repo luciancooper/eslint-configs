@@ -13,12 +13,14 @@ module.exports = {
         }],
         // Enforce assertion to be made in a test body
         'jest/expect-expect': 2,
+        // Enforces a maximum depth to nested describe calls
+        'jest/max-nested-describe': 0,
         // Disallow using expect outside of it or test blocks
         'jest/no-standalone-expect': 2,
         // Disallow use of deprecated functions
         'jest/no-deprecated-functions': 2,
         // Enforce valid `describe()` callback
-        'jest/valid-describe': 2,
+        'jest/valid-describe-callback': 2,
         // Enforce valid `expect()` usage
         'jest/valid-expect': [2, {
             alwaysAwait: true,
@@ -55,6 +57,8 @@ module.exports = {
         'jest/require-top-level-describe': 0,
         // Suggest using `expect.assertions()` OR `expect.hasAssertions()`
         'jest/prefer-expect-assertions': 0,
+        // Prefer await `expect(...).resolves` over `expect(await ...)` syntax
+        'jest/prefer-expect-resolves': 2,
 
         // Test Names
 
@@ -65,7 +69,7 @@ module.exports = {
         // Disallow identical titles
         'jest/no-identical-title': 2,
         // Enforce lowercase test names
-        'jest/lowercase-name': [2, {
+        'jest/prefer-lowercase-title': [2, {
             ignore: ['describe'],
             allowedPrefixes: [
                 'GET',
@@ -84,6 +88,8 @@ module.exports = {
         'jest/prefer-hooks-on-top': 2,
         // Disallow duplicate setup and teardown hooks
         'jest/no-duplicate-hooks': 2,
+        // Require setup and teardown code to be within a hook
+        'jest/require-hook': 0,
         // Disallow setup and teardown hooks
         'jest/no-hooks': 0,
 
@@ -105,10 +111,6 @@ module.exports = {
 
         // Disallow alias methods
         'jest/no-alias-methods': 2,
-        // Prefer using `toBeNull()`
-        'jest/prefer-to-be-null': 2,
-        // Prefer using `toBeUndefined()`
-        'jest/prefer-to-be-undefined': 2,
         // Prefer using `toContain()`
         'jest/prefer-to-contain': 2,
         // Prefer using `toHaveLength()`
@@ -121,6 +123,8 @@ module.exports = {
         'jest/prefer-called-with': 0,
         // Require a message for `toThrow()`
         'jest/require-to-throw-message': 0,
+        // Suggest using `toBe()` for primitive literals
+        'jest/prefer-to-be': 2,
 
         // Typescript Rules
 

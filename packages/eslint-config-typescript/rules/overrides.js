@@ -11,8 +11,6 @@ module.exports = {
 
         // typescript plugin rules - best practices
 
-        // disallow usage of the implicit `any` type in catch clauses
-        '@typescript-eslint/no-implicit-any-catch': 2,
         // disallows invocation of `require()`
         '@typescript-eslint/no-require-imports': 2,
         // disallows the use of require statements except in import statements
@@ -71,6 +69,8 @@ module.exports = {
         // disallow variable redeclaration
         'no-redeclare': 0,
         '@typescript-eslint/no-redeclare': 2,
+        // disallow specified modules when loaded by `import`
+        '@typescript-eslint/no-restricted-imports': 0,
         // disallow unused expressions
         'no-unused-expressions': 0,
         '@typescript-eslint/no-unused-expressions': 2,
@@ -128,6 +128,8 @@ module.exports = {
         // enforce consistent spacing inside braces
         'object-curly-spacing': 0,
         '@typescript-eslint/object-curly-spacing': [2, 'always'],
+        // require or disallow padding lines between statements
+        '@typescript-eslint/padding-line-between-statements': 0,
         // enforce the consistent use of either backticks, double, or single quotes
         quotes: 0,
         '@typescript-eslint/quotes': [2, 'single', {

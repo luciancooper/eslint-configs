@@ -15,7 +15,6 @@ module.exports = {
         '@typescript-eslint/ban-types': [2, {
             types: {
                 '{}': false,
-                object: false,
             },
             extendDefaults: true,
         }],
@@ -46,10 +45,16 @@ module.exports = {
         '@typescript-eslint/no-inferrable-types': 2,
         // disallows usage of `void` type outside of generic or return types
         '@typescript-eslint/no-invalid-void-type': 2,
+        // disallow the `void` operator except when used to discard a value
+        '@typescript-eslint/no-meaningless-void-operator': [2, {
+            checkNever: false,
+        }],
         // enforce valid definition of `new` and `constructor`
         '@typescript-eslint/no-misused-new': 2,
         // disallow the use of custom TypeScript modules and namespaces
         '@typescript-eslint/no-namespace': 2,
+        // disallows using a non-null assertion in the left operand of the nullish coalescing operator
+        '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 2,
         // disallows invocation of `require()`
         '@typescript-eslint/no-require-imports': 0, // annoying in js
         // disallow aliasing `this`
@@ -118,6 +123,8 @@ module.exports = {
         '@typescript-eslint/prefer-reduce-type-parameter': 2,
         // use `RegExp#exec` over `String#match` if no global flag is provided (requires type info)
         '@typescript-eslint/prefer-regexp-exec': 2,
+        // enforce that `this` is used when only `this` type is returned
+        '@typescript-eslint/prefer-return-this-type': 2,
         // enforce the use of String's `startsWith` & `endsWith` over equivalent methods (requires type info)
         '@typescript-eslint/prefer-string-starts-ends-with': 2,
         // requires any function or method that returns a Promise to be marked async (requires type info)

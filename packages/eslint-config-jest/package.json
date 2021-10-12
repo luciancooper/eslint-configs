@@ -30,15 +30,8 @@
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-jest#readme",
-  "jest": {
-    "displayName": "eslint-config-jest",
-    "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "../../setupTests.js"
-    ]
-  },
   "peerDependencies": {
     "eslint": ">=7.12",
-    "eslint-plugin-jest": ">=24.3"
+    "eslint-plugin-jest": ">=25.0"
   }
 }

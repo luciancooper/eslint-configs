@@ -5,8 +5,16 @@
  * @author Lucian Cooper <cooperlucian@gmail.com>
  */
 
-const astUtils = require('eslint/lib/rules/utils/ast-utils'),
-    docsUrl = require('./utils/docs-url');
+const docsUrl = require('./utils/docs-url');
+
+/**
+ * Checks whether or not a given node is a string literal.
+ * @param {ASTNode} node - A node to check.
+ * @returns {boolean} - `true` if the node is a string literal.
+ */
+function isStringLiteral(node) {
+    return ((node.type === 'Literal' && typeof node.value === 'string') || node.type === 'TemplateLiteral');
+}
 
 /**
  * Checks whether or not a given node is a concatenation.
@@ -28,7 +36,7 @@ function isConcatenation(node) {
 function literalMixtureType(node) {
     return isConcatenation(node)
         ? (literalMixtureType(node.left) | literalMixtureType(node.right))
-        : astUtils.isStringLiteral(node) ? 1 : 2;
+        : isStringLiteral(node) ? 1 : 2;
 }
 
 /**
@@ -68,7 +76,7 @@ function hasOctalOrNonOctalDecimalEscapeSequence(node) {
     }
     // No need to check TemplateLiterals – would throw parsing error
     return (node.type === 'Literal' && typeof node.value === 'string')
-        ? astUtils.hasOctalOrNonOctalDecimalEscapeSequence(node.raw)
+        ? /^(?:[^\\]|\\.)*\\(?:[1-9]|0[0-9])/su.test(node.raw)
         : false;
 }
 
@@ -161,7 +169,7 @@ function toTemplateLiteral(sourceCode, nodes) {
         if (endsWithTemplateCurly(left)) {
             // `foo${bar}` /* comment */ + 'baz' --> `foo${bar /* comment */  }${baz}`
             let str = stringForm[i];
-            if (!astUtils.isStringLiteral(left)) {
+            if (!isStringLiteral(left)) {
                 str = `\`\${${textBeforeNode || ''}${str}${beforePlus + afterPlus}}\``;
             }
             template += str.slice(nextSlice, -1);
@@ -173,7 +181,7 @@ function toTemplateLiteral(sourceCode, nodes) {
         if (startsWithTemplateCurly(right)) {
             // 'foo' /* comment */ + `${bar}baz` --> `foo${ /* comment */  bar}baz`
             let str = stringForm[i];
-            if (!astUtils.isStringLiteral(left)) {
+            if (!isStringLiteral(left)) {
                 str = `\`\${${textBeforeNode || ''}${str}}\``;
             }
             template += str.slice(nextSlice, -1);
@@ -184,7 +192,7 @@ function toTemplateLiteral(sourceCode, nodes) {
         // Otherwise, these nodes should not be combined into a template curly, since there is nowhere to put the
         // text between them.
         let str = stringForm[i];
-        if (!astUtils.isStringLiteral(left)) {
+        if (!isStringLiteral(left)) {
             str = `\`\${${textBeforeNode || ''}${str}}\``;
         }
         template += str.slice(nextSlice);
@@ -195,7 +203,7 @@ function toTemplateLiteral(sourceCode, nodes) {
     }
     const last = nodes[nodes.length - 1];
     let str = stringForm[nodes.length - 1];
-    if (!astUtils.isStringLiteral(last)) {
+    if (!isStringLiteral(last)) {
         str = `\`\${${textBeforeNode || ''}${str}${textAfterNode || ''}}\``;
     }
     template += str.slice(nextSlice);
@@ -245,7 +253,7 @@ module.exports = {
          * @returns {void}
          */
         const checkNode = (node) => {
-            if (!astUtils.isStringLiteral(node) || !isConcatenation(node.parent)) return;
+            if (!isStringLiteral(node) || !isConcatenation(node.parent)) return;
             // get the top most `+` expression node
             let top = node.parent;
             while (isConcatenation(top.parent)) top = top.parent;
@@ -258,7 +266,7 @@ module.exports = {
             // group adjacent nodes by line
             for (let i = 0, j = 1, n = nodes.length; j < n; i = j, j = i + 1) {
                 // find span of adjacent nodes that are on the same line
-                for (; j < n && astUtils.isTokenOnSameLine(nodes[j - 1], nodes[j]); j += 1);
+                for (; j < n && nodes[j - 1].loc.end.line === nodes[j].loc.start.line; j += 1);
                 // continue if this node is the only one on its line
                 const count = j - i;
                 if (count === 1) continue;

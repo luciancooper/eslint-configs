@@ -30,19 +30,12 @@
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-react#readme",
-  "jest": {
-    "displayName": "eslint-config-react",
-    "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "../../setupTests.js"
-    ]
-  },
   "dependencies": {
     "@lcooper/eslint-config": "^2.1.2"
   },
   "peerDependencies": {
     "eslint": ">=7.12",
-    "eslint-plugin-import": ">=2.23.0",
+    "eslint-plugin-import": ">=2.25",
     "eslint-plugin-jsdoc": ">=35.0.0",
     "eslint-plugin-react": ">=7.23.0",
     "eslint-plugin-react-hooks": "^4.2.0"

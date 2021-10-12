@@ -29,10 +29,6 @@
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-plugin#readme",
-  "jest": {
-    "displayName": "eslint-plugin",
-    "testEnvironment": "node"
-  },
   "peerDependencies": {
     "eslint": ">=7.12"
   }

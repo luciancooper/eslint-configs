@@ -129,7 +129,7 @@ expect.extend({
                 if (Array.isArray(level)) [level] = level;
                 // deprecated rules are fine if they are turned off
                 return !(level === 'off' || level === 0);
-            });
+            }).map(([id]) => id);
 
         return {
             message: deprecated.length > 0 ? () => (

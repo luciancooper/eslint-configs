@@ -30,22 +30,14 @@
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-typescript#readme",
-  "jest": {
-    "displayName": "eslint-config-typescript",
-    "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "../../setupTests.js",
-      "./setupTests.js"
-    ]
-  },
   "dependencies": {
     "@lcooper/eslint-config": "^2.1.2"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
+    "@typescript-eslint/eslint-plugin": ">=5.0",
+    "@typescript-eslint/parser": ">=5.0",
     "eslint": ">=7.12",
-    "eslint-plugin-import": ">=2.23.0",
+    "eslint-plugin-import": ">=2.25",
     "eslint-plugin-jsdoc": ">=35.0.0",
     "eslint-plugin-tsdoc": "^0.2.14",
     "typescript": "^4.3.2"

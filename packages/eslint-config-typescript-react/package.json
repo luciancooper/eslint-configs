@@ -30,23 +30,16 @@
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-typescript-react#readme",
-  "jest": {
-    "displayName": "eslint-config-typescript-react",
-    "testEnvironment": "node",
-    "setupFilesAfterEnv": [
-      "../../setupTests.js"
-    ]
-  },
   "dependencies": {
     "@lcooper/eslint-config": "^2.1.2",
     "@lcooper/eslint-config-react": "^2.1.2",
     "@lcooper/eslint-config-typescript": "^1.1.4"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
+    "@typescript-eslint/eslint-plugin": ">=5.0",
+    "@typescript-eslint/parser": ">=5.0",
     "eslint": ">=7.12",
-    "eslint-plugin-import": ">=2.23.0",
+    "eslint-plugin-import": ">=2.25",
     "eslint-plugin-jsdoc": ">=35.0.0",
     "eslint-plugin-react": ">=7.23.0",
     "eslint-plugin-react-hooks": "^4.2.0",
