@@ -58,4 +58,4 @@ ESLint configs that utilize this plugin:
 
 ## License
 
-[MIT](LICENSE)
+[MIT](../../LICENSE)

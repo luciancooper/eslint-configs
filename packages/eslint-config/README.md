@@ -73,4 +73,4 @@ Check out [this page](https://eslint.org/docs/user-guide/configuring) for more d
 
 ## License
 
-[MIT](LICENSE)
+[MIT](../../LICENSE)

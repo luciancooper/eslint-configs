@@ -89,4 +89,4 @@ No additional configuration is required to lint TSDoc and/or JSDoc comments, the
 
 ## License
 
-[MIT](LICENSE)
+[MIT](../../LICENSE)

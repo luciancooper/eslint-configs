@@ -80,4 +80,4 @@ This package is intended to enhance one of these base configs:
 
 ## License
 
-[MIT](LICENSE)
+[MIT](../../LICENSE)
