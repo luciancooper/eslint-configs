@@ -53,6 +53,7 @@ The second option is an object that overrides the rule's behavior in specific co
 
  * `betweenSingleLines` - Require or forbid a blank line between single line top level statements (defaults to `'never'`).
  * `betweenImports` - Require or forbid a blank line between esm `import` or commonjs `require` statements (defaults to `'never'`).
+ * `betweenOverloads` - Require or forbid a blank line between typescript function overload signatures (defaults to `'never'`).
 
 Here is the default configuration:
 
@@ -60,7 +61,8 @@ Here is the default configuration:
 {
     "@lcooper/top-level-padding-lines": ["error", "always", {
         "betweenSingleLines": "never",
-        "betweenImports": "never"
+        "betweenImports": "never",
+        "betweenOverloads": "never"
     }]
 }
 ```
