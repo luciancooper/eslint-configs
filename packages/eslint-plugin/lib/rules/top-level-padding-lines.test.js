@@ -1,6 +1,8 @@
 const { RuleTester } = require('eslint'),
     rule = require('./top-level-padding-lines');
 
+const tsParser = require.resolve('@typescript-eslint/parser');
+
 const ruleTester = new RuleTester({
     parserOptions: {
         ecmaVersion: 6,
@@ -49,6 +51,24 @@ ruleTester.run('top-level-padding-lines', rule, {
                 + 'const y = 1;\n\n'
                 + 'const z = 2;',
             options: ['never', { betweenSingleLines: 'ignore' }],
+        },
+        {
+            code: 'function fn(a: number, b: number): number;\n'
+                + 'function fn(a: string): number;\n'
+                + 'function fn(a: string | number, b?: number): number {\n'
+                + '   return 5;\n'
+                + '}',
+            options: ['always', { betweenOverloads: 'never' }],
+            parser: tsParser,
+        },
+        {
+            code: 'export function fn(a: number, b: number): number;\n\n'
+                + 'export function fn(a: string): number;\n\n'
+                + 'export function fn(a: string | number, b?: number): number {\n'
+                + '   return 5;\n'
+                + '}',
+            options: ['never', { betweenOverloads: 'always' }],
+            parser: tsParser,
         },
     ],
     invalid: [
@@ -130,6 +150,19 @@ ruleTester.run('top-level-padding-lines', rule, {
                 + 'const y = false;',
             options: ['always', { betweenSingleLines: 'always' }],
             errors: [{ messageId: 'alwaysSingleLines' }],
+        },
+        {
+            code: 'export default function fn(a: number, b: number): number;\n'
+                + 'export default function fn(a: string): number;\n\n'
+                + 'export default function fn(a: string | number, b?: number): number { return 5; }',
+            output: 'export default function fn(a: number, b: number): number;\n'
+                + 'export default function fn(a: string): number;\n'
+                + 'export default function fn(a: string | number, b?: number): number { return 5; }',
+            options: ['always', { betweenOverloads: 'never' }],
+            errors: [
+                { messageId: 'neverBetweenOverloads' },
+            ],
+            parser: tsParser,
         },
     ],
 });

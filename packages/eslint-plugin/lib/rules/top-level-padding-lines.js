@@ -29,6 +29,27 @@ function isBlankLineBetween(current, next, comments) {
 }
 
 /**
+ * Gets the function name of a node if it contains a function declaration.
+ * @param {ASTNode} node - AST node.
+ * @returns {Object} - a `{ name, overload }` object, or `null` if it does not contain a function declaration.
+ */
+function getFunctionDeclaration(node) {
+    if (!node) return null;
+    switch (node.type) {
+        case 'ExportDefaultDeclaration':
+        case 'ExportNamedDeclaration':
+            // export statements (e.g. export { a };) have no declarations, so ignore them
+            return node.declaration ? getFunctionDeclaration(node.declaration) : null;
+        case 'TSDeclareFunction':
+        case 'FunctionDeclaration':
+            return (node.id && node.id.name)
+                ? { name: node.id.name, overload: node.type === 'TSDeclareFunction' }
+                : null;
+        default: return null;
+    }
+}
+
+/**
  * Fixer that removes blank lines between two top-level statement nodes
  * @param {SourceCode} sourceCode - source code instance
  * @param {ASTNode} current - AST node of the first statement
@@ -93,6 +114,9 @@ module.exports = {
                 betweenImports: {
                     enum: ['always', 'never', 'ignore'],
                 },
+                betweenOverloads: {
+                    enum: ['always', 'never', 'ignore'],
+                },
             },
             additionalProperties: false,
         }],
@@ -103,14 +127,17 @@ module.exports = {
             alwaysSingleLines: 'Expected blank line between singleline top level statements.',
             neverBetweenImports: 'Unexpected blank line between import statements.',
             alwaysBetweenImports: 'Expected blank line between import statements.',
+            neverBetweenOverloads: 'Unexpected blank line between overload signatures.',
+            alwayBetweenOverloads: 'Expected blank line between overload signatures.',
         },
     },
     create(context) {
         const sourceCode = context.getSourceCode(),
             baseOption = context.options[0] || 'always',
-            { betweenSingleLines, betweenImports } = {
+            { betweenSingleLines, betweenImports, betweenOverloads } = {
                 betweenSingleLines: 'never',
                 betweenImports: 'never',
+                betweenOverloads: 'never',
                 ...context.options[1] || {},
             };
         return {
@@ -123,6 +150,8 @@ module.exports = {
                         nextIsImport = isImportStatement(next),
                         currentIsRequire = isRequireStatement(current),
                         nextIsRequire = isRequireStatement(next),
+                        currentFn = getFunctionDeclaration(current),
+                        nextFn = getFunctionDeclaration(next),
                         currentIsSingle = current.loc.start.line === current.loc.end.line,
                         nextIsSingle = next.loc.start.line === next.loc.end.line;
                     // determine option spec and messageId for current context
@@ -132,6 +161,9 @@ module.exports = {
                         // `current` and `next` are both import/require statements
                         option = betweenImports;
                         messageId = `${option}BetweenImports`;
+                    } else if (currentFn && nextFn && currentFn.name === nextFn.name && currentFn.overload) {
+                        option = betweenOverloads;
+                        messageId = `${option}BetweenOverloads`;
                     } else {
                         const nonImport = !currentIsImport && !nextIsImport && !currentIsRequire && !nextIsRequire;
                         if (nonImport && currentIsSingle && nextIsSingle) {
