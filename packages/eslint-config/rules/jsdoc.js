@@ -128,17 +128,7 @@ module.exports = {
         // @example - requires all functions to have examples
         'jsdoc/require-example': 0,
         // @example - ensures that js examples adhere to ESLint rules
-        'jsdoc/check-examples': [2, {
-            captionRequired: false,
-            // ignore exampleCodeRegex & rejectExampleCodeRegex
-            paddedIndent: 2,
-            allowInlineConfig: true,
-            noDefaultExampleRules: true,
-            // configFile
-            // matchingFileName
-            checkEslintrc: true,
-            // baseConfig
-        }],
+        'jsdoc/check-examples': 0, // disabled due to incompatibility with eslint v8
         // @description - requires all functions to have a description
         'jsdoc/require-description': 0,
         // @description - requires that block & tag descriptions are written in complete sentences
