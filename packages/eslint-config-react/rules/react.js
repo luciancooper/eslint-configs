@@ -1,6 +1,6 @@
 const { resolveCheck } = require('@lcooper/eslint-config/utils');
 
-const hasAutomaticRuntime = resolveCheck('react/jsx-runtime.js');
+const hasAutomaticRuntime = resolveCheck('react/jsx-runtime');
 
 module.exports = {
     plugins: [
