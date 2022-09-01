@@ -12,8 +12,6 @@ module.exports = {
                     '**/setupTests.{js,jsx}',
                     // for non top-level test directories
                     '**/{test,tests}/**',
-                    // eslint config
-                    '**/.eslintrc.js',
                     // stylelint config
                     '**/.stylelintrc.js',
                     '**/stylelint.config.js',
