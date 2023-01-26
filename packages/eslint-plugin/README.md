@@ -1,7 +1,7 @@
 # @lcooper/eslint-plugin
 
 [![npm](https://img.shields.io/npm/v/@lcooper/eslint-plugin?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@lcooper/eslint-plugin)
-[![ci](https://img.shields.io/github/workflow/status/luciancooper/eslint-configs/CI?logo=github&style=for-the-badge)](https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml)
+[![ci](https://img.shields.io/github/actions/workflow/status/luciancooper/eslint-configs/ci.yml?logo=github&style=for-the-badge)](https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml)
 [![license](https://img.shields.io/github/license/luciancooper/eslint-configs?color=yellow&style=for-the-badge)](#license)
 
 Awesome extra [ESLint](https://eslint.org) rules.

@@ -1,7 +1,7 @@
 # @lcooper/eslint-config-jest
 
 [![npm](https://img.shields.io/npm/v/@lcooper/eslint-config-jest?logo=npm&style=for-the-badge)](https://www.npmjs.com/package/@lcooper/eslint-config-jest)
-[![ci](https://img.shields.io/github/workflow/status/luciancooper/eslint-configs/CI?logo=github&style=for-the-badge)](https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml)
+[![ci](https://img.shields.io/github/actions/workflow/status/luciancooper/eslint-configs/ci.yml?logo=github&style=for-the-badge)](https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml)
 [![license](https://img.shields.io/github/license/luciancooper/eslint-configs?color=yellow&style=for-the-badge)](#license)
 
 An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [Jest](https://jestjs.io/) testing environments.
