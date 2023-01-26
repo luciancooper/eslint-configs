@@ -138,6 +138,9 @@ module.exports = {
         // require or disallow semicolons instead of ASI
         semi: 0,
         '@typescript-eslint/semi': 2,
+        // enforce consistent spacing before blocks
+        'space-before-blocks': 0,
+        '@typescript-eslint/space-before-blocks': 2,
         // enforces consistent spacing before function parenthesis
         'space-before-function-paren': 0,
         '@typescript-eslint/space-before-function-paren': [2, {

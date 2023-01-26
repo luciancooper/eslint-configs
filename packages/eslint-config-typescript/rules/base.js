@@ -20,6 +20,8 @@ module.exports = {
         }],
         // ensures that literals on classes are exposed in a consistent style
         '@typescript-eslint/class-literal-property-style': [2, 'getters'],
+        // enforce specifying generic type arguments on the constructor name of a constructor call
+        '@typescript-eslint/consistent-generic-constructors': [2, 'constructor'],
         // enforces consistent usage of type assertions
         '@typescript-eslint/consistent-type-assertions': [2, {
             assertionStyle: 'as',
@@ -27,6 +29,8 @@ module.exports = {
         }],
         // enforces using a particular method signature syntax.
         '@typescript-eslint/method-signature-style': 2,
+        // disallow duplicate enum member values
+        '@typescript-eslint/no-duplicate-enum-values': 0,
         // disallow the delete operator with computed key expressions
         '@typescript-eslint/no-dynamic-delete': 2,
         // disallow the declaration of empty interfaces
@@ -63,8 +67,12 @@ module.exports = {
         }],
         // disallows unnecessary constraints on generic types
         '@typescript-eslint/no-unnecessary-type-constraint': 2,
+        // disallow empty exports that don't change anything in a module file
+        '@typescript-eslint/no-useless-empty-export': 0,
         // disallows the use of require statements except in import statements
         '@typescript-eslint/no-var-requires': 0, // annoying in js
+        // require or disallow parameter properties in class constructors
+        '@typescript-eslint/parameter-properties': 0,
         // prefer usage of `as const` over literal type
         '@typescript-eslint/prefer-as-const': 2,
         // prefer initializing each enums member value
@@ -159,6 +167,10 @@ module.exports = {
         '@typescript-eslint/consistent-indexed-object-style': [2, 'record'],
         // enforce use of `interface` over `type`
         '@typescript-eslint/consistent-type-definitions': [2, 'interface'],
+        // enforces consistent usage of type exports (requires type info)
+        '@typescript-eslint/consistent-type-exports': [2, {
+            fixMixedExportsWithInlineTypeSpecifier: true,
+        }],
         // enforces consistent usage of type imports
         '@typescript-eslint/consistent-type-imports': 0,
         // require a specific member delimiter style for interfaces and type literals
@@ -196,6 +208,8 @@ module.exports = {
         '@typescript-eslint/no-non-null-assertion': 0,
         // disallow the use of parameter properties in class constructors
         '@typescript-eslint/no-parameter-properties': 0,
+        // disallow members of unions and intersections that do nothing or override type info (requires type info)
+        '@typescript-eslint/no-redundant-type-constituents': 2,
         // disallow the use of type aliases
         '@typescript-eslint/no-type-alias': [0, {
             allowAliases: 'in-unions-and-intersections',
@@ -208,6 +222,8 @@ module.exports = {
         }],
         // prefer a ‘for-of’ loop wherever possible
         '@typescript-eslint/prefer-for-of': 0,
+        // enforce constituents of a type union/intersection to be sorted alphabetically
+        '@typescript-eslint/sort-type-constituents': 0, // not enabling - seems excessive
         // enforces that members of a type union/intersection are sorted alphabetically
         '@typescript-eslint/sort-type-union-intersection-members': 0, // not enabling - seems excessive
         // require consistent spacing around type annotations
@@ -228,6 +244,8 @@ module.exports = {
 
         // disallows using a non-null assertion after an optional chain expression
         '@typescript-eslint/no-non-null-asserted-optional-chain': 2,
+        // disallow unsafe declaration merging
+        '@typescript-eslint/no-unsafe-declaration-merging': 2,
         // disallows calling an function with an any type value (requires type info)
         '@typescript-eslint/no-unsafe-argument': 0, // enable when errors are more strongly typed
         // disallows assigning any to variables and properties (requires type info)
