@@ -16,6 +16,8 @@ module.exports = {
         'react/boolean-prop-naming': 0,
         // Forbid "button" element without an explicit "type" attribute
         'react/button-has-type': 2,
+        // Enforce using onChange or readonly attribute when checked is used (v7.34.0)
+        'react/checked-requires-onchange-or-readonly': 0,
         // Enforce all defaultProps are defined and not "required" in propTypes.
         'react/default-props-match-prop-types': 0,
         // Enforce consistent usage of destructuring assignment of props, state, and context
@@ -36,15 +38,21 @@ module.exports = {
         'react/forbid-prop-types': 0,
         // Standardize the way function component get defined 🔧
         'react/function-component-definition': [2, {
-            namedComponents: 'arrow-function',
+            namedComponents: ['function-declaration', 'arrow-function'],
             unnamedComponents: 'arrow-function',
         }],
+        // Ensure destructuring and symmetric naming of useState hook value and setter variables (v7.29.0)
+        'react/hook-use-state': 0,
+        // Enforce sandbox attribute on iframe elements (v7.29.0)
+        'react/iframe-missing-sandbox': 0,
         // Reports when this.state is accessed within setState
         'react/no-access-state-in-setstate': 2,
         // Prevent adjacent inline elements not separated by whitespace.
         'react/no-adjacent-inline-elements': 0,
         // Prevent usage of Array index in keys
         'react/no-array-index-key': 0,
+        // Lifecycle methods should be methods on the prototype, not class fields (v7.27.0)
+        'react/no-arrow-function-lifecycle': 2,
         // Prevent passing of children as props.
         'react/no-children-prop': 2,
         // Prevent usage of dangerous JSX props
@@ -61,10 +69,16 @@ module.exports = {
         'react/no-direct-mutation-state': 2,
         // Prevent usage of findDOMNode
         'react/no-find-dom-node': 2,
+        // checks the "rel" value to make sure it is correct (v7.27.0)
+        'react/no-invalid-html-attribute': 2,
         // Prevent usage of isMounted
         'react/no-is-mounted': 2,
         // Prevent multiple component definition per file
         'react/no-multi-comp': 0,
+        // Pnforces the absence of a namespace in React elements (v7.26.0)
+        'react/no-namespace': 2,
+        // Disallow usage of referential-type variables as default param in functional component (v7.32.0)
+        'react/no-object-type-as-default-prop': 1,
         // Flag shouldComponentUpdate when extending PureComponent
         'react/no-redundant-should-component-update': 2,
         // Prevent usage of the return value of React.render
@@ -82,13 +96,15 @@ module.exports = {
         // Detect unescaped HTML entities, which might represent malformed tags
         'react/no-unescaped-entities': 2,
         // Prevent usage of unknown DOM property 🔧
-        'react/no-unknown-property': 2,
+        'react/no-unknown-property': [2, { requireDataLowercase: true }],
         // Prevent usage of unsafe lifecycle methods
         'react/no-unsafe': 0,
         // Prevent creating unstable components inside components (v7.23.0)
         'react/no-unstable-nested-components': [2, {
             allowAsProps: true,
         }],
+        // Warns you if you have defined a method or property but it is never being used anywhere (v7.27.0)
+        'react/no-unused-class-component-methods': 1,
         // Prevent definitions of unused prop types
         'react/no-unused-prop-types': 1,
         // Prevent definition of unused state fields
@@ -97,6 +113,8 @@ module.exports = {
         'react/no-will-update-set-state': 2,
         // Enforce ES5 or ES6 class for React Components
         'react/prefer-es6-class': [2, 'always'],
+        // ensure only exact prop definitions are used when writing components (v7.25.0)
+        'react/prefer-exact-props': 0,
         // Require read-only props. 🔧
         'react/prefer-read-only-props': 0,
         // Enforce stateless components to be written as a pure function
@@ -134,6 +152,8 @@ module.exports = {
                 'render',
             ],
         }],
+        // Enforce defaultProps declarations alphabetical sorting (v7.32.0)
+        'react/sort-default-props': 0,
         // Enforce propTypes declarations alphabetical sorting
         'react/sort-prop-types': [1, {
             callbacksLast: true,
@@ -169,6 +189,7 @@ module.exports = {
         'react/jsx-curly-brace-presence': [2, {
             props: 'never',
             children: 'never',
+            propElementValues: 'always',
         }],
         // Enforce consistent line breaks inside jsx curly 🔧
         'react/jsx-curly-newline': [2, {
@@ -222,6 +243,8 @@ module.exports = {
         'react/jsx-no-duplicate-props': [2, {
             ignoreCase: true,
         }],
+        // Disallow problematic && usage (v7.30.0)
+        'react/jsx-no-leaked-render': 2,
         // Prevent using string literals in React component definition
         'react/jsx-no-literals': 0,
         // Forbid javascript: URLs
@@ -236,11 +259,12 @@ module.exports = {
         'react/jsx-no-useless-fragment': 2,
         // Limit to one expression per line in JSX 🔧
         'react/jsx-one-expression-per-line': [2, {
-            allow: 'single-child',
+            allow: 'non-jsx',
         }],
         // Enforce PascalCase for user-defined JSX components
         'react/jsx-pascal-case': [2, {
             allowAllCaps: false,
+            allowLeadingUnderscore: true,
         }],
         // Disallow multiple spaces between inline JSX props 🔧
         'react/jsx-props-no-multi-spaces': 2,

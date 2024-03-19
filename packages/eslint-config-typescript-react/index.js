@@ -14,6 +14,12 @@ module.exports = {
         '@lcooper/eslint-config-typescript/rules/base',
         '@lcooper/eslint-config-typescript/rules/import',
     ],
+    rules: {
+        // Disallow unnecessary fragments 🔧
+        'react/jsx-no-useless-fragment': [2, {
+            allowExpressions: true,
+        }],
+    },
     overrides: [{
         files: ['*.ts', '*.tsx'],
         extends: [

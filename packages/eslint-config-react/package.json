@@ -37,7 +37,7 @@
     "eslint": ">=7.12",
     "eslint-plugin-import": ">=2.25",
     "eslint-plugin-jsdoc": ">=35.0.0",
-    "eslint-plugin-react": ">=7.23.0",
+    "eslint-plugin-react": ">=7.34.0",
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "peerDependenciesMeta": {
