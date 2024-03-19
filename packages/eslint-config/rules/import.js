@@ -34,5 +34,13 @@ module.exports = {
         'import/no-import-module-exports': 0, // seems unnecessary, disabling
         // prevent importing packages through relative paths
         'import/no-relative-packages': 0,
+        // prevent importing from the same path multiple times
+        'import/no-duplicates': [2, { 'prefer-inline': true }],
+        // enforces or bans the use of inline type-only markers for named imports.
+        'import/consistent-type-specifier-style': 0,
+        // reports the use of empty named import blocks.
+        'import/no-empty-named-blocks': 2,
+        // enforces having one empty line after the last top-level import statement or require call.
+        'import/newline-after-import': [2, { considerComments: true }],
     },
 };
