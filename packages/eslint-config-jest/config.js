@@ -53,6 +53,8 @@ module.exports = {
         'jest/no-test-prefixes': 2,
         // Disallow commented out tests
         'jest/no-commented-out-tests': 1,
+        // Disallow confusing usage of `jest.setTimeout`
+        'jest/no-confusing-set-timeout': 2,
         // Disallow disabled tests
         'jest/no-disabled-tests': 1,
         // Disallow focused tests
