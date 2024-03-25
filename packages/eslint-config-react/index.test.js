@@ -1,13 +1,13 @@
-const { ESLint } = require('eslint'),
+const { FlatESLint } = require('eslint/use-at-your-own-risk'),
     baseConfig = require('.');
 
 describe('plugins', () => {
     let config;
 
     beforeAll(async () => {
-        config = await new ESLint({
-            baseConfig,
-            useEslintrc: false,
+        config = await new FlatESLint({
+            baseConfig: [baseConfig],
+            overrideConfigFile: true,
             allowInlineConfig: false,
         }).calculateConfigForFile('index.js');
     });

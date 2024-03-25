@@ -12,6 +12,9 @@
   "files": [
     "index.js"
   ],
+  "engines": {
+    "node": "^18.18.0 || >=20.0.0"
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint ."
@@ -31,27 +34,10 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-typescript-react#readme",
   "dependencies": {
-    "@lcooper/eslint-config": "^2.2.2",
-    "@lcooper/eslint-config-react": "^2.2.3",
-    "@lcooper/eslint-config-typescript": "^1.3.0"
+    "@lcooper/eslint-config-react": "^2.2.3"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": ">=5.0",
-    "@typescript-eslint/parser": ">=5.0",
-    "eslint": ">=7.12",
-    "eslint-plugin-import": ">=2.25",
-    "eslint-plugin-jsdoc": ">=35.0.0",
-    "eslint-plugin-react": ">=7.34.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-tsdoc": "^0.2.14",
-    "typescript": "^4.3.2"
-  },
-  "peerDependenciesMeta": {
-    "eslint-plugin-jsdoc": {
-      "optional": true
-    },
-    "eslint-plugin-tsdoc": {
-      "optional": true
-    }
+    "eslint": ">=8.56",
+    "typescript": ">=4.7.4"
   }
 }

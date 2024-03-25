@@ -1,10 +1,10 @@
-const { ESLint } = require('eslint'),
+const { FlatESLint } = require('eslint/use-at-your-own-risk'),
     baseConfig = require('.');
 
-const linter = new ESLint({
-    useEslintrc: false,
-    allowInlineConfig: false,
+const linter = new FlatESLint({
     baseConfig,
+    overrideConfigFile: true,
+    allowInlineConfig: false,
 });
 
 describe('config override globs', () => {

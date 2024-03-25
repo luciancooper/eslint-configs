@@ -11,9 +11,11 @@
     "access": "public"
   },
   "files": [
-    "index.js",
-    "rules"
+    "index.js"
   ],
+  "engines": {
+    "node": "^18.18.0 || >=20.0.0"
+  },
   "keywords": [
     "eslint",
     "eslintconfig",
@@ -31,18 +33,11 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-react#readme",
   "dependencies": {
-    "@lcooper/eslint-config": "^2.2.2"
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "globals": "^14.0.0"
   },
   "peerDependencies": {
-    "eslint": ">=7.12",
-    "eslint-plugin-import": ">=2.25",
-    "eslint-plugin-jsdoc": ">=35.0.0",
-    "eslint-plugin-react": ">=7.34.0",
-    "eslint-plugin-react-hooks": "^4.2.0"
-  },
-  "peerDependenciesMeta": {
-    "eslint-plugin-jsdoc": {
-      "optional": true
-    }
+    "eslint": ">=8.56"
   }
 }

@@ -1,7 +1,11 @@
+const jsdoc = require('eslint-plugin-jsdoc');
+
 module.exports = {
-    plugins: [
-        'jsdoc',
-    ],
+    // only apply jsdoc rules to js files
+    files: ['**/*.{js,mjs,cjs,jsx}'],
+    plugins: {
+        jsdoc,
+    },
     settings: {
         jsdoc: {
             tagNamePreference: {
@@ -97,10 +101,12 @@ module.exports = {
         'jsdoc/check-line-alignment': [2, 'never'],
         // Reports invalid padding inside a block
         'jsdoc/check-indentation': 2,
-        // Enforces a consistent padding of the block description
-        'jsdoc/newline-after-description': [2, 'never'],
         // enforces no lines between tags.
         'jsdoc/tag-lines': [2, 'never'],
+        // Detects and removes extra lines of a blank block description
+        'jsdoc/no-blank-block-descriptions': 2,
+        // Removes empty blocks with nothing but possibly line breaks
+        'jsdoc/no-blank-blocks': 2,
         // controls how and whether jsdoc blocks can be expressed as single or multiple line blocks.
         'jsdoc/multiline-blocks': 2,
         // Reports invalid tag names
@@ -125,6 +131,16 @@ module.exports = {
         }],
         // This rule forbids types on @param & @returns tags
         'jsdoc/no-types': 0,
+        // reports if JSDoc `import()` statements point to a package not listed in `dependencies` or `devDependencies`
+        'jsdoc/imports-as-dependencies': 0,
+        // reports doc comments that only restate their attached name.
+        'jsdoc/informative-docs': 0,
+        // reports the name portion of a JSDoc tag if matching or not matching a given regular expression.
+        'jsdoc/match-name': 0,
+        // Sorts tags by a specified sequence according to tag name.
+        'jsdoc/sort-tags': 0,
+        // escape all < and & characters for html, ` for markdown
+        'jsdoc/text-escaping': 0,
         // @example - requires all functions to have examples
         'jsdoc/require-example': 0,
         // @example - ensures that js examples adhere to ESLint rules

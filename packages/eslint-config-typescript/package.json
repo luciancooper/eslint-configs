@@ -12,6 +12,9 @@
     "index.js",
     "rules"
   ],
+  "engines": {
+    "node": "^18.18.0 || >=20.0.0"
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint ."
@@ -31,23 +34,13 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-typescript#readme",
   "dependencies": {
-    "@lcooper/eslint-config": "^2.2.2"
+    "@lcooper/eslint-config": "^2.2.2",
+    "@stylistic/eslint-plugin-ts": "^1.7.0",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "typescript-eslint": "^7.3.1"
   },
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": ">=5.28",
-    "@typescript-eslint/parser": ">=5.28",
-    "eslint": ">=7.12",
-    "eslint-plugin-import": ">=2.25",
-    "eslint-plugin-jsdoc": ">=35.0.0",
-    "eslint-plugin-tsdoc": "^0.2.14",
-    "typescript": "^4.3.2"
-  },
-  "peerDependenciesMeta": {
-    "eslint-plugin-jsdoc": {
-      "optional": true
-    },
-    "eslint-plugin-tsdoc": {
-      "optional": true
-    }
+    "eslint": ">=8.56",
+    "typescript": ">=4.7.4"
   }
 }

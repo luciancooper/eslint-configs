@@ -4,88 +4,82 @@
 [![ci](https://img.shields.io/github/actions/workflow/status/luciancooper/eslint-configs/ci.yml?logo=github&style=for-the-badge)](https://github.com/luciancooper/eslint-configs/actions/workflows/ci.yml)
 [![license](https://img.shields.io/github/license/luciancooper/eslint-configs?color=yellow&style=for-the-badge)](#license)
 
-An ESlint [shareable config](https://eslint.org/docs/developer-guide/shareable-configs) for [TypeScript](https://www.typescriptlang.org) + React projects. A combination of the rules from [`@lcooper/eslint-config-react`](../eslint-config-react) and [`@lcooper/eslint-config-typescript`](../eslint-config-typescript), packaged into a single configuration.
+An ESlint [shareable flat config](https://eslint.org/docs/latest/use/configure/configuration-files-new) for [TypeScript](https://www.typescriptlang.org) React projects. An extension of the rules from [`@lcooper/eslint-config-react`](../eslint-config-react).
 
 ## Installation
 
-The peer dependencies [`eslint`](https://www.npmjs.com/package/eslint), [`eslint-plugin-import`](https://www.npmjs.com/package/eslint-plugin-import), [`eslint-plugin-react`](https://www.npmjs.com/package/eslint-plugin-react), [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks), [`@typescript-eslint/parser`](https://www.npmjs.com/package/@typescript-eslint/parser), and [`@typescript-eslint/eslint-plugin`](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin) must be installed alongside this package.
+The peer dependency [`eslint`](https://www.npmjs.com/package/eslint) must be installed alongside this package.
 
 > install with npm:
 ```bash
-npm install -D @lcooper/eslint-config-typescript-react eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/parser @typescript-eslint/eslint-plugin
+npm install -D eslint @lcooper/eslint-config-typescript-react
 ```
 
 > install with yarn:
 ```bash
-yarn add -D @lcooper/eslint-config-typescript-react eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/parser @typescript-eslint/eslint-plugin
+yarn add -D eslint @lcooper/eslint-config-typescript-react
 ```
 
-Additionally, [`typescript`](https://www.npmjs.com/package/typescript) must be installed.
+This config is meant to be used in addition to the base [`@lcooper/eslint-config-typescript`](../eslint-config-typescript) config, so that should be installed as well.
 
-#### Linting TSDoc Comments
-
-If you want to lint [tsdoc](https://tsdoc.org) comments in your TypeScript files, then also install the peer dependency [`eslint-plugin-tsdoc`](https://www.npmjs.com/package/eslint-plugin-tsdoc).
-
-```bash
-npm install -D eslint-plugin-tsdoc
-# or
-yarn add -D eslint-plugin-tsdoc
-```
-
-#### Linting JSDoc Comments
-
-If you are working on a mixed codebase with both JavaScript and TypeScript files, and you want to lint [JSDoc](https://jsdoc.app) comments in your JavaScript files, then also install the peer dependency [`eslint-plugin-jsdoc`](https://www.npmjs.com/package/eslint-plugin-jsdoc).
-
-```bash
-npm install -D eslint-plugin-jsdoc
-# or
-yarn add -D eslint-plugin-jsdoc
-```
+> Note: This project requires Eslint version `>=8.56`, NodeJS version `^18.18.0 || >=20.0.0`, and Typescript version `>=4.7.4`.
 
 ## Usage
 
-This config enables some of the type-aware rules provided by `@typescript-eslint/eslint-plugin`, so you must provide a tsconfig file to the `parserOptions.project` field in your [eslint config file](https://eslint.org/docs/user-guide/configuring/configuration-files).
+Add an `eslint.config.js` config file to your project's root directory.
 
-The best way to do this is to create a `tsconfig.eslint.json` file that will just be used for linting. It can extend your base `tsconfig.json`.
+> Note: this package exports a single flat config object, so no need for the `...` spread syntax when using it.
 
-`tsconfig.eslint.json`
+```js
+import baseConfig from '@lcooper/eslint-config-typescript';
+import reactConfig from '@lcooper/eslint-config-typescript-react';
 
-```json
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "noEmit": true
-  },
-  "include": ["**/*", ".eslintrc.js"]
-}
+export default [
+    ...baseConfig,
+    reactConfig,
+];
 ```
 
-Then, create an eslint config file in your project's root directory:
+If your project does not specify `"type": "module"` in its `package.json` file, then `eslint.config.js` must be in CommonJS format:
 
-`.eslintrc.js`
+```js
+const baseConfig = require('@lcooper/eslint-config-typescript'),
+    reactConfig = require('@lcooper/eslint-config-typescript-react');
 
-```javascript
-module.exports = {
-    extends: '@lcooper/eslint-config-typescript-react',
-    parserOptions: {
-        project: './tsconfig.eslint.json',
+module.exports = [
+    ...baseConfig,
+    reactConfig,
+];
+```
+
+Check out the docs for [`@lcooper/eslint-config-typescript`](../eslint-config-typescript) for more information on configuring eslint to lint with type information.
+
+This project is no longer compatable with the legacy eslintrc format, and requires you use the flat config format. Check out [this page](https://eslint.org/docs/latest/use/configure/migration-guide) for more details about migrating from the eslintrc format to the flat config format.
+
+## File Matching
+
+By default, this config matches `.js`, `.mjs`, `.jsx`, `.ts`, `.mts`, and `.tsx` files using the glob `**/*.{js,mjs,jsx,ts,mts,tsx}`. More specificity can be achieved by overwriting the [`files`](https://eslint.org/docs/latest/use/configure/configuration-files-new#specifying-files-and-ignores) option with your own globs, like in this example:
+
+```js
+import baseConfig from '@lcooper/eslint-config-typescript';
+import reactConfig from '@lcooper/eslint-config-typescript-react';
+
+export default [
+    ...baseConfig,
+    {
+        ...reactConfig,
+        files: ['src/**/*.{js,mjs,jsx,ts,mts,tsx}'],
     },
-};
+];
 ```
-
-If you get an error that says: `The file must be included in at least one of the projects provided`, it means that you are attempting to lint a file that is not covered by your `typescript.eslint.json` configuration. For more details, read [this section of the typescript-eslint docs](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md#i-get-errors-telling-me-the-file-must-be-included-in-at-least-one-of-the-projects-provided).
-
-**Linting TSDoc / JSDoc comments**
-
-No additional configuration is required to lint TSDoc and/or JSDoc comments, the only requirement being that their respective plugins are installed as dev dependencies.
 
 ## Related
 
  * [`@lcooper/eslint-config`](../eslint-config) - Base config for standard JavaScript projects
- * [`@lcooper/eslint-plugin`](../eslint-plugin) - Plugin with awesome extra ESLint rules used by this config
- * [`@lcooper/eslint-config-react`](../eslint-config-react) - Config for React projects
- * [`@lcooper/eslint-config-typescript`](../eslint-config-typescript) - Config for standard TypeScript projects
+ * [`@lcooper/eslint-config-react`](../eslint-config-react) - Enhancement config for React projects
+ * [`@lcooper/eslint-config-typescript`](../eslint-config-typescript) - Base config for TypeScript projects
  * [`@lcooper/eslint-config-jest`](../eslint-config-jest) - Enhancement config for projects using Jest
+ * [`@lcooper/eslint-plugin`](../eslint-plugin) - Plugin with awesome extra ESLint rules
 
 ## License
 

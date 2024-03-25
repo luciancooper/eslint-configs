@@ -1,7 +1,6 @@
 const path = require('path'),
     fs = require('fs'),
-    chalk = require('chalk'),
-    normalizePluginName = require('eslint-find-rules/dist/lib/normalize-plugin-name');
+    chalk = require('chalk');
 
 global.parseFixtures = (dirname, file) => {
     const filepath = path.join(dirname, '__fixtures__', file),
@@ -50,12 +49,11 @@ expect.extend({
     },
 
     toIncludePlugin(config, plugin) {
-        const { module: moduleName, prefix } = normalizePluginName(plugin),
-            isDefined = config.plugins.some((id) => (id === moduleName || id === prefix));
+        const isDefined = Object.keys(config?.plugins ?? {}).includes(plugin);
         return {
             message: isDefined
-                ? () => `config includes ${moduleName}`
-                : () => `config does not include ${moduleName}`,
+                ? () => `config includes ${plugin}`
+                : () => `config does not include ${plugin}`,
             pass: isDefined,
         };
     },
@@ -64,11 +62,10 @@ expect.extend({
         const matched = [],
             unMatched = [],
             // copy the list of configured plugins
-            configured = [...config.plugins];
+            configured = [...Object.keys(config?.plugins ?? {})].filter((k) => k !== '@');
         // go through each expected plugin
         plugins.forEach((plugin) => {
-            const { module: moduleName, prefix } = normalizePluginName(plugin),
-                index = configured.findIndex((id) => (id === moduleName || id === prefix));
+            const index = configured.findIndex((id) => (id === plugin));
             if (index >= 0) {
                 // plugin was found, remove it from the `configured` array
                 const [match] = configured.splice(index, 1);
@@ -94,35 +91,31 @@ expect.extend({
     },
 
     toConfigureNoUnknownPluginRules(config, plugin) {
-        const { module: moduleName, prefix } = normalizePluginName(plugin),
-            // eslint-disable-next-line @lcooper/global-require, import/no-dynamic-require
-            pluginModule = require(moduleName),
+        const pluginModule = config.plugins[plugin],
             // transform rules object into a list of deprecated rules
-            pluginRules = Object.keys(pluginModule.rules).map((id) => `${prefix}/${id}`),
+            pluginRules = Object.keys(pluginModule.rules).map((id) => `${plugin}/${id}`),
             // get list of unknown configured rules for this plugin
             unknownRules = Object.keys(config.rules)
-                .filter((name) => (name.startsWith(`${prefix}/`) && !pluginRules.includes(name)));
+                .filter((name) => (name.startsWith(`${plugin}/`) && !pluginRules.includes(name)));
         return {
             message: unknownRules.length > 0 ? () => (
-                `The following rules configured for ${moduleName} are not defined by the plugin:\n${
+                `The following rules configured for ${plugin} are not defined by the plugin:\n${
                     unknownRules.map((id) => `\n * '${id}'`).join('')
                 }`
-            ) : () => `All rules configured for ${moduleName} are defined by the plugin`,
+            ) : () => `All rules configured for ${plugin} are defined by the plugin`,
             pass: unknownRules.length === 0,
         };
     },
 
     toEnableNoDeprecatedPluginRules(config, plugin) {
-        const { module: moduleName, prefix } = normalizePluginName(plugin),
-            // eslint-disable-next-line @lcooper/global-require, import/no-dynamic-require
-            pluginModule = require(moduleName),
+        const pluginModule = config.plugins[plugin],
             // transform rules object into a list of deprecated rules
             deprecatedPluginRules = Object.entries(pluginModule.rules)
                 .filter(([, { meta }]) => meta.deprecated)
-                .map(([id]) => `${prefix}/${id}`),
+                .map(([id]) => `${plugin}/${id}`),
             // get list of enabled plugin rules that are deprecated
             deprecated = Object.entries(config.rules).filter(([id, conf]) => {
-                if (!id.startsWith(`${prefix}/`)) return false;
+                if (!id.startsWith(`${plugin}/`)) return false;
                 if (!deprecatedPluginRules.includes(id)) return false;
                 // determine rule config level
                 let level = conf;
@@ -133,30 +126,28 @@ expect.extend({
 
         return {
             message: deprecated.length > 0 ? () => (
-                `The following rules configured for ${moduleName} are deprecated:\n${
+                `The following rules configured for ${plugin} are deprecated:\n${
                     deprecated.map((id) => `\n * '${id}'`).join('')
                 }`
-            ) : () => `This config defines no deprecated rules for ${moduleName}`,
+            ) : () => `This config defines no deprecated rules for ${plugin}`,
             pass: deprecated.length === 0,
         };
     },
 
-    toConfigureAllPluginRules(config, plugin) {
-        const { module: moduleName, prefix } = normalizePluginName(plugin);
-        // eslint-disable-next-line @lcooper/global-require, import/no-dynamic-require
-        let { rules: pluginRules } = require(moduleName);
+    toConfigureAllPluginRules(config, plugin, exeptions = []) {
+        let { rules: pluginRules } = config.plugins[plugin];
         // transform rules object into a list of all non-deprecated rules
         pluginRules = Object.entries(pluginRules)
-            .filter(([, { meta }]) => !meta.deprecated)
-            .map(([id]) => `${prefix}/${id}`);
+            .filter(([id, { meta }]) => (!meta.deprecated && !exeptions.includes(id)))
+            .map(([id]) => `${plugin}/${id}`);
         // create a list of unconfigured plugin rules
         const unconfigured = pluginRules.filter((id) => !Object.hasOwnProperty.call(config.rules, id));
         return {
             message: unconfigured.length > 0 ? () => (
-                `The following rules for ${moduleName} have not been configured:\n${
+                `The following rules for ${plugin} have not been configured:\n${
                     unconfigured.map((id) => `\n * '${id}'`).join('')
                 }`
-            ) : () => `All rules for ${moduleName} have been configured`,
+            ) : () => `All rules for ${plugin} have been configured`,
             pass: unconfigured.length === 0,
         };
     },

@@ -1,5 +1,6 @@
-const { ESLint } = require('eslint'),
-    tsPlugin = require('@typescript-eslint/eslint-plugin'),
+const { FlatESLint } = require('eslint/use-at-your-own-risk'),
+    tseslint = require('typescript-eslint'),
+    sts = require('@stylistic/eslint-plugin-ts'),
     baseConfig = require('.');
 
 describe('plugins', () => {
@@ -8,13 +9,14 @@ describe('plugins', () => {
 
     beforeAll(async () => {
         // calculate configs for `ts` and `js` file paths
-        const eslint = new ESLint({ baseConfig, useEslintrc: false, allowInlineConfig: false });
+        const eslint = new FlatESLint({ baseConfig, overrideConfigFile: true, allowInlineConfig: false });
         tsConfig = await eslint.calculateConfigForFile('index.ts');
         jsConfig = await eslint.calculateConfigForFile('index.js');
     });
 
     describe('`@typescript-eslint` plugin', () => {
         test('config includes the `@typescript-eslint` plugin', () => {
+            expect(jsConfig).toIncludePlugin('@typescript-eslint');
             expect(tsConfig).toIncludePlugin('@typescript-eslint');
         });
 
@@ -35,10 +37,48 @@ describe('plugins', () => {
 
             beforeAll(() => {
                 // extract extension rule info from ts plugin module
-                extensionRules = Object.entries(tsPlugin.rules).map(([name, { meta }]) => (!meta.deprecated ? {
+                extensionRules = Object.entries(tseslint.plugin.rules).map(([name, { meta }]) => (!meta.deprecated ? {
                     id: `@typescript-eslint/${name}`,
                     baseRule: meta.docs.extendsBaseRule === true ? name : meta.docs.extendsBaseRule,
                 } : null)).filter((rule) => (rule && rule.baseRule));
+            });
+
+            test('associated base rules are disabled on typescript files', () => {
+                expect(tsConfig).toHaveDisabledAssociatedBaseRules(extensionRules);
+            });
+
+            test('are disabled on javascript files', () => {
+                expect(jsConfig).toHaveDisabledRules(extensionRules.map(({ id }) => id));
+            });
+        });
+    });
+
+    describe('`@stylistic/ts` plugin', () => {
+        test('config includes the `@stylistic/ts` plugin', () => {
+            expect(jsConfig).toIncludePlugin('@stylistic/ts');
+            expect(tsConfig).toIncludePlugin('@stylistic/ts');
+        });
+
+        test('configures no unknown `@stylistic/ts/` plugin rules', () => {
+            expect(tsConfig).toConfigureNoUnknownPluginRules('@stylistic/ts');
+        });
+
+        test('enables no deprecated `@stylistic/ts/` plugin rules', () => {
+            expect(tsConfig).toEnableNoDeprecatedPluginRules('@stylistic/ts');
+        });
+
+        test('includes all `@stylistic/ts/` plugin rules', () => {
+            expect(tsConfig).toConfigureAllPluginRules('@stylistic/ts', ['function-call-spacing']);
+        });
+
+        describe('extension rules', () => {
+            let extensionRules;
+
+            beforeAll(() => {
+                // extract extension rule info from @stylistic/ts plugin module
+                extensionRules = Object.entries(sts.rules).filter(([name, { meta }]) => (
+                    !meta.deprecated && meta.docs.extendsBaseRule === true && name !== 'function-call-spacing'
+                )).map(([name]) => ({ id: `@stylistic/ts/${name}`, baseRule: `@stylistic/js/${name}` }));
             });
 
             test('associated base rules are disabled on typescript files', () => {

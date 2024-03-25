@@ -11,9 +11,11 @@
     "access": "public"
   },
   "files": [
-    "index.js",
-    "config.js"
+    "index.js"
   ],
+  "engines": {
+    "node": "^18.18.0 || >=20.0.0"
+  },
   "keywords": [
     "eslint",
     "eslintconfig",
@@ -30,8 +32,10 @@
     "url": "https://github.com/luciancooper/eslint-configs/issues"
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-jest#readme",
+  "dependencies": {
+    "eslint-plugin-jest": "^27.9.0"
+  },
   "peerDependencies": {
-    "eslint": ">=7.12",
-    "eslint-plugin-jest": ">=27.3"
+    "eslint": ">=8.56"
   }
 }

@@ -1,6 +1,7 @@
-module.exports = {
-    extends: './index.js',
-    env: {
-        browser: true,
-    },
-};
+const globals = require('globals'),
+    base = require('./index');
+
+module.exports = [
+    { languageOptions: { globals: { ...globals.browser } } },
+    ...base.slice(1),
+];

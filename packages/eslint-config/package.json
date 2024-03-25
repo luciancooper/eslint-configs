@@ -13,9 +13,11 @@
   "files": [
     "index.js",
     "browser.js",
-    "utils.js",
     "rules"
   ],
+  "engines": {
+    "node": "^18.18.0 || >=20.0.0"
+  },
   "keywords": [
     "eslint",
     "eslintconfig"
@@ -33,16 +35,13 @@
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config#readme",
   "dependencies": {
     "@lcooper/eslint-plugin": "^1.3.0",
-    "eslint-config-airbnb-base": "^15.0.0"
+    "@stylistic/eslint-plugin-js": "^1.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsdoc": "^48.2.1",
+    "globals": "^14.0.0"
   },
   "peerDependencies": {
-    "eslint": ">=7.12",
-    "eslint-plugin-import": ">=2.27",
-    "eslint-plugin-jsdoc": ">=35.0.0"
-  },
-  "peerDependenciesMeta": {
-    "eslint-plugin-jsdoc": {
-      "optional": true
-    }
+    "eslint": ">=8.56"
   }
 }

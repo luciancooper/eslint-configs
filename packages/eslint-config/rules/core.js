@@ -1,15 +1,47 @@
-const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
+const globals = require('globals'),
+    sjs = require('@stylistic/eslint-plugin-js'),
+    lcooper = require('@lcooper/eslint-plugin');
+
+const airbnb = {
+    ...require('eslint-config-airbnb-base/rules/best-practices').rules,
+    ...require('eslint-config-airbnb-base/rules/errors').rules,
+    ...require('eslint-config-airbnb-base/rules/node').rules,
+    ...require('eslint-config-airbnb-base/rules/style').rules,
+    ...require('eslint-config-airbnb-base/rules/variables').rules,
+    ...require('eslint-config-airbnb-base/rules/es6').rules,
+    ...require('eslint-config-airbnb-base/rules/strict').rules,
+};
 
 module.exports = {
-    plugins: [
-        '@lcooper',
-    ],
-    extends: [
-        'plugin:@lcooper/all',
-    ],
+    plugins: {
+        '@lcooper': lcooper,
+        '@stylistic/js': sjs,
+    },
+    languageOptions: {
+        ecmaVersion: 'latest',
+        globals: {
+            ...globals.es2021,
+        },
+    },
+    linterOptions: {
+        reportUnusedDisableDirectives: 'error',
+    },
     rules: {
+        ...airbnb,
+        // disable all legacy rules that were moved to @stylistic/js
+        ...sjs.configs['disable-legacy'].rules,
+        // configure all stylistic rules with airbnb base config
+        ...Object.keys(sjs.rules).reduce((acc, key) => {
+            if (Object.hasOwnProperty.call(airbnb, key)) {
+                acc[`@stylistic/js/${key}`] = airbnb[key];
+            }
+            return acc;
+        }, {}),
+
         // Plugin Rules
 
+        // include @lcooper plugin recommended config
+        ...lcooper.configs.all.rules,
         // require padding lines between top level statements
         '@lcooper/top-level-padding-lines': [2, 'always', {
             betweenSingleLines: 'ignore',
@@ -77,20 +109,46 @@ module.exports = {
 
         // Stylistic Issues
 
-        // enforce linebreaks after opening and before closing array brackets
-        'array-bracket-newline': [2, 'consistent'],
         // enforce camelcase naming convention
         camelcase: 0,
-        // require or disallow newline at the end of files
-        'eol-last': [2, 'never'],
         // require or disallow named `function` expressions
         'func-names': [1, 'as-needed'],
+        // disallow bitwise operators
+        'no-bitwise': 0,
+        // disallow `continue` statements
+        'no-continue': 0,
+        // disallow nested ternary expressions
+        'no-nested-ternary': 0,
+        // disallow specified syntax
+        'no-restricted-syntax': (() => {
+            // modifiy airbnb's base config to allow for-of loops
+            const [level, ...options] = airbnb['no-restricted-syntax'],
+                modifiedOptions = options.filter(({ selector }) => selector !== 'ForOfStatement');
+            return [level, ...modifiedOptions];
+        })(),
+        // disallow dangling underscores in identifiers
+        'no-underscore-dangle': 0,
+
+        // Variables
+
+        // disallow unused variables
+        'no-unused-vars': [2, {
+            vars: 'local',
+            args: 'none',
+        }],
+
+        // stylistic rules
+
+        // enforce linebreaks after opening and before closing array brackets
+        '@stylistic/js/array-bracket-newline': [2, 'consistent'],
+        // require or disallow newline at the end of files
+        '@stylistic/js/eol-last': [2, 'never'],
         // enforce consistent indentation
-        indent: [2, 4, {
+        '@stylistic/js/indent': [2, 4, {
             SwitchCase: 1,
         }],
         // enforce a maximum line length
-        'max-len': [2, 120, 4, {
+        '@stylistic/js/max-len': [2, 120, 4, {
             ignoreUrls: true,
             ignoreComments: false,
             ignoreRegExpLiterals: true,
@@ -98,13 +156,9 @@ module.exports = {
             ignoreTemplateLiterals: true,
         }],
         // enforce a maximum number of statements allowed per line
-        'max-statements-per-line': [2, { max: 1 }],
-        // disallow bitwise operators
-        'no-bitwise': 0,
-        // disallow `continue` statements
-        'no-continue': 0,
+        '@stylistic/js/max-statements-per-line': [2, { max: 1 }],
         // disallow mixed binary operators
-        'no-mixed-operators': [2, {
+        '@stylistic/js/no-mixed-operators': [2, {
             groups: [
                 ['**', '+'],
                 ['**', '-'],
@@ -120,34 +174,15 @@ module.exports = {
             ],
             allowSamePrecedence: false,
         }],
-        // disallow nested ternary expressions
-        'no-nested-ternary': 0,
-        // disallow specified syntax
-        'no-restricted-syntax': (() => {
-            // modifiy airbnb's base config to allow for-of loops
-            const [level, ...options] = baseStyleRules['no-restricted-syntax'],
-                modifiedOptions = options.filter(({ selector }) => selector !== 'ForOfStatement');
-            return [level, ...modifiedOptions];
-        })(),
-        // disallow dangling underscores in identifiers
-        'no-underscore-dangle': 0,
-        // enforce consistent line breaks inside braces
-        'object-curly-newline': (() => {
+        // enforce consistent line breaks after opening and before closing braces
+        '@stylistic/js/object-curly-newline': (() => {
             // modifiy airbnb's base config to allow for 6 properties in a line for import / export statements
-            const [level, { ImportDeclaration, ExportDeclaration, ...options }] = baseStyleRules['object-curly-newline'];
+            const [level, { ImportDeclaration, ExportDeclaration, ...options }] = airbnb['object-curly-newline'];
             return [level, {
                 ...options,
                 ImportDeclaration: { ...ImportDeclaration, minProperties: 7 },
                 ExportDeclaration: { ...ExportDeclaration, minProperties: 7 },
             }];
         })(),
-
-        // Variables
-
-        // disallow unused variables
-        'no-unused-vars': [2, {
-            vars: 'local',
-            args: 'none',
-        }],
     },
 };

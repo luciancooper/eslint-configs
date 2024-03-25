@@ -1,4 +1,14 @@
+const tseslint = require('typescript-eslint'),
+    sts = require('@stylistic/eslint-plugin-ts');
+
 module.exports = {
+    languageOptions: {
+        parser: tseslint.parser,
+    },
+    plugins: {
+        '@typescript-eslint': tseslint.plugin,
+        '@stylistic/ts': sts,
+    },
     rules: {
         // typescript plugin rules - best practices
 
@@ -43,8 +53,6 @@ module.exports = {
         '@typescript-eslint/no-extraneous-class': [2, {
             allowWithDecorator: true,
         }],
-        // disallow usage of the implicit `any` type in catch clauses
-        '@typescript-eslint/no-implicit-any-catch': 0, // annoying in js
         // disallows explicit type declarations for vars or params initialized to a primitive
         '@typescript-eslint/no-inferrable-types': 2,
         // disallows usage of `void` type outside of generic or return types
@@ -95,6 +103,8 @@ module.exports = {
         }],
         // disallows awaiting a value that is not a Thenable (requires type info)
         '@typescript-eslint/await-thenable': 2,
+        // disallow using the `delete` operator on array values (requires type info) (v6.19.0)
+        '@typescript-eslint/no-array-delete': 2,
         // call `.toString()` only on objects that provide useful information when stringified (requires type info)
         '@typescript-eslint/no-base-to-string': 2,
         // requires expressions of type void to appear in statement position (requires type info)
@@ -119,8 +129,14 @@ module.exports = {
         '@typescript-eslint/no-unnecessary-type-arguments': 2,
         // warns if a type assertion does not change the type of an expression (requires type info)
         '@typescript-eslint/no-unnecessary-type-assertion': 2,
+        // require unary negation to take a number (requires type info) (v6.11.0)
+        '@typescript-eslint/no-unsafe-unary-minus': 2,
+        // disallow unnecessary template literals (requires type info) (v6.15.0)
+        '@typescript-eslint/no-useless-template-literals': 2,
         // prefers a non-null assertion over explicit type cast when possible (requires type info)
         '@typescript-eslint/non-nullable-type-assertion-style': 2,
+        // enforce the use of find() when looking for a single result (requires type info) (v6.21.0)
+        '@typescript-eslint/prefer-find': 2,
         // enforce `includes` method over `indexOf` method (requires type info)
         '@typescript-eslint/prefer-includes': 2,
         // enforce the usage of the nullish coalescing operator instead of logical chaining (requires type info)
@@ -174,7 +190,7 @@ module.exports = {
         // enforces consistent usage of type imports
         '@typescript-eslint/consistent-type-imports': 0,
         // require a specific member delimiter style for interfaces and type literals
-        '@typescript-eslint/member-delimiter-style': [2, {
+        '@stylistic/ts/member-delimiter-style': [2, {
             multiline: {
                 delimiter: 'none', // none, semi, comma
                 // requireLast: true,
@@ -206,8 +222,6 @@ module.exports = {
         '@typescript-eslint/no-extra-non-null-assertion': 2,
         // disallows non-null assertions using the `!` postfix operator
         '@typescript-eslint/no-non-null-assertion': 0,
-        // disallow the use of parameter properties in class constructors
-        '@typescript-eslint/no-parameter-properties': 0,
         // disallow members of unions and intersections that do nothing or override type info (requires type info)
         '@typescript-eslint/no-redundant-type-constituents': 2,
         // disallow the use of type aliases
@@ -224,10 +238,8 @@ module.exports = {
         '@typescript-eslint/prefer-for-of': 0,
         // enforce constituents of a type union/intersection to be sorted alphabetically
         '@typescript-eslint/sort-type-constituents': 0, // not enabling - seems excessive
-        // enforces that members of a type union/intersection are sorted alphabetically
-        '@typescript-eslint/sort-type-union-intersection-members': 0, // not enabling - seems excessive
         // require consistent spacing around type annotations
-        '@typescript-eslint/type-annotation-spacing': 2,
+        '@stylistic/ts/type-annotation-spacing': 2,
         // requires type annotations to exist
         '@typescript-eslint/typedef': 0,
         // flags unnecessary equality comparisons against boolean literals (requires type info)

@@ -1,9 +1,10 @@
-const { ESLint } = require('eslint'),
+const { FlatESLint } = require('eslint/use-at-your-own-risk'),
     baseConfig = require('.');
 
 // create linter with config
-const linter = new ESLint({
+const linter = new FlatESLint({
     baseConfig,
+    overrideConfigFile: true,
 });
 
 // jsdoc syntax tests
@@ -26,11 +27,29 @@ describe('plugins', () => {
     let config;
 
     beforeAll(async () => {
-        config = await new ESLint({
+        config = await new FlatESLint({
             baseConfig,
-            useEslintrc: false,
+            overrideConfigFile: true,
             allowInlineConfig: false,
         }).calculateConfigForFile('index.js');
+    });
+
+    describe('`@stylistic/js` plugin', () => {
+        test('config includes the `@stylistic/js` plugin', () => {
+            expect(config).toIncludePlugin('@stylistic/js');
+        });
+
+        test('configures no unknown `@stylistic/js/` plugin rules', () => {
+            expect(config).toConfigureNoUnknownPluginRules('@stylistic/js');
+        });
+
+        test('enables no deprecated `@stylistic/js/` plugin rules', () => {
+            expect(config).toEnableNoDeprecatedPluginRules('@stylistic/js');
+        });
+
+        test('includes all `@stylistic/js/` plugin rules', () => {
+            expect(config).toConfigureAllPluginRules('@stylistic/js', ['function-call-spacing']);
+        });
     });
 
     describe('`import` plugin', () => {

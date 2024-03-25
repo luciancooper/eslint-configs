@@ -11,6 +11,9 @@
   "files": [
     "lib"
   ],
+  "engines": {
+    "node": "^18.18.0 || >=20.0.0"
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint ."
@@ -30,6 +33,6 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-plugin#readme",
   "peerDependencies": {
-    "eslint": ">=7.12"
+    "eslint": ">=8.56"
   }
 }

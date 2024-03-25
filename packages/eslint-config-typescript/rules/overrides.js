@@ -1,26 +1,42 @@
-const { rules: coreRules } = require('@lcooper/eslint-config/rules/core');
+const tsdoc = require('eslint-plugin-tsdoc'),
+    { rules: coreRules } = require('@lcooper/eslint-config/rules/core');
 
 module.exports = {
+    files: ['**/*.{ts,tsx,mts,cts}'],
+    plugins: {
+        tsdoc,
+    },
+    languageOptions: {
+        sourceType: 'module',
+    },
     rules: {
         // eslint base rules
 
         // plugin:@typescript-eslint/eslint-recommended overwrites this rule, so it must be re-overwritten
         'prefer-const': coreRules['prefer-const'],
-        // disabling this rule because typescript handles it
-        'consistent-return': 0,
 
         // typescript plugin rules - best practices
 
+        // disallow duplicate constituents of union or intersection types (requires type info) (v5.57.0)
+        '@typescript-eslint/no-duplicate-type-constituents': 2,
+        // enforce the use of top-level import type qualifier when an import only has inline type qualifiers (v5.51.0)
+        '@typescript-eslint/no-import-type-side-effects': 2,
+        // disallow enums from having both number and string members (requires type info) (v5.53.0)
+        '@typescript-eslint/no-mixed-enums': 2,
         // disallows invocation of `require()`
         '@typescript-eslint/no-require-imports': 2,
+        // disallow comparing an enum value with a non-enum value (requires type info) (v5.58.0)
+        '@typescript-eslint/no-unsafe-enum-comparison': 2,
         // disallows the use of require statements except in import statements
         '@typescript-eslint/no-var-requires': 2,
         // enforce the usage of the nullish coalescing operator instead of logical chaining (requires type info)
         '@typescript-eslint/prefer-nullish-coalescing': 2,
         // when adding two variables, operands must both be of type number or of type string (requires type info)
         '@typescript-eslint/restrict-plus-operands': [2, {
-            checkCompoundAssignments: true,
+            skipCompoundAssignments: false,
         }],
+        // enforce typing arguments in `.catch()` callbacks as `unknown` (requires type info) (v7.3.0)
+        '@typescript-eslint/use-unknown-in-catch-callback-variable': 0,
 
         // typescript plugin rules - stylistic issues
 
@@ -44,11 +60,17 @@ module.exports = {
 
         // typescript plugin extension rules - best practices
 
+        // enforce that class methods utilize `this` (v6.2.0)
+        '@typescript-eslint/class-methods-use-this': 0,
+        // disabling this rule because typescript handles it
+        'consistent-return': 0,
+        // require `return` statements to either always or never specify values (requires type info) (v7.1.0)
+        '@typescript-eslint/consistent-return': 0,
         // enforce default parameters to be last
         'default-param-last': 0,
         '@typescript-eslint/default-param-last': 2,
-        // disallow duplicate imports ()
-        '@typescript-eslint/no-duplicate-imports': 0, // this is handled by `import/no-duplicates`
+        // enforce a maximum number of parameters in function definitions
+        '@typescript-eslint/max-params': 0,
         // disallow empty functions
         'no-empty-function': 0,
         '@typescript-eslint/no-empty-function': [2, {
@@ -91,6 +113,9 @@ module.exports = {
         // disallow throwing literals as exceptions (requires type info)
         'no-throw-literal': 0,
         '@typescript-eslint/no-throw-literal': 2,
+        // require using Error objects as Promise rejection reasons (requires type info) (v6.19.0)
+        'prefer-promise-reject-errors': 0,
+        '@typescript-eslint/prefer-promise-reject-errors': [2, { allowEmptyReject: true }],
         // disallow async functions which have no `await` expression (requires type info)
         '@typescript-eslint/require-await': 0,
         // enforces consistent returning of awaited values (requires type info)
@@ -99,58 +124,70 @@ module.exports = {
 
         // typescript plugin extension rules - stylistic issues
 
+        // disallow or enforce spaces inside of blocks after opening block and before closing block
+        '@stylistic/js/block-spacing': 0,
+        '@stylistic/ts/block-spacing': 2,
         // enforce consistent brace style for blocks
-        'brace-style': 0,
-        '@typescript-eslint/brace-style': [2, '1tbs', { allowSingleLine: true }],
+        '@stylistic/js/brace-style': 0,
+        '@stylistic/ts/brace-style': [2, '1tbs', { allowSingleLine: true }],
         // require trailing commas
-        'comma-dangle': 0,
-        '@typescript-eslint/comma-dangle': [2, 'always-multiline'],
+        '@stylistic/js/comma-dangle': 0,
+        '@stylistic/ts/comma-dangle': [2, 'always-multiline'],
         // enforces consistent spacing before and after commas
-        'comma-spacing': 0,
-        '@typescript-eslint/comma-spacing': [2, { before: false, after: true }],
+        '@stylistic/js/comma-spacing': 0,
+        '@stylistic/ts/comma-spacing': [2, { before: false, after: true }],
         // disallow spacing between function identifiers and their invocations
-        'func-call-spacing': 0,
-        '@typescript-eslint/func-call-spacing': 2,
+        '@stylistic/js/func-call-spacing': 0,
+        '@stylistic/ts/func-call-spacing': 2,
         // enforce consistent indentation
-        indent: 0,
-        '@typescript-eslint/indent': [2, 4, {
+        '@stylistic/js/indent': 0,
+        '@stylistic/ts/indent': [2, 4, {
             SwitchCase: 1,
         }],
+        // enforce consistent spacing between property names and type annotations in types and interfaces
+        '@stylistic/js/key-spacing': 0,
+        '@stylistic/ts/key-spacing': [2, { beforeColon: false, afterColon: true }],
         // enforce consistent spacing before and after keywords
-        'keyword-spacing': 0,
-        '@typescript-eslint/keyword-spacing': 2, // different from airbnb-base, but functionally identical
+        '@stylistic/js/keyword-spacing': 0,
+        '@stylistic/ts/keyword-spacing': 2, // different from airbnb-base, but functionally identical
+        // require empty lines around comments
+        '@stylistic/js/lines-around-comment': 0,
+        '@stylistic/ts/lines-around-comment': 0,
         // require or disallow an empty line between class members
-        'lines-between-class-members': 0,
-        '@typescript-eslint/lines-between-class-members': [2, 'always'],
+        '@stylistic/js/lines-between-class-members': 0,
+        '@stylistic/ts/lines-between-class-members': [2, 'always'],
         // disallow generic `Array` constructors
         'no-array-constructor': 0,
         '@typescript-eslint/no-array-constructor': 2,
         // enforce consistent spacing inside braces
-        'object-curly-spacing': 0,
-        '@typescript-eslint/object-curly-spacing': [2, 'always'],
+        '@stylistic/js/object-curly-spacing': 0,
+        '@stylistic/ts/object-curly-spacing': [2, 'always'],
         // require or disallow padding lines between statements
-        '@typescript-eslint/padding-line-between-statements': 0,
+        '@stylistic/js/padding-line-between-statements': 0,
+        '@stylistic/ts/padding-line-between-statements': 0,
+        // require quotes around object literal, type literal, interfaces and enums property names
+        '@stylistic/js/quote-props': 0,
+        '@stylistic/ts/quote-props': [2, 'as-needed', { keywords: false, unnecessary: true, numbers: false }],
+
         // enforce the consistent use of either backticks, double, or single quotes
-        quotes: 0,
-        '@typescript-eslint/quotes': [2, 'single', {
-            avoidEscape: true,
-        }],
+        '@stylistic/js/quotes': 0,
+        '@stylistic/ts/quotes': [2, 'single', { avoidEscape: true }],
         // require or disallow semicolons instead of ASI
-        semi: 0,
-        '@typescript-eslint/semi': 2,
+        '@stylistic/js/semi': 0,
+        '@stylistic/ts/semi': 2,
         // enforce consistent spacing before blocks
-        'space-before-blocks': 0,
-        '@typescript-eslint/space-before-blocks': 2,
+        '@stylistic/js/space-before-blocks': 0,
+        '@stylistic/ts/space-before-blocks': 2,
         // enforces consistent spacing before function parenthesis
-        'space-before-function-paren': 0,
-        '@typescript-eslint/space-before-function-paren': [2, {
+        '@stylistic/js/space-before-function-paren': 0,
+        '@stylistic/ts/space-before-function-paren': [2, {
             anonymous: 'always',
             named: 'never',
             asyncArrow: 'always',
         }],
         // this rule is aimed at ensuring there are spaces around infix operators.
-        'space-infix-ops': 0,
-        '@typescript-eslint/space-infix-ops': 2,
+        '@stylistic/js/space-infix-ops': 0,
+        '@stylistic/ts/space-infix-ops': 2,
 
         // typescript plugin extension rules - variables
 
@@ -178,6 +215,15 @@ module.exports = {
             typedefs: true,
             ignoreTypeReferences: true,
         }],
+        // require destructuring from arrays and/or objects (requires type info) (v6.8.0)
+        'prefer-destructuring': 0,
+        '@typescript-eslint/prefer-destructuring': [2, {
+            VariableDeclarator: { array: false, object: true },
+            AssignmentExpression: { array: false, object: false },
+        }, {
+            enforceForRenamedProperties: false,
+            enforceForDeclarationWithTypeAnnotation: false,
+        }],
 
         // typescript plugin extension rules - possible errors
 
@@ -185,12 +231,16 @@ module.exports = {
         'no-dupe-class-members': 0,
         '@typescript-eslint/no-dupe-class-members': 2,
         // disallow unnecessary parentheses
-        '@typescript-eslint/no-extra-parens': 0,
+        '@stylistic/js/no-extra-parens': 0,
+        '@stylistic/ts/no-extra-parens': 0,
         // disallow unnecessary semicolons
-        'no-extra-semi': 0,
-        '@typescript-eslint/no-extra-semi': 2,
+        '@stylistic/js/no-extra-semi': 0,
+        '@stylistic/ts/no-extra-semi': 2,
         // disallow literal numbers that lose precision (req eslint v7.1)
         'no-loss-of-precision': 0,
         '@typescript-eslint/no-loss-of-precision': 2,
+
+        // tsdoc plugin rules
+        'tsdoc/syntax': 2,
     },
 };

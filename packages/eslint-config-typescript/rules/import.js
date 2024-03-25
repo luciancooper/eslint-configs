@@ -1,19 +1,17 @@
-const { rules: baseRules } = require('@lcooper/eslint-config/rules/import');
-
 module.exports = {
     settings: {
         'import/parsers': {
             // from 'plugin:import/typescript' config
-            '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
+            '@typescript-eslint/parser': ['.ts', '.cts', '.mts', '.tsx'],
         },
         'import/resolver': {
             node: {
                 // add typescript extensions to airbnb's 'import/resolver' setting
-                extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx', '.d.ts'],
+                extensions: ['.ts', '.cts', '.mts', '.tsx', '.mjs', '.js', '.jsx', '.json'],
             },
         },
         // adding typescript extensions to airbnb's 'import/extension' setting
-        'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx', '.d.ts'],
+        'import/extensions': ['.ts', '.cts', '.mts', '.tsx', '.mjs', '.js', '.jsx'],
         // resolve type definitions
         'import/external-module-folders': [
             'node_modules',
@@ -34,18 +32,5 @@ module.exports = {
             ts: 'never',
             tsx: 'never',
         }],
-        // extend base config to include typescript extensions
-        'import/no-extraneous-dependencies': (() => {
-            const [level, { devDependencies, ...options }] = baseRules['import/no-extraneous-dependencies'];
-            return [level, {
-                ...options,
-                devDependencies: [
-                    // airbnb's base config includes '**/jest.setup.js', so ts version must be added manually
-                    '**/jest.setup.ts',
-                    // replace {js,jsx} with {js,jsx,ts,tsx}
-                    ...devDependencies.map((glob) => glob.replace('js,jsx', 'js,jsx,ts,tsx')),
-                ],
-            }];
-        })(),
     },
 };

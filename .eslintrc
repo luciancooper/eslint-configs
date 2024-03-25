@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "@lcooper/eslint-config",
-    "@lcooper/eslint-config-jest"
-  ],
-  "ignorePatterns": [
-    "**/__fixtures__/**/*"
-  ]
-}
