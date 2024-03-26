@@ -20,7 +20,9 @@ yarn add -D eslint @lcooper/eslint-plugin
 
 ## Usage
 
-Add `@lcooper/eslint-plugin` or just `@lcooper` to the plugins section of your ESLint configuration file.
+#### Configuration (legacy `.eslintrc`):
+
+Add `@lcooper/eslint-plugin` or just `@lcooper` to the plugins section of your `eslintrc` configuration file.
 
 Next, configure the rules you want to use under the `rules` section, or use the `plugin:@lcooper/all` bundled config that enables all plugin rules and disables any conflicting base ESLint rules. This can be configured using the `extends` property in your `.eslintrc` config file:
 
@@ -33,6 +35,19 @@ Next, configure the rules you want to use under the `rules` section, or use the 
     "plugin:@lcooper/all"
   ]
 }
+```
+
+#### Configuration (new `eslint.config.js`):
+
+If you are using the new flat config system, you can add the bundled `all/flat` config to the exported config array in your `eslint.config.js` file:
+
+```js
+const plugin = require('@lcooper/eslint-plugin');
+
+module.exports = [
+    // ... other configs
+    plugin.configs['all/flat'],
+];
 ```
 
 ## Rules
