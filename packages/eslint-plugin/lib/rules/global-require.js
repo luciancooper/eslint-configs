@@ -50,11 +50,12 @@ module.exports = {
     create(context) {
         return {
             CallExpression(node) {
-                const currentScope = context.getScope();
+                const { sourceCode } = context,
+                    currentScope = sourceCode.getScope(node);
                 if (node.callee.name !== 'require' || isShadowed(currentScope, node.callee)) {
                     return;
                 }
-                const ancestors = context.getAncestors(),
+                const ancestors = sourceCode.getAncestors(node),
                     isBadRequire = ancestors.some((parent) => UNACCEPTABLE_PARENTS.includes(parent.type));
                 if (isBadRequire) {
                     context.report({

@@ -1,7 +1,11 @@
-const { RuleTester } = require('eslint'),
+const { FlatRuleTester } = require('eslint/use-at-your-own-risk'),
     rule = require('./global-require');
 
-const ruleTester = new RuleTester({ env: { es6: true } });
+const ruleTester = new FlatRuleTester({
+    languageOptions: {
+        sourceType: 'commonjs',
+    },
+});
 
 ruleTester.run('global-require', rule, {
     valid: [
@@ -30,10 +34,7 @@ ruleTester.run('global-require', rule, {
         // member expression named 'require'
         "if (x) { x.require('x'); }",
         // optional chaining
-        {
-            code: "const x = require('x')?.x;",
-            parserOptions: { ecmaVersion: 2020 },
-        },
+        "const x = require('x')?.x;",
     ],
     invalid: [
         // if statement

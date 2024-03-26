@@ -1,8 +1,12 @@
 /* eslint-disable no-template-curly-in-string */
-const { RuleTester } = require('eslint'),
+const { FlatRuleTester } = require('eslint/use-at-your-own-risk'),
     rule = require('./prefer-template');
 
-const ruleTester = new RuleTester({ env: { es6: true } });
+const ruleTester = new FlatRuleTester({
+    languageOptions: {
+        sourceType: 'commonjs',
+    },
+});
 
 ruleTester.run('prefer-template', rule, {
     valid: [

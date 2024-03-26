@@ -132,7 +132,7 @@ module.exports = {
         },
     },
     create(context) {
-        const sourceCode = context.getSourceCode(),
+        const { sourceCode } = context,
             baseOption = context.options[0] || 'always',
             { betweenSingleLines, betweenImports, betweenOverloads } = {
                 betweenSingleLines: 'never',

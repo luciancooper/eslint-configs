@@ -272,7 +272,7 @@ module.exports = {
     },
 
     create(context) {
-        const sourceCode = context.getSourceCode();
+        const { sourceCode } = context;
         let level = 0;
 
         function incLevel() {

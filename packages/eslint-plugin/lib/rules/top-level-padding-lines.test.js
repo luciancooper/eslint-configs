@@ -1,11 +1,9 @@
-const { RuleTester } = require('eslint'),
+const { FlatRuleTester } = require('eslint/use-at-your-own-risk'),
+    { parser: tsParser } = require('typescript-eslint'),
     rule = require('./top-level-padding-lines');
 
-const tsParser = require.resolve('@typescript-eslint/parser');
-
-const ruleTester = new RuleTester({
-    parserOptions: {
-        ecmaVersion: 6,
+const ruleTester = new FlatRuleTester({
+    languageOptions: {
         sourceType: 'module',
     },
 });
@@ -59,7 +57,7 @@ ruleTester.run('top-level-padding-lines', rule, {
                 + '   return 5;\n'
                 + '}',
             options: ['always', { betweenOverloads: 'never' }],
-            parser: tsParser,
+            languageOptions: { parser: tsParser },
         },
         {
             code: 'export function fn(a: number, b: number): number;\n\n'
@@ -68,7 +66,7 @@ ruleTester.run('top-level-padding-lines', rule, {
                 + '   return 5;\n'
                 + '}',
             options: ['never', { betweenOverloads: 'always' }],
-            parser: tsParser,
+            languageOptions: { parser: tsParser },
         },
     ],
     invalid: [
@@ -162,7 +160,7 @@ ruleTester.run('top-level-padding-lines', rule, {
             errors: [
                 { messageId: 'neverBetweenOverloads' },
             ],
-            parser: tsParser,
+            languageOptions: { parser: tsParser },
         },
     ],
 });
