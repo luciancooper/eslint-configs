@@ -23,7 +23,7 @@ describe('no-mixed-operator fixtures', () => {
     ));
 });
 
-describe('plugins', () => {
+describe('rules', () => {
     let config;
 
     beforeAll(async () => {
@@ -32,6 +32,20 @@ describe('plugins', () => {
             overrideConfigFile: true,
             allowInlineConfig: false,
         }).calculateConfigForFile('index.js');
+    });
+
+    describe('core `eslint` rules', () => {
+        test('configures no unknown `eslint` core rules', () => {
+            expect(config).toConfigureNoUnknownCoreRules();
+        });
+
+        test('enables no deprecated `eslint` core rules', () => {
+            expect(config).toEnableNoDeprecatedCoreRules();
+        });
+
+        test('configures all `eslint` core rules', () => {
+            expect(config).toConfigureAllCoreRules();
+        });
     });
 
     describe('`@stylistic/js` plugin', () => {
@@ -47,7 +61,7 @@ describe('plugins', () => {
             expect(config).toEnableNoDeprecatedPluginRules('@stylistic/js');
         });
 
-        test('includes all `@stylistic/js/` plugin rules', () => {
+        test('configures all `@stylistic/js/` plugin rules', () => {
             expect(config).toConfigureAllPluginRules('@stylistic/js', ['function-call-spacing']);
         });
     });
@@ -65,7 +79,7 @@ describe('plugins', () => {
             expect(config).toEnableNoDeprecatedPluginRules('import');
         });
 
-        test('includes all `import/` plugin rules', () => {
+        test('configures all `import/` plugin rules', () => {
             expect(config).toConfigureAllPluginRules('import');
         });
     });
@@ -83,7 +97,7 @@ describe('plugins', () => {
             expect(config).toEnableNoDeprecatedPluginRules('jsdoc');
         });
 
-        test('includes all `jsdoc/` plugin rules', () => {
+        test('configures all `jsdoc/` plugin rules', () => {
             expect(config).toConfigureAllPluginRules('jsdoc');
         });
     });

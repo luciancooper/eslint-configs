@@ -1,5 +1,5 @@
 function ruleLevel(config, ruleId) {
-    if (!Object.hasOwnProperty.call(config.rules, ruleId)) return 0;
+    if (!Object.hasOwn(config.rules, ruleId)) return 0;
     const { [ruleId]: rprop } = config.rules;
     let lvl;
     if (!Array.isArray(rprop)) lvl = rprop;

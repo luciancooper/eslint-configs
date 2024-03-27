@@ -32,7 +32,7 @@ module.exports = {
         ...sjs.configs['disable-legacy'].rules,
         // configure all stylistic rules with airbnb base config
         ...Object.keys(sjs.rules).reduce((acc, key) => {
-            if (Object.hasOwnProperty.call(airbnb, key)) {
+            if (Object.hasOwn(airbnb, key)) {
                 acc[`@stylistic/js/${key}`] = airbnb[key];
             }
             return acc;
@@ -64,12 +64,22 @@ module.exports = {
         'grouped-accessor-pairs': [2, 'getBeforeSet'],
         // enforce a maximum number of classes per file
         'max-classes-per-file': 0,
+        // disallow expressions where the operation doesn't affect the value (v8.14.0)
+        'no-constant-binary-expression': 2,
         // disallow function declarations that contain unsafe references inside loop statements
         'no-loop-func': 0,
+        // disallow new operators with Symbol and BigInt (v8.27.0)
+        'no-new-native-nonconstructor': 2,
+        // disallow Object constructors (deprecated v8.50.0, replaced by no-object-constructor)
+        'no-new-object': 0,
+        // disallow calls to the Object constructor without an argument (v8.50.0)
+        'no-object-constructor': 2,
         // disallow reassigning `function` parameters
         'no-param-reassign': [2, {
             props: false,
         }],
+        // disallow unnecessary return await (deprecated v8.46.0, see https://v8.dev/blog/fast-async)
+        'no-return-await': 0,
         // disallow `void` operators
         'no-void': 0,
         // disallow use of the `RegExp` constructor in favor of regular expression literals (v6.4.0)
@@ -92,6 +102,15 @@ module.exports = {
         // disallow loops with a body that allows only one iteration (7.3.0)
         'no-unreachable-loop': 2,
 
+        // Node
+
+        // disallow use of the Buffer() constructor (deprecated v7.0.0, moved to eslint-plugin-n)
+        'no-buffer-constructor': 0,
+        // disallow new operators with calls to require (deprecated v7.0.0, moved to eslint-plugin-n)
+        'no-new-require': 0,
+        // disallow string concatenation with __dirname and __filename (deprecated v7.0.0, moved to eslint-plugin-n)
+        'no-path-concat': 0,
+
         // ECMAScript 6
 
         // require `const` declarations for variables that are never reassigned after declared
@@ -107,12 +126,26 @@ module.exports = {
             enforceForRenamedProperties: false,
         }],
 
+        // ES2021
+
+        // require or disallow logical assignment operator shorthand (v8.24.0)
+        'logical-assignment-operators': [2, 'always', { enforceForIfStatements: true }],
+
+        // ES2022
+
+        // disallow empty static blocks - requires ES2022 (v8.27.0)
+        'no-empty-static-block': 2,
+        // prefer use of Object.hasOwn() - requires ES2022 (v8.5.0)
+        'prefer-object-has-own': 2,
+
         // Stylistic Issues
 
         // enforce camelcase naming convention
         camelcase: 0,
         // require or disallow named `function` expressions
         'func-names': [1, 'as-needed'],
+        // require newlines around directives (deprecated v4.0.0)
+        'lines-around-directive': 0,
         // disallow bitwise operators
         'no-bitwise': 0,
         // disallow `continue` statements
@@ -126,6 +159,8 @@ module.exports = {
                 modifiedOptions = options.filter(({ selector }) => selector !== 'ForOfStatement');
             return [level, ...modifiedOptions];
         })(),
+        // disallow spacing between function identifiers (deprecated v3.3.0, replaced by func-call-spacing)
+        'no-spaced-func': 0,
         // disallow dangling underscores in identifiers
         'no-underscore-dangle': 0,
 

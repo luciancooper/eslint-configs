@@ -141,7 +141,7 @@ expect.extend({
             .filter(([id, { meta }]) => (!meta.deprecated && !exeptions.includes(id)))
             .map(([id]) => `${plugin}/${id}`);
         // create a list of unconfigured plugin rules
-        const unconfigured = pluginRules.filter((id) => !Object.hasOwnProperty.call(config.rules, id));
+        const unconfigured = pluginRules.filter((id) => !Object.hasOwn(config.rules, id));
         return {
             message: unconfigured.length > 0 ? () => (
                 `The following rules for ${plugin} have not been configured:\n${
