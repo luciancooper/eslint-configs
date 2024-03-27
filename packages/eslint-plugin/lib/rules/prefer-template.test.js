@@ -72,16 +72,16 @@ ruleTester.run('prefer-template', rule, {
         },
         {
             code: "var string = 'pixels: '\n"
-                + "  + (number + 1) + 'px';",
+            + "  + (number + 1) + 'px';",
             output: "var string = 'pixels: '\n"
-                + '  + `${number + 1  }px`;',
+            + '  + `${number + 1  }px`;',
             errors: [{ messageId: 'unexpectedStringConcatenation' }],
         },
         {
             code: "var string = 'pixels: ' + (number + 1)\n"
-                + "  + 'px';",
+            + "  + 'px';",
             output: 'var string = `pixels: ${  number + 1}`\n'
-                + "  + 'px';",
+            + "  + 'px';",
             errors: [{ messageId: 'unexpectedStringConcatenation' }],
         },
         {

@@ -1775,6 +1775,14 @@
     eslint-visitor-keys "^3.4.3"
     espree "^9.6.1"
 
+"@stylistic/eslint-plugin-plus@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@stylistic/eslint-plugin-plus/-/eslint-plugin-plus-1.7.0.tgz#2dc56fe9b4e4bfa48e011abe41eb1cb692ddb557"
+  integrity sha512-AabDw8sXsc70Ydx3qnbeTlRHZnIwY6UKEenBPURPhY3bfYWX+/pDpZH40HkOu94v8D0DUrocPkeeEUxl4e0JDg==
+  dependencies:
+    "@types/eslint" "^8.56.2"
+    "@typescript-eslint/utils" "^6.21.0"
+
 "@stylistic/eslint-plugin-ts@^1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@stylistic/eslint-plugin-ts/-/eslint-plugin-ts-1.7.0.tgz#b3bce3235a1cdf27448910ebc049b8bd4ba7ee43"

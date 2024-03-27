@@ -1,5 +1,6 @@
 const globals = require('globals'),
     sjs = require('@stylistic/eslint-plugin-js'),
+    splus = require('@stylistic/eslint-plugin-plus'),
     lcooper = require('@lcooper/eslint-plugin');
 
 const airbnb = {
@@ -16,6 +17,7 @@ module.exports = {
     plugins: {
         '@lcooper': lcooper,
         '@stylistic/js': sjs,
+        '@stylistic/plus': splus,
     },
     languageOptions: {
         ecmaVersion: 'latest',
@@ -219,5 +221,14 @@ module.exports = {
                 ExportDeclaration: { ...ExportDeclaration, minProperties: 7 },
             }];
         })(),
+
+        // stylistic plus rules
+
+        // indentation for binary operators in multiline expressions
+        '@stylistic/plus/indent-binary-ops': [2, 4],
+        // enforces consistent spacing inside TypeScript type generics.
+        '@stylistic/plus/type-generic-spacing': 2,
+        // expect space before the type declaration in the named tuple.
+        '@stylistic/plus/type-named-tuple-spacing': 2,
     },
 };

@@ -12,59 +12,59 @@ ruleTester.run('top-level-padding-lines', rule, {
     valid: [
         {
             code: "import { a } from 'a';\n"
-                + "import { b } from 'b';\n\n"
-                + "const c = require('c');\n"
-                + "const d = require('d');\n\n"
-                + 'const x = true;\n'
-                + 'const y = false;\n\n'
-                + 'const foo = () => {\n    /* ... */\n};\n\n'
-                + '// comment above bar\n'
-                + 'const bar = () => {\n    /* ... */\n};',
+            + "import { b } from 'b';\n\n"
+            + "const c = require('c');\n"
+            + "const d = require('d');\n\n"
+            + 'const x = true;\n'
+            + 'const y = false;\n\n'
+            + 'const foo = () => {\n    /* ... */\n};\n\n'
+            + '// comment above bar\n'
+            + 'const bar = () => {\n    /* ... */\n};',
             options: ['always'],
         },
         {
             code: "import { a } from 'a';\n"
-                + "import { b } from 'b';\n"
-                + "const c = require('c');\n"
-                + "const d = require('d');\n"
-                + 'const x = true;\n'
-                + 'const y = false;\n'
-                + 'const foo = () => {\n    /* ... */\n};\n'
-                + 'const bar = () => {\n    /* ... */\n};',
+            + "import { b } from 'b';\n"
+            + "const c = require('c');\n"
+            + "const d = require('d');\n"
+            + 'const x = true;\n'
+            + 'const y = false;\n'
+            + 'const foo = () => {\n    /* ... */\n};\n'
+            + 'const bar = () => {\n    /* ... */\n};',
             options: ['never'],
         },
         {
             code: "import { a } from 'a';\n\n"
-                + "import { b } from 'b';\n"
-                + "const c = require('c');\n\n"
-                + "const d = require('d');\n"
-                + 'const x = true;\n\n'
-                + 'const y = false;\n'
-                + 'const foo = () => {\n    /* ... */\n};\n'
-                + 'const bar = () => {\n    /* ... */\n};',
+            + "import { b } from 'b';\n"
+            + "const c = require('c');\n\n"
+            + "const d = require('d');\n"
+            + 'const x = true;\n\n'
+            + 'const y = false;\n'
+            + 'const foo = () => {\n    /* ... */\n};\n'
+            + 'const bar = () => {\n    /* ... */\n};',
             options: ['never', { betweenSingleLines: 'always', betweenImports: 'always' }],
         },
         {
             code: 'const x = 0;\n'
-                + 'const y = 1;\n\n'
-                + 'const z = 2;',
+            + 'const y = 1;\n\n'
+            + 'const z = 2;',
             options: ['never', { betweenSingleLines: 'ignore' }],
         },
         {
             code: 'function fn(a: number, b: number): number;\n'
-                + 'function fn(a: string): number;\n'
-                + 'function fn(a: string | number, b?: number): number {\n'
-                + '   return 5;\n'
-                + '}',
+            + 'function fn(a: string): number;\n'
+            + 'function fn(a: string | number, b?: number): number {\n'
+            + '   return 5;\n'
+            + '}',
             options: ['always', { betweenOverloads: 'never' }],
             languageOptions: { parser: tsParser },
         },
         {
             code: 'export function fn(a: number, b: number): number;\n\n'
-                + 'export function fn(a: string): number;\n\n'
-                + 'export function fn(a: string | number, b?: number): number {\n'
-                + '   return 5;\n'
-                + '}',
+            + 'export function fn(a: string): number;\n\n'
+            + 'export function fn(a: string | number, b?: number): number {\n'
+            + '   return 5;\n'
+            + '}',
             options: ['never', { betweenOverloads: 'always' }],
             languageOptions: { parser: tsParser },
         },
@@ -72,23 +72,23 @@ ruleTester.run('top-level-padding-lines', rule, {
     invalid: [
         {
             code: "import { a } from 'a';\n\n"
-                + "import { b } from 'b';\n"
-                + "const c = require('c');\n\n"
-                + "const d = require('d');\n"
-                + 'const x = true;\n\n'
-                + 'const y = false;\n'
-                + 'const foo = () => {\n    /* ... */\n};\n'
-                + '// comment above bar\n'
-                + 'const bar = () => {\n    /* ... */\n};',
+            + "import { b } from 'b';\n"
+            + "const c = require('c');\n\n"
+            + "const d = require('d');\n"
+            + 'const x = true;\n\n'
+            + 'const y = false;\n'
+            + 'const foo = () => {\n    /* ... */\n};\n'
+            + '// comment above bar\n'
+            + 'const bar = () => {\n    /* ... */\n};',
             output: "import { a } from 'a';\n"
-                + "import { b } from 'b';\n\n"
-                + "const c = require('c');\n"
-                + "const d = require('d');\n\n"
-                + 'const x = true;\n'
-                + 'const y = false;\n\n'
-                + 'const foo = () => {\n    /* ... */\n};\n\n'
-                + '// comment above bar\n'
-                + 'const bar = () => {\n    /* ... */\n};',
+            + "import { b } from 'b';\n\n"
+            + "const c = require('c');\n"
+            + "const d = require('d');\n\n"
+            + 'const x = true;\n'
+            + 'const y = false;\n\n'
+            + 'const foo = () => {\n    /* ... */\n};\n\n'
+            + '// comment above bar\n'
+            + 'const bar = () => {\n    /* ... */\n};',
             options: ['always'],
             errors: [
                 { messageId: 'neverBetweenImports' },
@@ -102,21 +102,21 @@ ruleTester.run('top-level-padding-lines', rule, {
         },
         {
             code: "import { a } from 'a';\n"
-                + "import { b } from 'b';\n\n"
-                + "const c = require('c');\n"
-                + "const d = require('d');\n\n"
-                + 'const x = true;\n'
-                + 'const y = false;\n\n'
-                + 'const foo = () => {\n    /* ... */\n};\n\n'
-                + 'const bar = () => {\n    /* ... */\n};',
+            + "import { b } from 'b';\n\n"
+            + "const c = require('c');\n"
+            + "const d = require('d');\n\n"
+            + 'const x = true;\n'
+            + 'const y = false;\n\n'
+            + 'const foo = () => {\n    /* ... */\n};\n\n'
+            + 'const bar = () => {\n    /* ... */\n};',
             output: "import { a } from 'a';\n\n"
-                + "import { b } from 'b';\n"
-                + "const c = require('c');\n\n"
-                + "const d = require('d');\n"
-                + 'const x = true;\n\n'
-                + 'const y = false;\n'
-                + 'const foo = () => {\n    /* ... */\n};\n'
-                + 'const bar = () => {\n    /* ... */\n};',
+            + "import { b } from 'b';\n"
+            + "const c = require('c');\n\n"
+            + "const d = require('d');\n"
+            + 'const x = true;\n\n'
+            + 'const y = false;\n'
+            + 'const foo = () => {\n    /* ... */\n};\n'
+            + 'const bar = () => {\n    /* ... */\n};',
             options: ['never', { betweenSingleLines: 'always', betweenImports: 'always' }],
             errors: [
                 { messageId: 'alwaysBetweenImports' },
@@ -131,31 +131,31 @@ ruleTester.run('top-level-padding-lines', rule, {
         // 'never' fix deletes all blank lines between two statements
         {
             code: 'const x = true;\n\n'
-                + '// first between statements\n\n'
-                + '// second comment between statements\n\n'
-                + 'const y = false;',
+            + '// first between statements\n\n'
+            + '// second comment between statements\n\n'
+            + 'const y = false;',
             output: 'const x = true;\n'
-                + '// first between statements\n'
-                + '// second comment between statements\n'
-                + 'const y = false;',
+            + '// first between statements\n'
+            + '// second comment between statements\n'
+            + 'const y = false;',
             errors: [{ messageId: 'neverSingleLines' }],
         },
         // 'always' fix handles inline comments
         {
             code: 'const x = true; // inline comment\n'
-                + 'const y = false;',
+            + 'const y = false;',
             output: 'const x = true; // inline comment\n\n'
-                + 'const y = false;',
+            + 'const y = false;',
             options: ['always', { betweenSingleLines: 'always' }],
             errors: [{ messageId: 'alwaysSingleLines' }],
         },
         {
             code: 'export default function fn(a: number, b: number): number;\n'
-                + 'export default function fn(a: string): number;\n\n'
-                + 'export default function fn(a: string | number, b?: number): number { return 5; }',
+            + 'export default function fn(a: string): number;\n\n'
+            + 'export default function fn(a: string | number, b?: number): number { return 5; }',
             output: 'export default function fn(a: number, b: number): number;\n'
-                + 'export default function fn(a: string): number;\n'
-                + 'export default function fn(a: string | number, b?: number): number { return 5; }',
+            + 'export default function fn(a: string): number;\n'
+            + 'export default function fn(a: string | number, b?: number): number { return 5; }',
             options: ['always', { betweenOverloads: 'never' }],
             errors: [
                 { messageId: 'neverBetweenOverloads' },
