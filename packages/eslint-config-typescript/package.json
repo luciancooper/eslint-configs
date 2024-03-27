@@ -36,6 +36,7 @@
   "dependencies": {
     "@lcooper/eslint-config": "^2.2.2",
     "@stylistic/eslint-plugin-ts": "^1.7.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-tsdoc": "^0.2.17",
     "typescript-eslint": "^7.3.1"
   },

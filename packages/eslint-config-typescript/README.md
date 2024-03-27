@@ -28,6 +28,8 @@ Additionally, [`typescript`](https://www.npmjs.com/package/typescript) must be i
 
 This config enables some of the type-aware rules provided by `@typescript-eslint/eslint-plugin`, so you must provide a tsconfig file to the `parserOptions.project` field within the `languageOptions` in your `eslint.config.js` file. See [this page](https://typescript-eslint.io/getting-started/typed-linting) in the typescript-eslint docs for more info.
 
+Additionally, you must provide your tsconfig file to the `import/resolver` typescript setting for [`eslint-plugin-import`](https://github.com/import-js/eslint-plugin-import?tab=readme-ov-file#typescript) to work properly.
+
 The best way to do this is to create a `tsconfig.eslint.json` file that will just be used for linting. It can extend your base `tsconfig.json`.
 
 `tsconfig.eslint.json`
@@ -56,6 +58,13 @@ export default [
                 tsconfigRootDir: import.meta.dirname,
             },
         },
+        settings: {
+            'import/resolver': {
+                typescript: {
+                    project: './tsconfig.eslint.json',
+                },
+            },
+        },
     },
 ];
 ```
@@ -72,6 +81,13 @@ module.exports = [
             parserOptions: {
                 project: './tsconfig.eslint.json',
                 tsconfigRootDir: __dirname,
+            },
+        },
+        settings: {
+            'import/resolver': {
+                typescript: {
+                    project: './tsconfig.eslint.json',
+                },
             },
         },
     },

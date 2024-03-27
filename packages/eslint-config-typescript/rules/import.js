@@ -9,6 +9,9 @@ module.exports = {
                 // add typescript extensions to airbnb's 'import/resolver' setting
                 extensions: ['.ts', '.cts', '.mts', '.tsx', '.mjs', '.js', '.jsx', '.json'],
             },
+            typescript: {
+                alwaysTryTypes: true,
+            },
         },
         // adding typescript extensions to airbnb's 'import/extension' setting
         'import/extensions': ['.ts', '.cts', '.mts', '.tsx', '.mjs', '.js', '.jsx'],
