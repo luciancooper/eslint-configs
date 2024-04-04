@@ -140,7 +140,7 @@ module.exports = {
         // enforce `includes` method over `indexOf` method (requires type info)
         '@typescript-eslint/prefer-includes': 2,
         // enforce the usage of the nullish coalescing operator instead of logical chaining (requires type info)
-        '@typescript-eslint/prefer-nullish-coalescing': 0, // enabled in `ts` overrides - not ready to enforce in `js`
+        '@typescript-eslint/prefer-nullish-coalescing': 0,
         // requires private members be `readonly` if never modified outside the constructor (requires type info)
         '@typescript-eslint/prefer-readonly': 2,
         // prefer using type parameter when calling `Array#reduce` instead of casting (requires type info)

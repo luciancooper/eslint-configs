@@ -29,8 +29,6 @@ module.exports = {
         '@typescript-eslint/no-unsafe-enum-comparison': 2,
         // disallows the use of require statements except in import statements
         '@typescript-eslint/no-var-requires': 2,
-        // enforce the usage of the nullish coalescing operator instead of logical chaining (requires type info)
-        '@typescript-eslint/prefer-nullish-coalescing': 2,
         // when adding two variables, operands must both be of type number or of type string (requires type info)
         '@typescript-eslint/restrict-plus-operands': [2, {
             skipCompoundAssignments: false,
