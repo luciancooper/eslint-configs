@@ -5,11 +5,23 @@ module.exports = {
     plugins: {
         import: plugin,
     },
+    languageOptions: {
+        parserOptions: {
+            // Eslint doesn't supply ecmaVersion in `parser.js` `context.parserOptions`
+            // This is required to avoid ecmaVersion < 2015 error or 'import' / 'export' error
+            ecmaVersion: 'latest',
+        },
+    },
     settings: {
         'import/resolver': {
             node: {
                 extensions: ['.mjs', '.js', '.jsx', '.json'],
             },
+        },
+        // added to address problems with plugin incompatability with flat configs
+        // https://github.com/import-js/eslint-plugin-import/issues/2556
+        'import/parsers': {
+            espree: ['.js', '.cjs', '.mjs', '.jsx'],
         },
         'import/extensions': ['.js', '.mjs', '.jsx'],
         'import/core-modules': [],
