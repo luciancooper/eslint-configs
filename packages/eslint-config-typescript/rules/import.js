@@ -23,7 +23,7 @@ module.exports = {
     },
     rules: {
         // disabling these because typescript provides the same checks as part of standard type checking
-        // https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
+        // https://typescript-eslint.io/troubleshooting/performance-troubleshooting/#eslint-plugin-import
         'import/named': 0,
         'import/no-named-as-default-member': 0,
 

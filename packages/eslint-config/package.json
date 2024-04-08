@@ -2,7 +2,19 @@
   "name": "@lcooper/eslint-config",
   "version": "3.0.0",
   "description": "Shareable config for ESLint",
-  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./esm.js",
+      "require": "./cjs.js",
+      "default": "./base.js"
+    },
+    "./base": "./base.js",
+    "./envs": "./envs.js",
+    "./cjs": "./cjs.js",
+    "./esm": "./esm.js",
+    "./rules/*": "./rules/*.js",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "test": "jest",
     "lint": "eslint ."
@@ -11,8 +23,10 @@
     "access": "public"
   },
   "files": [
-    "index.js",
-    "browser.js",
+    "base.js",
+    "cjs.js",
+    "esm.js",
+    "envs.js",
     "rules"
   ],
   "engines": {

@@ -7,9 +7,22 @@
     "eslintconfig",
     "typescript"
   ],
-  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./esm.js",
+      "require": "./cjs.js",
+      "default": "./base.js"
+    },
+    "./base": "./base.js",
+    "./cjs": "./cjs.js",
+    "./esm": "./esm.js",
+    "./rules/*": "./rules/*.js",
+    "./package.json": "./package.json"
+  },
   "files": [
-    "index.js",
+    "base.js",
+    "cjs.js",
+    "esm.js",
     "rules"
   ],
   "engines": {

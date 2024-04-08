@@ -1,7 +1,7 @@
 const { FlatESLint } = require('eslint/use-at-your-own-risk'),
     tseslint = require('typescript-eslint'),
     sts = require('@stylistic/eslint-plugin-ts'),
-    baseConfig = require('.');
+    baseConfig = require('./base');
 
 describe('plugins', () => {
     let tsConfig,

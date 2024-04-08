@@ -1,13 +1,13 @@
-const core = require('@lcooper/eslint-config'),
+const jsbase = require('@lcooper/eslint-config/base'),
     tseslint = require('typescript-eslint'),
-    base = require('./rules/base'),
+    core = require('./rules/core'),
     overrides = require('./rules/overrides'),
     imports = require('./rules/import');
 
 module.exports = [
-    ...core,
+    ...jsbase,
     tseslint.configs.eslintRecommended,
-    base,
+    core,
     overrides,
     imports,
 ];

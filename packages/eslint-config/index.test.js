@@ -1,5 +1,5 @@
 const { FlatESLint } = require('eslint/use-at-your-own-risk'),
-    baseConfig = require('.');
+    baseConfig = require('./cjs');
 
 // create linter with config
 const linter = new FlatESLint({
