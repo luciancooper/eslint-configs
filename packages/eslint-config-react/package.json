@@ -34,8 +34,7 @@
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-react#readme",
   "dependencies": {
     "eslint-plugin-react": "^7.34.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "globals": "^14.0.0"
+    "eslint-plugin-react-hooks": "^4.6.0"
   },
   "peerDependencies": {
     "eslint": ">=8.56"

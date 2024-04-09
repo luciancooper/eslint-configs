@@ -1,6 +1,5 @@
 const react = require('eslint-plugin-react'),
-    hooks = require('eslint-plugin-react-hooks'),
-    globals = require('globals');
+    hooks = require('eslint-plugin-react-hooks');
 
 const hasAutomaticRuntime = (() => {
     try {
@@ -22,9 +21,6 @@ module.exports = {
             ecmaFeatures: {
                 jsx: true,
             },
-        },
-        globals: {
-            ...globals.browser,
         },
     },
     settings: {
