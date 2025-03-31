@@ -31,7 +31,7 @@ function isBlankLineBetween(current, next, comments) {
 /**
  * Gets the function name of a node if it contains a function declaration.
  * @param {ASTNode} node - AST node.
- * @returns {Object} - a `{ name, overload }` object, or `null` if it does not contain a function declaration.
+ * @returns {Object} a `{ name, overload }` object, or `null` if it does not contain a function declaration.
  */
 function getFunctionDeclaration(node) {
     if (!node) return null;
@@ -55,7 +55,7 @@ function getFunctionDeclaration(node) {
  * @param {ASTNode} current - AST node of the first statement
  * @param {ASTNode} next - AST node of the next statement
  * @param {Token[]} comments - comment tokens between `current` and `next` statements
- * @returns {Function} - fixer function
+ * @returns {Function} fixer function
  */
 function removeFixer(sourceCode, current, next, comments) {
     // get blank lines
@@ -84,7 +84,7 @@ function removeFixer(sourceCode, current, next, comments) {
  * Fixer that inserts a blank line after a top level statement node
  * @param {ASTNode} current - AST node of the current statement
  * @param {Token[]} comments - comment tokens following the `current` node
- * @returns {Function} - fixer function
+ * @returns {Function} fixer function
  */
 function insertFixer(current, comments) {
     const [lastToken = current] = comments

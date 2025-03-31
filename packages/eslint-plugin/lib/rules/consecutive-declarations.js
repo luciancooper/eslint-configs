@@ -6,7 +6,7 @@ const STATEMENT_LIST_PARENTS = new Set(['Program', 'BlockStatement', 'SwitchCase
 /**
  * Determines whether the given node is in a statement list.
  * @param {ASTNode} node - node to check
- * @returns {boolean} - `true` if the given node is in a statement list
+ * @returns {boolean} `true` if the given node is in a statement list
  */
 function isInStatementList(node) {
     return STATEMENT_LIST_PARENTS.has(node.parent.type);
@@ -39,7 +39,7 @@ function declaratorLineSpan(node) {
  * Fixer to split a Block of VariableDeclarations into requires and non requires groups
  * @param {SourceCode} sourceCode
  * @param {VariableDeclaration} node - The `VariableDeclaration` to split
- * @returns {Function|null} - The fixer function
+ * @returns {Function|null} The fixer function
  */
 function mixedRequiresFixer(sourceCode, node) {
     const { parent } = node;
@@ -208,7 +208,7 @@ function mixedRequiresFixer(sourceCode, node) {
  * Fixer to split a VariableDeclaration into individual declarations
  * @param {SourceCode} sourceCode
  * @param {VariableDeclaration} node - The `VariableDeclaration` to split
- * @returns {Function|null} - The fixer function
+ * @returns {Function|null} The fixer function
  */
 function splitDeclarationsFixer(sourceCode, node) {
     const { parent } = node;
@@ -238,7 +238,7 @@ function splitDeclarationsFixer(sourceCode, node) {
  * Fixer to join two VariableDeclarations
  * @param {SourceCode} sourceCode
  * @param {VariableDeclaration} node - The `VariableDeclaration` to join
- * @returns {Function} - The fixer function
+ * @returns {Function} The fixer function
  */
 function joinDeclarationsFixer(sourceCode, node) {
     return (fixer) => {

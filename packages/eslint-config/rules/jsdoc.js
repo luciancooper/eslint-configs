@@ -183,7 +183,7 @@ module.exports = {
         // @param - Requires a hyphen before the @param description
         'jsdoc/require-hyphen-before-param-description': [2, 'always', {
             tags: {
-                returns: 'always',
+                returns: 'never',
                 property: 'always',
             },
         }],

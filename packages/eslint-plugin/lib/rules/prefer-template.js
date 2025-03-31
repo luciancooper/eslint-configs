@@ -10,7 +10,7 @@ const docsUrl = require('./utils/docs-url');
 /**
  * Checks whether or not a given node is a string literal.
  * @param {ASTNode} node - A node to check.
- * @returns {boolean} - `true` if the node is a string literal.
+ * @returns {boolean} `true` if the node is a string literal.
  */
 function isStringLiteral(node) {
     return ((node.type === 'Literal' && typeof node.value === 'string') || node.type === 'TemplateLiteral');
@@ -19,7 +19,7 @@ function isStringLiteral(node) {
 /**
  * Checks whether or not a given node is a concatenation.
  * @param {ASTNode} node - A node to check.
- * @returns {boolean} - `true` if the node is a concatenation.
+ * @returns {boolean} `true` if the node is a concatenation.
  */
 function isConcatenation(node) {
     return node.type === 'BinaryExpression' && node.operator === '+';
@@ -31,7 +31,7 @@ function isConcatenation(node) {
  * `2` - contains only non-string literals
  * `3` - contains a mixture of string & non-string literals
  * @param {ASTNode} node - Node to evaluate
- * @returns {number} - The mixture type of the expression
+ * @returns {number} The mixture type of the expression
  */
 function literalMixtureType(node) {
     return isConcatenation(node)
@@ -42,7 +42,7 @@ function literalMixtureType(node) {
 /**
  * Flattens a binary expression into an array of component nodes.
  * @param {ASTNode} node - Node to flatten
- * @returns {ASTNode[]} - Array of component nodes
+ * @returns {ASTNode[]} Array of component nodes
  */
 function flattenBinaryConcatExpression(node) {
     if (!isConcatenation(node)) return [node];
@@ -55,7 +55,7 @@ function flattenBinaryConcatExpression(node) {
 /**
  * Count how many binary concat expressions are within a given node
  * @param {ASTNode} node - Node to evaluate
- * @returns {number} - The number of component nodes
+ * @returns {number} The number of component nodes
  */
 function countBinaryConcatNodes(node) {
     if (!isConcatenation(node)) return 1;
@@ -66,7 +66,7 @@ function countBinaryConcatNodes(node) {
 /**
  * Checks whether or not a node contains a string literal with an octal or non-octal decimal escape sequence
  * @param {ASTNode} node - Node to check
- * @returns {boolean} - `true` if at least one string literal within the node contains
+ * @returns {boolean} `true` if at least one string literal within the node contains
  * an octal or non-octal decimal escape sequence
  */
 function hasOctalOrNonOctalDecimalEscapeSequence(node) {
@@ -84,7 +84,7 @@ function hasOctalOrNonOctalDecimalEscapeSequence(node) {
  * Determines whether a given node will start with a template curly
  * expression (`${}`) when being converted to a template literal.
  * @param {ASTNode} node - The node that will be fixed to a template literal
- * @returns {boolean} - `true` if the node will start with a template curly.
+ * @returns {boolean} `true` if the node will start with a template curly.
  */
 function startsWithTemplateCurly(node) {
     if (node.type === 'BinaryExpression') {
@@ -102,7 +102,7 @@ function startsWithTemplateCurly(node) {
  * Determines whether a given node end with a template curly
  * expression (`${}`) when being converted to a template literal.
  * @param {ASTNode} node - The node that will be fixed to a template literal
- * @returns {boolean} - `true` if the node will end with a template curly.
+ * @returns {boolean} `true` if the node will end with a template curly.
  */
 function endsWithTemplateCurly(node) {
     if (node.type === 'BinaryExpression') {
@@ -121,7 +121,7 @@ function endsWithTemplateCurly(node) {
  * @param {SourceCode} sourceCode - source code instance
  * @param {ASTNode} node1 - The first node
  * @param {ASTNode} node2 - The second node
- * @returns {string} - The text between the nodes, excluding other tokens
+ * @returns {string} The text between the nodes, excluding other tokens
  */
 function getTextBetween(sourceCode, node1, node2) {
     const allTokens = [node1].concat(sourceCode.getTokensBetween(node1, node2)).concat(node2),
@@ -136,7 +136,7 @@ function getTextBetween(sourceCode, node1, node2) {
  * Returns the template literal form of an array of binary concatenation expression nodes.
  * @param {SourceCode} sourceCode - Source code instance
  * @param {ASTNode[]} nodes - Binary concatenation expression nodes to convert to a template literal
- * @returns {string} - The array of nodes as a template literal
+ * @returns {string} The array of nodes as a template literal
  */
 function toTemplateLiteral(sourceCode, nodes) {
     const stringForm = nodes.map((node) => {
@@ -215,7 +215,7 @@ function toTemplateLiteral(sourceCode, nodes) {
  * @param {SourceCode} sourceCode - Source code instance
  * @param {ASTNode[]} nodes - Component nodes that should be converted to a template literal
  * @param {Location[]} loc - start and end locations of the text range to replace
- * @returns {Function|null} - The fixer function
+ * @returns {Function|null} The fixer function
  */
 function mixedConcatenationFixer(sourceCode, nodes, [start, end]) {
     // check whether or not any node is a string literal with an octal or non-octal decimal escape sequence
