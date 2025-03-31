@@ -104,6 +104,6 @@ module.exports = {
         // reports the use of empty named import blocks.
         'import/no-empty-named-blocks': 2,
         // enforces having one empty line after the last top-level import statement or require call.
-        'import/newline-after-import': [2, { considerComments: true }],
+        'import/newline-after-import': 0, // disabling since `@lcooper/top-level-padding-lines` enforces
     },
 };
