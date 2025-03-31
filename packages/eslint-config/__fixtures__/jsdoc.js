@@ -5,7 +5,9 @@
  * @param {Object} arg1
  * @param {Array} arg2
  */
-exports.foo = (arg0, arg1, arg2) => null;
+exports.foo = (arg0, arg1, arg2) => {
+    console.log(arg0, arg1, arg2);
+};
 
 //! test[3] lints invalid @param native types
 
@@ -14,7 +16,9 @@ exports.foo = (arg0, arg1, arg2) => null;
  * @param {array} arg1
  * @param {object} arg2
  */
-exports.foo = (arg0, arg1, arg2) => null;
+exports.foo = (arg0, arg1, arg2) => {
+    console.log(arg0, arg1, arg2);
+};
 
 //! test[0] lints valid @param array types
 
@@ -23,7 +27,9 @@ exports.foo = (arg0, arg1, arg2) => null;
  * @param {(string | number)[]} arg1
  * @param {string[][]} arg2
  */
-exports.foo = (arg0, arg1, arg2) => null;
+exports.foo = (arg0, arg1, arg2) => {
+    console.log(arg0, arg1, arg2);
+};
 
 //! test[3] lints invalid @param array types
 
@@ -32,7 +38,9 @@ exports.foo = (arg0, arg1, arg2) => null;
  * @param {Array<number>} arg1
  * @param {Array<string>[]} arg2
  */
-exports.foo = (arg0, arg1, arg2) => null;
+exports.foo = (arg0, arg1, arg2) => {
+    console.log(arg0, arg1, arg2);
+};
 
 //! test[0] lints valid @param object types
 
@@ -41,7 +49,9 @@ exports.foo = (arg0, arg1, arg2) => null;
  * @param {Object<string, Array>} arg1
  * @param {{ key: string, value: number }} arg2
  */
-exports.foo = (arg0, arg1, arg2) => null;
+exports.foo = (arg0, arg1, arg2) => {
+    console.log(arg0, arg1, arg2);
+};
 
 //! test[3] lints invalid @param object types
 
@@ -50,4 +60,6 @@ exports.foo = (arg0, arg1, arg2) => null;
  * @param {Object<String, number>} arg1
  * @param {Object<string, Array<number>>} arg2
  */
-exports.foo = (arg0, arg1, arg2) => null;
+exports.foo = (arg0, arg1, arg2) => {
+    console.log(arg0, arg1, arg2);
+};

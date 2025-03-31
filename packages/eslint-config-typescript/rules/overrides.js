@@ -217,10 +217,7 @@ module.exports = {
         }],
         // disallow unused variables
         'no-unused-vars': 0,
-        '@typescript-eslint/no-unused-vars': [2, {
-            vars: 'local',
-            args: 'none',
-        }],
+        '@typescript-eslint/no-unused-vars': coreRules['no-unused-vars'],
         // disallow the use of variables before they are defined
         'no-use-before-define': 0,
         '@typescript-eslint/no-use-before-define': [2, {

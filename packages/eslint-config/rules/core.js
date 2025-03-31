@@ -186,8 +186,10 @@ module.exports = {
 
         // disallow unused variables
         'no-unused-vars': [2, {
-            vars: 'local',
-            args: 'none',
+            vars: 'all',
+            args: 'after-used',
+            caughtErrors: 'all',
+            ignoreRestSiblings: true,
         }],
         // disallow variable assignments when the value is not used (added v9.0)
         'no-useless-assignment': 2,
