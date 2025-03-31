@@ -13,6 +13,10 @@ const airbnb = {
     ...require('eslint-config-airbnb-base/rules/strict').rules,
 };
 
+// delete rules removed in eslint v9.0
+delete airbnb['valid-jsdoc'];
+delete airbnb['require-jsdoc'];
+
 module.exports = {
     plugins: {
         '@lcooper': lcooper,
@@ -66,10 +70,18 @@ module.exports = {
         'grouped-accessor-pairs': [2, 'getBeforeSet'],
         // enforce a maximum number of classes per file
         'max-classes-per-file': 0,
+        // disallow fallthrough of case statements
+        'no-fallthrough': [2, {
+            commentPattern: 'break.+omitted',
+            allowEmptyCase: true,
+            reportUnusedFallthroughComment: true, // added v9.0
+        }],
         // disallow expressions where the operation doesn't affect the value (v8.14.0)
         'no-constant-binary-expression': 2,
         // disallow function declarations that contain unsafe references inside loop statements
         'no-loop-func': 0,
+        // disallow new operators with the Symbol object (deprecated v9.0, replaced by no-new-native-nonconstructor)
+        'no-new-symbol': 0,
         // disallow new operators with Symbol and BigInt (v8.27.0)
         'no-new-native-nonconstructor': 2,
         // disallow Object constructors (deprecated v8.50.0, replaced by no-object-constructor)
@@ -98,6 +110,10 @@ module.exports = {
         // disallow empty block statements
         'no-empty': [2, {
             allowEmptyCatch: true,
+        }],
+        // disallow unnecessary boolean casts
+        'no-extra-boolean-cast': [2, {
+            enforceForInnerExpressions: true, // added v9.3
         }],
         // disallow sparse arrays
         'no-sparse-arrays': 0,
@@ -173,16 +189,23 @@ module.exports = {
             vars: 'local',
             args: 'none',
         }],
+        // disallow variable assignments when the value is not used (added v9.0)
+        'no-useless-assignment': 2,
 
         // stylistic rules
 
         // enforce linebreaks after opening and before closing array brackets
         '@stylistic/js/array-bracket-newline': [2, 'consistent'],
+        // require trailing commas in multiline object and array literals
+        '@stylistic/js/comma-dangle': [2, 'always-multiline'],
         // require or disallow newline at the end of files
         '@stylistic/js/eol-last': [2, 'never'],
         // enforce consistent indentation
         '@stylistic/js/indent': [2, 4, {
             SwitchCase: 1,
+            flatTernaryExpressions: true,
+            offsetTernaryExpressions: true,
+            offsetTernaryExpressionsOffsetCallExpressions: true,
         }],
         // enforce a maximum line length
         '@stylistic/js/max-len': [2, 120, 4, {
@@ -221,9 +244,17 @@ module.exports = {
                 ExportDeclaration: { ...ExportDeclaration, minProperties: 7 },
             }];
         })(),
+        // disallow padding within blocks except for at the start of classes
+        '@stylistic/js/padded-blocks': [2, {
+            blocks: 'never',
+            classes: 'start',
+            switches: 'never',
+        }, { allowSingleLineBlocks: true }],
 
         // stylistic plus rules
 
+        // require or line breaks inside of non-empty block statements
+        '@stylistic/plus/curly-newline': [2, { minElements: 1 }],
         // indentation for binary operators in multiline expressions
         '@stylistic/plus/indent-binary-ops': [2, 4],
         // enforces consistent spacing inside TypeScript type generics.

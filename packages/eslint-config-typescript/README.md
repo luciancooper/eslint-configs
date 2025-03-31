@@ -22,7 +22,7 @@ yarn add -D eslint @lcooper/eslint-config-typescript
 
 Additionally, [`typescript`](https://www.npmjs.com/package/typescript) must be installed.
 
-> Note: This project requires Eslint version `>=8.56`, NodeJS version `^18.18.0 || >=20.0.0`, and Typescript version `>=4.7.4`.
+> Note: This project requires Eslint version `>=9.3`, NodeJS version `^18.18.0 || ^20.9.0 || >=21.1.0`, and Typescript version `>=4.8.4 <5.9.0`.
 
 ## Usage
 

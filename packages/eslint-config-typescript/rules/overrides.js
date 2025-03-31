@@ -24,11 +24,11 @@ module.exports = {
         // disallow enums from having both number and string members (requires type info) (v5.53.0)
         '@typescript-eslint/no-mixed-enums': 2,
         // disallows invocation of `require()`
-        '@typescript-eslint/no-require-imports': 2,
+        '@typescript-eslint/no-require-imports': [2, {
+            allowAsImport: true, // added v8.0
+        }],
         // disallow comparing an enum value with a non-enum value (requires type info) (v5.58.0)
         '@typescript-eslint/no-unsafe-enum-comparison': 2,
-        // disallows the use of require statements except in import statements
-        '@typescript-eslint/no-var-requires': 2,
         // when adding two variables, operands must both be of type number or of type string (requires type info)
         '@typescript-eslint/restrict-plus-operands': [2, {
             skipCompoundAssignments: false,
@@ -110,10 +110,14 @@ module.exports = {
         '@typescript-eslint/no-implied-eval': 2,
         // disallow throwing literals as exceptions (requires type info)
         'no-throw-literal': 0,
-        '@typescript-eslint/no-throw-literal': 2,
+        '@typescript-eslint/only-throw-error': 2, // renamed from `no-throw-literal` in v7.4
         // require using Error objects as Promise rejection reasons (requires type info) (v6.19.0)
         'prefer-promise-reject-errors': 0,
-        '@typescript-eslint/prefer-promise-reject-errors': [2, { allowEmptyReject: true }],
+        '@typescript-eslint/prefer-promise-reject-errors': [2, {
+            allowEmptyReject: true,
+            allowThrowingAny: true, // added v8.17
+            allowThrowingUnknown: true, // added v8.17
+        }],
         // disallow async functions which have no `await` expression (requires type info)
         '@typescript-eslint/require-await': 0,
         // enforces consistent returning of awaited values (requires type info)
@@ -157,9 +161,23 @@ module.exports = {
         // disallow generic `Array` constructors
         'no-array-constructor': 0,
         '@typescript-eslint/no-array-constructor': 2,
+        // enforce consistent line breaks after opening and before closing braces
+        '@stylistic/js/object-curly-newline': 0,
+        '@stylistic/ts/object-curly-newline': (() => {
+            // modifiy airbnb's base config to allow for 6 properties in a line for import / export statements
+            const [level, options] = coreRules['@stylistic/js/object-curly-newline'];
+            return [level, {
+                ...options,
+                TSInterfaceBody: { minProperties: 4, multiline: true, consistent: true },
+                TSTypeLiteral: { minProperties: 4, multiline: true, consistent: true },
+            }];
+        })(),
         // enforce consistent spacing inside braces
         '@stylistic/js/object-curly-spacing': 0,
         '@stylistic/ts/object-curly-spacing': [2, 'always'],
+        // enforce same line or multiple lines on object properties
+        '@stylistic/js/object-property-newline': 0,
+        '@stylistic/ts/object-property-newline': [2, { allowAllPropertiesOnSameLine: true }],
         // require or disallow padding lines between statements
         '@stylistic/js/padding-line-between-statements': 0,
         '@stylistic/ts/padding-line-between-statements': 0,
@@ -234,9 +252,6 @@ module.exports = {
         // disallow unnecessary semicolons
         '@stylistic/js/no-extra-semi': 0,
         '@stylistic/ts/no-extra-semi': 2,
-        // disallow literal numbers that lose precision (req eslint v7.1)
-        'no-loss-of-precision': 0,
-        '@typescript-eslint/no-loss-of-precision': 2,
 
         // tsdoc plugin rules
         'tsdoc/syntax': 2,

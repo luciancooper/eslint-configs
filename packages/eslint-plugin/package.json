@@ -12,7 +12,7 @@
     "lib"
   ],
   "engines": {
-    "node": "^18.18.0 || >=20.0.0"
+    "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   },
   "scripts": {
     "test": "jest",
@@ -33,6 +33,6 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-plugin#readme",
   "peerDependencies": {
-    "eslint": ">=8.56"
+    "eslint": ">=9.0"
   }
 }

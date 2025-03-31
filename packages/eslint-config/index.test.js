@@ -1,8 +1,8 @@
-const { FlatESLint } = require('eslint/use-at-your-own-risk'),
+const { ESLint } = require('eslint'),
     baseConfig = require('./cjs');
 
 // create linter with config
-const linter = new FlatESLint({
+const linter = new ESLint({
     baseConfig,
     overrideConfigFile: true,
 });
@@ -27,7 +27,7 @@ describe('rules', () => {
     let config;
 
     beforeAll(async () => {
-        config = await new FlatESLint({
+        config = await new ESLint({
             baseConfig,
             overrideConfigFile: true,
             allowInlineConfig: false,

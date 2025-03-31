@@ -1,7 +1,7 @@
-const { FlatESLint } = require('eslint/use-at-your-own-risk'),
+const { ESLint } = require('eslint'),
     baseConfig = require('.');
 
-const linter = new FlatESLint({
+const linter = new ESLint({
     baseConfig,
     overrideConfigFile: true,
     allowInlineConfig: false,

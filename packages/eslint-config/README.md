@@ -20,7 +20,7 @@ npm install -D eslint @lcooper/eslint-config
 yarn add -D eslint @lcooper/eslint-config
 ```
 
-> Note: This project requires Eslint version `>=8.56`, and NodeJS version `^18.18.0 || >=20.0.0`.
+> Note: This project requires Eslint version `>=9.3`, and NodeJS version `^18.18.0 || ^20.9.0 || >=21.1.0`.
 
 ## Usage
 

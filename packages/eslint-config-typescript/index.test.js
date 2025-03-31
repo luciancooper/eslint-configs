@@ -1,4 +1,4 @@
-const { FlatESLint } = require('eslint/use-at-your-own-risk'),
+const { ESLint } = require('eslint'),
     tseslint = require('typescript-eslint'),
     sts = require('@stylistic/eslint-plugin-ts'),
     baseConfig = require('./base');
@@ -9,7 +9,7 @@ describe('plugins', () => {
 
     beforeAll(async () => {
         // calculate configs for `ts` and `js` file paths
-        const eslint = new FlatESLint({ baseConfig, overrideConfigFile: true, allowInlineConfig: false });
+        const eslint = new ESLint({ baseConfig, overrideConfigFile: true, allowInlineConfig: false });
         tsConfig = await eslint.calculateConfigForFile('index.ts');
         jsConfig = await eslint.calculateConfigForFile('index.js');
     });

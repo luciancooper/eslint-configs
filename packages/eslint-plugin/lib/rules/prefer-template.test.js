@@ -1,8 +1,8 @@
 /* eslint-disable no-template-curly-in-string */
-const { FlatRuleTester } = require('eslint/use-at-your-own-risk'),
+const { RuleTester } = require('eslint'),
     rule = require('./prefer-template');
 
-const ruleTester = new FlatRuleTester({
+const ruleTester = new RuleTester({
     languageOptions: {
         sourceType: 'commonjs',
     },
@@ -72,16 +72,16 @@ ruleTester.run('prefer-template', rule, {
         },
         {
             code: "var string = 'pixels: '\n"
-            + "  + (number + 1) + 'px';",
+                + "  + (number + 1) + 'px';",
             output: "var string = 'pixels: '\n"
-            + '  + `${number + 1  }px`;',
+                + '  + `${number + 1  }px`;',
             errors: [{ messageId: 'unexpectedStringConcatenation' }],
         },
         {
             code: "var string = 'pixels: ' + (number + 1)\n"
-            + "  + 'px';",
+                + "  + 'px';",
             output: 'var string = `pixels: ${  number + 1}`\n'
-            + "  + 'px';",
+                + "  + 'px';",
             errors: [{ messageId: 'unexpectedStringConcatenation' }],
         },
         {

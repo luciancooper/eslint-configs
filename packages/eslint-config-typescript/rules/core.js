@@ -21,13 +21,6 @@ module.exports = {
             'ts-nocheck': 'allow-with-description',
             'ts-check': false,
         }],
-        // bans specific types from being used
-        '@typescript-eslint/ban-types': [2, {
-            types: {
-                '{}': false,
-            },
-            extendDefaults: true,
-        }],
         // ensures that literals on classes are exposed in a consistent style
         '@typescript-eslint/class-literal-property-style': [2, 'getters'],
         // enforce specifying generic type arguments on the constructor name of a constructor call
@@ -35,7 +28,8 @@ module.exports = {
         // enforces consistent usage of type assertions
         '@typescript-eslint/consistent-type-assertions': [2, {
             assertionStyle: 'as',
-            objectLiteralTypeAssertions: 'allow-as-parameter', // dont really get this
+            objectLiteralTypeAssertions: 'allow-as-parameter',
+            arrayLiteralTypeAssertions: 'allow-as-parameter', // added v8.20
         }],
         // enforces using a particular method signature syntax.
         '@typescript-eslint/method-signature-style': 2,
@@ -43,9 +37,9 @@ module.exports = {
         '@typescript-eslint/no-duplicate-enum-values': 0,
         // disallow the delete operator with computed key expressions
         '@typescript-eslint/no-dynamic-delete': 2,
-        // disallow the declaration of empty interfaces
-        '@typescript-eslint/no-empty-interface': [2, {
-            allowSingleExtends: false, // default: false
+        // disallow accidentally using the empty object type `{}` (added v8.0)
+        '@typescript-eslint/no-empty-object-type': [2, {
+            allowInterfaces: 'with-single-extends',
         }],
         // disallow usage of the `any` type
         '@typescript-eslint/no-explicit-any': 0, // too strict, disabling
@@ -67,18 +61,22 @@ module.exports = {
         '@typescript-eslint/no-namespace': 2,
         // disallows using a non-null assertion in the left operand of the nullish coalescing operator
         '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 2,
-        // disallows invocation of `require()`
-        '@typescript-eslint/no-require-imports': 0, // annoying in js
+        // disallow certain types (added v8.0)
+        '@typescript-eslint/no-restricted-types': 0,
         // disallow aliasing `this`
         '@typescript-eslint/no-this-alias': [2, {
             allowDestructuring: true,
         }],
+        // disallow unnecessary assignment of constructor property parameter (added v7.16)
+        '@typescript-eslint/no-unnecessary-parameter-property-assignment': 2,
         // disallows unnecessary constraints on generic types
         '@typescript-eslint/no-unnecessary-type-constraint': 2,
+        // disallow using the unsafe built-in Function type (added v8.0)
+        '@typescript-eslint/no-unsafe-function-type': 2,
         // disallow empty exports that don't change anything in a module file
         '@typescript-eslint/no-useless-empty-export': 0,
-        // disallows the use of require statements except in import statements
-        '@typescript-eslint/no-var-requires': 0, // annoying in js
+        // disallow using confusing built-in primitive class wrappers (added v8.0)
+        '@typescript-eslint/no-wrapper-object-types': 2,
         // require or disallow parameter properties in class constructors
         '@typescript-eslint/parameter-properties': 0,
         // prefer usage of `as const` over literal type
@@ -93,8 +91,6 @@ module.exports = {
         '@typescript-eslint/prefer-namespace-keyword': 2,
         // prefer using concise optional chain expressions instead of chained logical ands
         '@typescript-eslint/prefer-optional-chain': 2,
-        // recommends using `@ts-expect-error` over `@ts-ignore`
-        '@typescript-eslint/prefer-ts-expect-error': 2,
         // sets preference for ES6-style import declarations over triple slash directives
         '@typescript-eslint/triple-slash-reference': [2, {
             path: 'never',
@@ -112,6 +108,8 @@ module.exports = {
             ignoreArrowShorthand: false,
             ignoreVoidOperator: true,
         }],
+        // disallow using code marked as @deprecated (requires type info) (v8.2)
+        '@typescript-eslint/no-deprecated': 0,
         // requires Promise-like values to be handled appropriately (requires type info)
         '@typescript-eslint/no-floating-promises': 0,
         // disallow iterating over array indexes with a for-in loop (requires type info)
@@ -122,17 +120,23 @@ module.exports = {
             checksVoidReturn: false,
         }],
         // prevents conditionals where the type is always truthy or always falsy (requires type info)
-        '@typescript-eslint/no-unnecessary-condition': 0,
+        '@typescript-eslint/no-unnecessary-condition': [2, {
+            allowConstantLoopConditions: 'only-allowed-literals', // added v8.24
+        }],
         // warns when a namespace qualifier is unnecessary (requires type info)
         '@typescript-eslint/no-unnecessary-qualifier': 2,
         // enforces that type arguments will not be used if not required (requires type info)
         '@typescript-eslint/no-unnecessary-type-arguments': 2,
         // warns if a type assertion does not change the type of an expression (requires type info)
         '@typescript-eslint/no-unnecessary-type-assertion': 2,
+        // disallow type parameters that aren't used multiple times (requires type info) (added v8.0)
+        '@typescript-eslint/no-unnecessary-type-parameters': 0,
+        // disallow type assertions that narrow a type (requires type info) (added v8.15.0)
+        '@typescript-eslint/no-unsafe-type-assertion': 0, // too strict
         // require unary negation to take a number (requires type info) (v6.11.0)
         '@typescript-eslint/no-unsafe-unary-minus': 2,
-        // disallow unnecessary template literals (requires type info) (v6.15.0)
-        '@typescript-eslint/no-useless-template-literals': 2,
+        // disallow unnecessary template literals (renamed from `no-useless-template-literals` in 7.12)
+        '@typescript-eslint/no-unnecessary-template-expression': 2,
         // prefers a non-null assertion over explicit type cast when possible (requires type info)
         '@typescript-eslint/non-nullable-type-assertion-style': 2,
         // enforce the use of find() when looking for a single result (requires type info) (v6.21.0)
@@ -153,6 +157,8 @@ module.exports = {
         '@typescript-eslint/prefer-string-starts-ends-with': 2,
         // requires any function or method that returns a Promise to be marked async (requires type info)
         '@typescript-eslint/promise-function-async': 0,
+        // enforce that get() & set() types correspond (requires type info) (added v8.15)
+        '@typescript-eslint/related-getter-setter-pairs': 2,
         // requires `Array#sort` calls to always provide a `compareFunction` (requires type info)
         '@typescript-eslint/require-array-sort-compare': 0,
         // when adding two variables, operands must both be of type number or of type string (requires type info)
@@ -166,8 +172,14 @@ module.exports = {
         }],
         // restricts the types allowed in boolean expressions (requires type info)
         '@typescript-eslint/strict-boolean-expressions': 0,
+        // disable base `default-case` in favor of `switch-exhaustiveness-check`
+        'default-case': 0,
         // exhaustiveness checking in switch with union type (requires type info)
-        '@typescript-eslint/switch-exhaustiveness-check': 2,
+        '@typescript-eslint/switch-exhaustiveness-check': [2, {
+            considerDefaultExhaustiveForUnions: true, // added v8.12
+            requireDefaultForNonUnion: true,
+            defaultCaseCommentPattern: '^no default', // added v8.18
+        }],
         // enforces unbound methods are called with their expected scope (requires type info)
         '@typescript-eslint/unbound-method': 0,
 
@@ -236,8 +248,6 @@ module.exports = {
         }],
         // prefer a ‘for-of’ loop wherever possible
         '@typescript-eslint/prefer-for-of': 0,
-        // enforce constituents of a type union/intersection to be sorted alphabetically
-        '@typescript-eslint/sort-type-constituents': 0, // not enabling - seems excessive
         // require consistent spacing around type annotations
         '@stylistic/ts/type-annotation-spacing': 2,
         // requires type annotations to exist
@@ -248,7 +258,9 @@ module.exports = {
         // typescript plugin rules - variables
 
         // warns if any two overloads could be unified into one
-        '@typescript-eslint/unified-signatures': 2,
+        '@typescript-eslint/unified-signatures': [2, {
+            ignoreOverloadsWithDifferentJSDoc: true, // added v8.26
+        }],
         // enforces naming conventions for everything across a codebase (requires type info)
         '@typescript-eslint/naming-convention': 0,
 
@@ -256,6 +268,10 @@ module.exports = {
 
         // disallows using a non-null assertion after an optional chain expression
         '@typescript-eslint/no-non-null-asserted-optional-chain': 2,
+        // disallow using the spread operator when it might cause unexpected behavior (requires type info) (added v8.20)
+        '@typescript-eslint/no-misused-spread': [2, {
+            allow: [{ from: 'lib', name: 'string' }], // allow spread syntax on strings
+        }],
         // disallow unsafe declaration merging
         '@typescript-eslint/no-unsafe-declaration-merging': 2,
         // disallows calling an function with an any type value (requires type info)

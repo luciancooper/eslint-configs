@@ -80,12 +80,12 @@ expect.extend({
             message: pass
                 ? () => 'configured plugins matched expected plugins'
                 : () => (
-                    `configured plugins do not match expected plugins:\n${
-                        plugins.map((p) => (
-                            matched.includes(p) ? chalk.green(`   ${p}`) : chalk.red(` - ${p}`)
-                        )).join('\n')
-                    }${chalk.yellow(configured.map((p) => `\n + ${p}`).join(''))}`
-                ),
+                        `configured plugins do not match expected plugins:\n${
+                            plugins.map((p) => (
+                                matched.includes(p) ? chalk.green(`   ${p}`) : chalk.red(` - ${p}`)
+                            )).join('\n')
+                        }${chalk.yellow(configured.map((p) => `\n + ${p}`).join(''))}`
+                    ),
             pass,
         };
     },

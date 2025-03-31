@@ -1,7 +1,7 @@
-const { FlatRuleTester } = require('eslint/use-at-your-own-risk'),
+const { RuleTester } = require('eslint'),
     rule = require('./global-require');
 
-const ruleTester = new FlatRuleTester({
+const ruleTester = new RuleTester({
     languageOptions: {
         sourceType: 'commonjs',
     },
