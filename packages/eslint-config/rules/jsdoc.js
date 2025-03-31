@@ -73,6 +73,11 @@ module.exports = {
     rules: {
         // Checks for presence of jsdoc comments, on class declarations as well as functions
         'jsdoc/require-jsdoc': 0,
+        // Converts single line or non-JSDoc multiline comments into JSDoc comments (added v48.6)
+        'jsdoc/convert-to-jsdoc-comments': [2, {
+            lineOrBlockStyle: 'block',
+            enforceJsdocLineStyle: 'single',
+        }],
         // report when certain comment structures are always expected.
         'jsdoc/no-missing-syntax': 0,
         // reports when certain comment structures are present.
@@ -109,6 +114,10 @@ module.exports = {
         'jsdoc/no-blank-blocks': 2,
         // controls how and whether jsdoc blocks can be expressed as single or multiple line blocks.
         'jsdoc/multiline-blocks': 2,
+        // Enforces a newline before JSDoc comment blocks (added v49.0)
+        'jsdoc/lines-before-block': [2, {
+            ignoreSameLine: false,
+        }],
         // Reports invalid tag names
         'jsdoc/check-tag-names': 1,
         // Checks that @access tag values are one of 'package', 'private', 'protected', or 'public'
@@ -152,13 +161,18 @@ module.exports = {
         // @description - enforces a regexp on description values
         'jsdoc/match-description': 0,
         // @param - requires all function params to be documented
-        'jsdoc/require-param': 0,
+        'jsdoc/require-param': [2, {
+            unnamedRootBase: ['arg'],
+            checkDestructured: false,
+            ignoreWhenAllParamsMissing: true, // added v50.3
+        }],
         // @param - do not allow default values
         'jsdoc/no-defaults': 0,
         // @param - Ensures that parameter names match those in the function declaration.
         'jsdoc/check-param-names': [2, {
+            enableFixer: true,
             allowExtraTrailingParamDocs: false,
-            checkDestructured: true,
+            checkDestructured: false,
         }],
         // @param - Requires that all function parameters have name
         'jsdoc/require-param-name': 2,
@@ -199,5 +213,9 @@ module.exports = {
         'jsdoc/require-property-name': 2,
         // @property - each @property tag have a description.
         'jsdoc/require-property-description': 0,
+        // @template - each @template name must be used (added v48.8)
+        'jsdoc/check-template-names': 1,
+        // @template - Requires @template tags for any detected type parameters (added v48.7)
+        'jsdoc/require-template': 0,
     },
 };
