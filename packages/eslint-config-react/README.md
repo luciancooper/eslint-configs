@@ -22,7 +22,7 @@ yarn add -D eslint @lcooper/eslint-config-react
 
 This config is meant to be used in addition to the base [`@lcooper/eslint-config`](../eslint-config) config, so that should be installed as well.
 
-> Note: This project requires Eslint version `>=8.56`, and NodeJS version `^18.18.0 || >=20.0.0`.
+> Note: This project requires Eslint version `>=9.7`, and NodeJS version `^18.18.0 || ^20.9.0 || >=21.1.0`.
 
 ## Usage
 

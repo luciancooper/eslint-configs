@@ -58,6 +58,8 @@ module.exports = {
         'react/forbid-foreign-prop-types': 0,
         // Forbid certain propTypes
         'react/forbid-prop-types': 0,
+        // Require that all forwardRef components include a ref parameter (added v7.36)
+        'react/forward-ref-uses-ref': 2,
         // Standardize the way function component get defined 🔧
         'react/function-component-definition': [2, {
             namedComponents: ['function-declaration', 'arrow-function'],
@@ -260,7 +262,7 @@ module.exports = {
         // Comments inside children section of tag should be placed inside braces
         'react/jsx-no-comment-textnodes': 2,
         // Prevents JSX context provider values from taking values that will cause needless rerenders (v7.22.0)
-        'react/jsx-no-constructed-context-values': 0,
+        'react/jsx-no-constructed-context-values': 2,
         // Enforce no duplicate props
         'react/jsx-no-duplicate-props': [2, {
             ignoreCase: true,
@@ -290,6 +292,8 @@ module.exports = {
         }],
         // Disallow multiple spaces between inline JSX props 🔧
         'react/jsx-props-no-multi-spaces': 2,
+        // Disallow JSX prop spreading the same identifier multiple times (added v7.35)
+        'react/jsx-props-no-spread-multi': 2,
         // Prevent JSX prop spreading
         'react/jsx-props-no-spreading': 0,
         // Enforce default props alphabetical sorting
