@@ -73,6 +73,6 @@ describe('`jest` plugin', () => {
     });
 
     test('includes all `jest/` plugin rules', () => {
-        expect(config).toConfigureAllPluginRules('jest');
+        expect(config).toConfigureAllPluginRules('jest', ['padding-around-all']);
     });
 });

@@ -61,6 +61,8 @@ module.exports = {
         'jest/no-jasmine-globals': 2,
         // Disallow using exports in files containing tests
         'jest/no-export': 2,
+        // Enforce explicit imports from `@jest/globals` (added v28.1)
+        'jest/prefer-importing-jest-globals': 0,
         // Prefer using .each rather than manual loops
         'jest/prefer-each': 2,
         // Suggest using `test.todo`
@@ -75,14 +77,29 @@ module.exports = {
         'jest/no-disabled-tests': 1,
         // Disallow focused tests
         'jest/no-focused-tests': 1,
-        // Disallow conditional logic
-        'jest/no-if': 0,
         // Require test cases and hooks to be inside a describe block
         'jest/require-top-level-describe': 0,
         // Suggest using `expect.assertions()` OR `expect.hasAssertions()`
         'jest/prefer-expect-assertions': 0,
         // Prefer await `expect(...).resolves` over `expect(await ...)` syntax
         'jest/prefer-expect-resolves': 2,
+
+        // Padding Rules (added v28.8)
+
+        // Enforce padding around `afterAll` blocks
+        'jest/padding-around-after-all-blocks': 2,
+        // Enforce padding around `afterEach` blocks
+        'jest/padding-around-after-each-blocks': 2,
+        // Enforce padding around `beforeAll` blocks
+        'jest/padding-around-before-all-blocks': 2,
+        // Enforce padding around `beforeEach` blocks
+        'jest/padding-around-before-each-blocks': 2,
+        // Enforce padding around `describe` blocks
+        'jest/padding-around-describe-blocks': 2,
+        // Enforce padding around `test` blocks
+        'jest/padding-around-test-blocks': 2,
+        // Enforce padding around `expect` groups
+        'jest/padding-around-expect-groups': 0,
 
         // Test Names
 
@@ -123,6 +140,8 @@ module.exports = {
 
         // Disallow manually importing from __mocks__
         'jest/no-mocks-import': 2,
+        // Prefer `jest.mocked()` over `fn as jest.Mock` (added v28.6)
+        'jest/prefer-jest-mocked': 2,
         // Prefer mock resolved/rejected shorthands for promises
         'jest/prefer-mock-promise-shorthand': 2,
         // Suggest using `jest.spyOn()`
