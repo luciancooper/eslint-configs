@@ -1,6 +1,6 @@
 {
   "name": "@lcooper/eslint-config-typescript",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Shareable ESLint config for Typescript projects",
   "keywords": [
     "eslint",
@@ -47,7 +47,7 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config-typescript#readme",
   "dependencies": {
-    "@lcooper/eslint-config": "^3.0.0",
+    "@lcooper/eslint-config": "^3.1.0",
     "@stylistic/eslint-plugin-ts": "^3.1.0",
     "eslint-import-resolver-typescript": "^4.3.1",
     "eslint-plugin-tsdoc": "^0.4.0",

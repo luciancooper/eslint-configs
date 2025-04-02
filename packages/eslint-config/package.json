@@ -1,6 +1,6 @@
 {
   "name": "@lcooper/eslint-config",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Shareable config for ESLint",
   "exports": {
     ".": {
@@ -48,7 +48,7 @@
   },
   "homepage": "https://github.com/luciancooper/eslint-configs/tree/main/packages/eslint-config#readme",
   "dependencies": {
-    "@lcooper/eslint-plugin": "^1.4.0",
+    "@lcooper/eslint-plugin": "^1.5.0",
     "@stylistic/eslint-plugin-js": "^3.1.0",
     "@stylistic/eslint-plugin-plus": "^3.1.0",
     "eslint-config-airbnb-base": "^15.0.0",
