@@ -2,6 +2,7 @@ const globals = require('globals');
 
 exports.node = {
     cjs: {
+        name: 'lcooper/envs/node-cjs',
         languageOptions: {
             sourceType: 'commonjs',
             globals: {
@@ -12,6 +13,7 @@ exports.node = {
         },
     },
     esm: {
+        name: 'lcooper/envs/node-esm',
         languageOptions: {
             sourceType: 'module',
             globals: {
@@ -26,6 +28,7 @@ exports.node = {
 };
 
 exports.browser = {
+    name: 'lcooper/envs/browser',
     languageOptions: {
         globals: {
             ...globals.browser,

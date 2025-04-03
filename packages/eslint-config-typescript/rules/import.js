@@ -1,4 +1,5 @@
 module.exports = {
+    name: 'lcooper/typescript/import',
     settings: {
         'import/parsers': {
             // from 'plugin:import/typescript' config

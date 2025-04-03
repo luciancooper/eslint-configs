@@ -11,6 +11,7 @@ const hasAutomaticRuntime = (() => {
 })();
 
 module.exports = {
+    name: 'lcooper/react',
     files: ['**/*.{js,mjs,jsx}'],
     plugins: {
         react,

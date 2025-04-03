@@ -11,6 +11,7 @@ module.exports = {
     configs: {
         all: allConfig,
         'all/flat': {
+            name: 'lcooper/plugin/all',
             plugins: { '@lcooper': { rules } },
             rules: allConfig.rules,
         },

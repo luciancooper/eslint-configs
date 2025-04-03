@@ -3,6 +3,7 @@ const plugin = require('eslint-plugin-jest');
 const { globals } = plugin.environments.globals;
 
 module.exports = {
+    name: 'lcooper/jest',
     files: [
         '**/setupTests.?([cm])[jt]s?(x)',
         '**/jest.setup.?([cm])[jt]s?(x)',

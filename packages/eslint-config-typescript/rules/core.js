@@ -2,6 +2,7 @@ const tseslint = require('typescript-eslint'),
     sts = require('@stylistic/eslint-plugin-ts');
 
 module.exports = {
+    name: 'lcooper/typescript/core',
     languageOptions: {
         parser: tseslint.parser,
     },

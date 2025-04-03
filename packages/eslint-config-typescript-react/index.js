@@ -2,6 +2,7 @@ const base = require('@lcooper/eslint-config-react');
 
 module.exports = {
     ...base,
+    name: 'lcooper/typescript/react',
     files: ['**/*.{js,mjs,jsx,ts,mts,tsx}'],
     rules: {
         ...base.rules,

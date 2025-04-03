@@ -1,6 +1,7 @@
 const jsdoc = require('eslint-plugin-jsdoc');
 
 module.exports = {
+    name: 'lcooper/jsdoc',
     // only apply jsdoc rules to js files
     files: ['**/*.{js,mjs,cjs,jsx}'],
     plugins: {

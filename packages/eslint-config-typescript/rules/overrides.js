@@ -2,6 +2,7 @@ const tsdoc = require('eslint-plugin-tsdoc'),
     { rules: coreRules } = require('@lcooper/eslint-config/rules/core');
 
 module.exports = {
+    name: 'lcooper/typescript/overrides',
     files: ['**/*.{ts,tsx,mts,cts}'],
     plugins: {
         tsdoc,

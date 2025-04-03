@@ -18,6 +18,7 @@ delete airbnb['valid-jsdoc'];
 delete airbnb['require-jsdoc'];
 
 module.exports = {
+    name: 'lcooper/core',
     plugins: {
         '@lcooper': lcooper,
         '@stylistic/js': sjs,

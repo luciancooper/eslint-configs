@@ -2,6 +2,7 @@ const plugin = require('eslint-plugin-import'),
     { rules: airbnb } = require('eslint-config-airbnb-base/rules/imports');
 
 module.exports = {
+    name: 'lcooper/import',
     plugins: {
         import: plugin,
     },
