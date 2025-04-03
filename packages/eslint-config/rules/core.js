@@ -209,6 +209,8 @@ module.exports = {
             offsetTernaryExpressions: true,
             offsetTernaryExpressionsOffsetCallExpressions: true,
         }],
+        // enforce the consistent use of single quotes in JSX attributes
+        '@stylistic/js/jsx-quotes': [2, 'prefer-single'],
         // enforce a maximum line length
         '@stylistic/js/max-len': [2, 120, 4, {
             ignoreUrls: true,
