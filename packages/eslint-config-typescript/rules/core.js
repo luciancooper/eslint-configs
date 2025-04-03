@@ -121,9 +121,7 @@ module.exports = {
             checksVoidReturn: false,
         }],
         // prevents conditionals where the type is always truthy or always falsy (requires type info)
-        '@typescript-eslint/no-unnecessary-condition': [2, {
-            allowConstantLoopConditions: 'only-allowed-literals', // added v8.24
-        }],
+        '@typescript-eslint/no-unnecessary-condition': 0, // disabling because its too restrictive & unnecessary
         // warns when a namespace qualifier is unnecessary (requires type info)
         '@typescript-eslint/no-unnecessary-qualifier': 2,
         // enforces that type arguments will not be used if not required (requires type info)
