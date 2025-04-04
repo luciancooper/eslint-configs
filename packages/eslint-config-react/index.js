@@ -143,7 +143,7 @@ module.exports = {
         'react/prefer-stateless-function': [2, {
             ignorePureComponents: true,
         }],
-        // Prevent missing props validation in a React component definition
+        // Prevent missing propTypes validation if a propTypes block is declared
         'react/prop-types': [2, {
             skipUndeclared: true,
         }],
@@ -152,6 +152,7 @@ module.exports = {
         // Enforce a defaultProps definition for every prop that is not a required prop.
         'react/require-default-props': [2, {
             forbidDefaultForRequired: true,
+            functions: 'defaultArguments', // defaultProps on fc have been deprecated
         }],
         // Enforce React components to have a shouldComponentUpdate method
         'react/require-optimization': 0,
@@ -294,8 +295,6 @@ module.exports = {
         'react/jsx-props-no-spread-multi': 2,
         // Prevent JSX prop spreading
         'react/jsx-props-no-spreading': 0,
-        // Enforce default props alphabetical sorting
-        'react/jsx-sort-default-props': 0,
         // Enforce props alphabetical sorting 🔧
         'react/jsx-sort-props': [1, {
             callbacksLast: true,
@@ -305,8 +304,6 @@ module.exports = {
             noSortAlphabetically: true,
             reservedFirst: true,
         }],
-        // (DEPRECATED) Validate spacing before closing bracket in JSX 🔧
-        'react/jsx-space-before-closing': 0,
         // Validate whitespace in and around the JSX opening and closing brackets 🔧
         'react/jsx-tag-spacing': [2, {
             closingSlash: 'never',
