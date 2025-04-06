@@ -1,6 +1,6 @@
 {
   "name": "@lcooper/eslint-config-jest",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Shareable ESLint config for Jest tests",
   "main": "index.js",
   "types": "index.d.ts",
