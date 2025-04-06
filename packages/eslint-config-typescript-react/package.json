@@ -9,15 +9,18 @@
     "react"
   ],
   "main": "index.js",
+  "types": "index.d.ts",
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "engines": {
     "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:types": "attw --pack"
   },
   "publishConfig": {
     "access": "public"

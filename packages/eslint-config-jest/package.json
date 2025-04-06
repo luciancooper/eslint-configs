@@ -3,15 +3,18 @@
   "version": "2.1.0",
   "description": "Shareable ESLint config for Jest tests",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:types": "attw --pack"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "index.d.ts"
   ],
   "engines": {
     "node": "^18.18.0 || ^20.9.0 || >=21.1.0"

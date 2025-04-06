@@ -2,22 +2,74 @@
   "name": "@lcooper/eslint-config",
   "version": "3.1.0",
   "description": "Shareable config for ESLint",
+  "main": "./cjs.js",
+  "types": "./types/configs.d.ts",
   "exports": {
     ".": {
+      "types": "./types/configs.d.ts",
       "import": "./esm.js",
       "require": "./cjs.js",
       "default": "./base.js"
     },
-    "./base": "./base.js",
-    "./envs": "./envs.js",
-    "./cjs": "./cjs.js",
-    "./esm": "./esm.js",
-    "./rules/*": "./rules/*.js",
+    "./base": {
+      "types": "./types/configs.d.ts",
+      "default": "./base.js"
+    },
+    "./cjs": {
+      "types": "./types/configs.d.ts",
+      "default": "./cjs.js"
+    },
+    "./esm": {
+      "types": "./types/configs.d.ts",
+      "default": "./esm.js"
+    },
+    "./envs": {
+      "types": "./types/envs.d.ts",
+      "default": "./envs.js"
+    },
+    "./rules/core": {
+      "types": "./types/config.d.ts",
+      "default": "./rules/core.js"
+    },
+    "./rules/import": {
+      "types": "./types/config.d.ts",
+      "default": "./rules/import.js"
+    },
+    "./rules/jsdoc": {
+      "types": "./types/config.d.ts",
+      "default": "./rules/jsdoc.js"
+    },
     "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "base": [
+        "./types/configs.d.ts"
+      ],
+      "cjs": [
+        "./types/configs.d.ts"
+      ],
+      "esm": [
+        "./types/configs.d.ts"
+      ],
+      "envs": [
+        "./types/envs.d.ts"
+      ],
+      "rules/core": [
+        "./types/config.d.ts"
+      ],
+      "rules/import": [
+        "./types/config.d.ts"
+      ],
+      "rules/jsdoc": [
+        "./types/config.d.ts"
+      ]
+    }
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:types": "attw --pack"
   },
   "publishConfig": {
     "access": "public"
@@ -27,7 +79,8 @@
     "cjs.js",
     "esm.js",
     "envs.js",
-    "rules"
+    "rules",
+    "types"
   ],
   "engines": {
     "node": "^18.18.0 || ^20.9.0 || >=21.1.0"

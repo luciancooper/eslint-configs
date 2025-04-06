@@ -7,6 +7,7 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
+    "lint:types": "lerna run lint:types",
     "preversion": "yarn test",
     "version": "lerna version",
     "publish": "lerna publish from-git"
@@ -44,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.4",
     "@commitlint/cli": "^19.2.1",
     "@lcooper/commitlint-config": "^2.0.0",
     "chalk": "^4.1.1",

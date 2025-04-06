@@ -8,6 +8,7 @@
     "eslint-plugin"
   ],
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib"
   ],
@@ -16,7 +17,8 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:types": "attw --pack"
   },
   "publishConfig": {
     "access": "public"

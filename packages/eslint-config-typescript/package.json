@@ -7,30 +7,77 @@
     "eslintconfig",
     "typescript"
   ],
+  "main": "./cjs.js",
+  "types": "./types/configs.d.ts",
   "exports": {
     ".": {
+      "types": "./types/configs.d.ts",
       "import": "./esm.js",
       "require": "./cjs.js",
       "default": "./base.js"
     },
-    "./base": "./base.js",
-    "./cjs": "./cjs.js",
-    "./esm": "./esm.js",
-    "./rules/*": "./rules/*.js",
+    "./base": {
+      "types": "./types/configs.d.ts",
+      "default": "./base.js"
+    },
+    "./cjs": {
+      "types": "./types/configs.d.ts",
+      "default": "./cjs.js"
+    },
+    "./esm": {
+      "types": "./types/configs.d.ts",
+      "default": "./esm.js"
+    },
+    "./rules/core": {
+      "types": "./types/config.d.ts",
+      "default": "./rules/core.js"
+    },
+    "./rules/import": {
+      "types": "./types/config.d.ts",
+      "default": "./rules/import.js"
+    },
+    "./rules/overrides": {
+      "types": "./types/config.d.ts",
+      "default": "./rules/overrides.js"
+    },
     "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "base": [
+        "./types/configs.d.ts"
+      ],
+      "cjs": [
+        "./types/configs.d.ts"
+      ],
+      "esm": [
+        "./types/configs.d.ts"
+      ],
+      "rules/core": [
+        "./types/config.d.ts"
+      ],
+      "rules/import": [
+        "./types/config.d.ts"
+      ],
+      "rules/overrides": [
+        "./types/config.d.ts"
+      ]
+    }
   },
   "files": [
     "base.js",
     "cjs.js",
     "esm.js",
-    "rules"
+    "rules",
+    "types"
   ],
   "engines": {
     "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
   },
   "scripts": {
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:types": "attw --pack"
   },
   "publishConfig": {
     "access": "public"
